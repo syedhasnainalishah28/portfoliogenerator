@@ -15,31 +15,28 @@ class PortfolioController extends Controller
 
     public function store(Request $request)
     {
-        $request->merge([
-            'skills' => is_string($request->skills) ? json_decode($request->skills, true) : $request->skills,
-            'projects' => is_string($request->projects) ? json_decode($request->projects, true) : $request->projects,
-        ]);
+        $dynamicFields = is_string($request->dynamic_fields) 
+            ? json_decode($request->dynamic_fields, true) 
+            : ($request->dynamic_fields ?? []);
 
-        $validator = Validator::make($request->all(), [
-            'full_name' => ['required', 'string', 'max:100'],
-            'title' => ['nullable', 'string', 'max:120'],
-            'bio' => ['required', 'string', 'max:5000'],
-            'email' => ['required', 'email', 'max:120'],
-            'phone' => ['nullable', 'string', 'max:30'],
-            'whatsapp_link' => ['nullable', 'url', 'max:255'],
+        // Flatten any JSON strings inside dynamic_fields (like skills/projects)
+        foreach ($dynamicFields as $key => $value) {
+            if (is_string($value) && (str_starts_with($value, '[') || str_starts_with($value, '{'))) {
+                $decoded = json_decode($value, true);
+                if (json_last_error() === JSON_ERROR_NONE) {
+                    $dynamicFields[$key] = $decoded;
+                }
+            }
+        }
+
+        $validator = Validator::make([
+            'template_key' => $request->template_key,
+            'dynamic_fields' => $dynamicFields,
+        ], [
             'template_key' => ['required', 'in:' . implode(',', $this->allowedTemplateKeys())],
-            'primary_color' => ['required', 'regex:/^#[a-fA-F0-9]{6}$/'],
-            'secondary_color' => ['nullable', 'regex:/^#[a-fA-F0-9]{6}$/'],
-            'background_color' => ['nullable', 'regex:/^#[a-fA-F0-9]{6}$/'],
-            'font_family' => ['nullable', 'string'],
-            'hero_image_size' => ['required', 'integer', 'min:220', 'max:520'],
-            'skills' => ['nullable', 'array', 'max:20'],
-            'skills.*' => ['nullable', 'string', 'max:100'],
-            'projects' => ['nullable', 'array', 'max:10'],
-            'projects.*.name' => ['nullable', 'string', 'max:100'],
-            'projects.*.description' => ['nullable', 'string', 'max:500'],
-            'projects.*.link' => ['nullable', 'url', 'max:255'],
-            'hero_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'dynamic_fields' => ['required', 'array'],
+            'dynamic_fields.full_name' => ['nullable', 'string', 'max:100'],
+            'dynamic_fields.email' => ['nullable', 'email', 'max:120'],
         ]);
 
         if ($validator->fails()) {
@@ -47,34 +44,34 @@ class PortfolioController extends Controller
         }
 
         $data = $validator->validated();
+        $fields = $data['dynamic_fields'];
+
         $imagePath = null;
-        if ($request->hasFile('hero_image')) {
-            $imagePath = $request->file('hero_image')->store('portfolio-heroes', 'public');
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            if (isset($images['hero_image'])) {
+                $imagePath = $images['hero_image']->store('portfolio-heroes', 'public');
+            }
         }
 
         $portfolio = Portfolio::create([
             'user_id' => $request->user()?->id,
-            'full_name' => strip_tags($data['full_name']),
-            'title' => isset($data['title']) ? strip_tags($data['title']) : null,
-            'bio' => strip_tags($data['bio']),
-            'email' => $data['email'],
-            'phone' => isset($data['phone']) ? strip_tags($data['phone']) : null,
-            'whatsapp_link' => $data['whatsapp_link'] ?? null,
+            'full_name' => strip_tags($fields['full_name'] ?? 'Portfolio'),
+            'title' => isset($fields['title']) ? strip_tags($fields['title']) : null,
+            'bio' => isset($fields['bio']) ? strip_tags($fields['bio']) : '',
+            'email' => $fields['email'] ?? 'temp@example.com',
+            'phone' => isset($fields['phone']) ? strip_tags($fields['phone']) : null,
+            'whatsapp_link' => $fields['whatsapp_link'] ?? null,
             'template_key' => $data['template_key'],
-            'primary_color' => $data['primary_color'],
-            'secondary_color' => $data['secondary_color'] ?? '#000000',
-            'background_color' => $data['background_color'] ?? '#ffffff',
-            'font_family' => $data['font_family'] ?? 'Inter',
-            'hero_image_size' => $data['hero_image_size'],
+            'primary_color' => $fields['primary_color'] ?? '#000000',
+            'secondary_color' => $fields['secondary_color'] ?? '#000000',
+            'background_color' => $fields['background_color'] ?? '#ffffff',
+            'font_family' => $fields['font_family'] ?? 'Inter',
+            'hero_image_size' => $fields['hero_image_size'] ?? 340,
             'hero_image_path' => $imagePath,
-            'skills' => array_map('strip_tags', $data['skills'] ?? []),
-            'projects' => array_map(function (array $project): array {
-                return [
-                    'name' => strip_tags($project['name'] ?? ''),
-                    'description' => strip_tags($project['description'] ?? ''),
-                    'link' => $project['link'] ?? null,
-                ];
-            }, $data['projects'] ?? []),
+            'skills' => $fields['skills'] ?? [],
+            'projects' => $fields['projects'] ?? [],
+            'dynamic_fields' => $fields,
         ]);
 
         return response()->json([

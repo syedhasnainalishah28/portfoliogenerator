@@ -1,0 +1,22 @@
+{
+    "name": "Minimalist",
+    "style": "Elegant Light",
+    "description": "Clean, pure, and distraction-free design.",
+    "previewBg": "bg-white",
+    "fields": [
+        { "name": "full_name", "label": "Full Name", "type": "text", "default": "SARAH JENKINS" },
+        { "name": "title", "label": "Subtitle / Role", "type": "text", "default": "Digital Product Designer" },
+        { "name": "bio", "label": "Bio Introduction", "type": "textarea", "default": "Crafting digital experiences..." },
+        { "name": "email", "label": "Email Address", "type": "email", "default": "hello@sarah.design" },
+        { "name": "location", "label": "Location", "type": "text", "default": "Berlin, Germany" },
+        { "name": "primary_color", "label": "Accent Color", "type": "color", "default": "#c4a484" },
+        { "name": "background_color", "label": "Background Color", "type": "color", "default": "#fdfbf7" },
+        { "name": "whatsapp_link", "label": "Say Hello Link", "type": "url", "default": "https://wa.me/..." },
+        { "name": "linkedin_url", "label": "LinkedIn URL", "type": "url", "default": "https://linkedin.com/..." },
+        { "name": "dribbble_url", "label": "Dribbble URL", "type": "url", "default": "https://dribbble.com/..." },
+        { "name": "projects_count", "label": "Selected Projects", "type": "number", "default": 24 },
+        { "name": "skills", "label": "Services / Skills", "type": "list", "default": ["UX/UI Design", "Product Strategy"] },
+        { "name": "projects", "label": "Portfolio Projects", "type": "projects", "default": [] },
+        { "name": "hero_image", "label": "Hero Image", "type": "image", "default": null }
+    ]
+}

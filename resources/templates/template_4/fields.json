@@ -1,0 +1,23 @@
+{
+    "name": "Glassmorphism",
+    "style": "Deep Purple & Orbs",
+    "description": "Tech-focused data science or development with glass effects.",
+    "previewBg": "bg-[#0D0B1E]",
+    "fields": [
+        { "name": "full_name", "label": "Full Name", "type": "text", "default": "ZARA AHMED" },
+        { "name": "title", "label": "Role Details", "type": "text", "default": "Data Scientist & ML Engineer" },
+        { "name": "bio", "label": "Bio Description", "type": "textarea", "default": "With expertise in machine learning..." },
+        { "name": "email", "label": "Email Address", "type": "email", "default": "zara@example.com" },
+        { "name": "years_experience", "label": "Years Experience", "type": "number", "default": 3 },
+        { "name": "projects_count", "label": "Models Built", "type": "number", "default": 20 },
+        { "name": "primary_color", "label": "Primary Purple", "type": "color", "default": "#a855f7" },
+        { "name": "secondary_color", "label": "Secondary Pink", "type": "color", "default": "#ec4899" },
+        { "name": "whatsapp_link", "label": "Download CV Link", "type": "url", "default": "https://wa.me/..." },
+        { "name": "github_url", "label": "GitHub URL", "type": "url", "default": "https://github.com/..." },
+        { "name": "linkedin_url", "label": "LinkedIn URL", "type": "url", "default": "https://linkedin.com/..." },
+        { "name": "twitter_url", "label": "Twitter URL", "type": "url", "default": "https://twitter.com/..." },
+        { "name": "skills", "label": "Technical Expertise", "type": "list", "default": ["TensorFlow:90", "Python:98"] },
+        { "name": "projects", "label": "Featured Projects", "type": "projects", "default": [] },
+        { "name": "hero_image", "label": "Profile Image / Code Card", "type": "image", "default": null }
+    ]
+}

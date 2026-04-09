@@ -24,11 +24,13 @@ class Portfolio extends Model
         'hero_image_path',
         'skills',
         'projects',
+        'dynamic_fields',
     ];
 
     protected $casts = [
         'skills' => 'array',
         'projects' => 'array',
+        'dynamic_fields' => 'array',
     ];
 
     public function user(): BelongsTo

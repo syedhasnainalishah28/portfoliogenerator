@@ -1,0 +1,24 @@
+{
+    "name": "Creative Gradient",
+    "style": "Bold & Colorful",
+    "description": "High-impact colorful gradients and 3D effects.",
+    "previewBg": "bg-black",
+    "fields": [
+        { "name": "full_name", "label": "Full Name", "type": "text", "default": "MARCUS RIVERA" },
+        { "name": "title", "label": "Role (e.g. Creative Developer)", "type": "text", "default": "Creative Developer & Digital Artist" },
+        { "name": "bio", "label": "Bio Description", "type": "textarea", "default": "I build extraordinary digital experiences..." },
+        { "name": "email", "label": "Email Address", "type": "email", "default": "marcus@example.com" },
+        { "name": "years_experience", "label": "Years Experience", "type": "number", "default": 6 },
+        { "name": "projects_count", "label": "Projects Done", "type": "number", "default": 40 },
+        { "name": "clients_count", "label": "Happy Clients", "type": "number", "default": 25 },
+        { "name": "primary_color", "label": "Gradient Color 1", "type": "color", "default": "#FF5C35" },
+        { "name": "secondary_color", "label": "Gradient Color 2", "type": "color", "default": "#FFE037" },
+        { "name": "whatsapp_link", "label": "Hire Me / CV Link", "type": "url", "default": "https://wa.me/..." },
+        { "name": "github_url", "label": "GitHub URL", "type": "url", "default": "https://github.com/..." },
+        { "name": "linkedin_url", "label": "LinkedIn URL", "type": "url", "default": "https://linkedin.com/..." },
+        { "name": "twitter_url", "label": "Twitter URL", "type": "url", "default": "https://twitter.com/..." },
+        { "name": "skills", "label": "Tech Stack (IconName:Title)", "type": "list", "default": ["react:React", "cube:Three.js"] },
+        { "name": "projects", "label": "Featured Work", "type": "projects", "default": [] },
+        { "name": "hero_image", "label": "Hero Image", "type": "image", "default": null }
+    ]
+}

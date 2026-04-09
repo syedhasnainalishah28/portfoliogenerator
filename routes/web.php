@@ -31,6 +31,22 @@ Route::middleware('auth')->group(function () {
         ->name('portfolios.download');
     Route::get('/portfolios', [PortfolioIndexController::class, 'index'])->name('portfolios.index');
 
+    Route::get('/api/templates/{key}/fields', function ($key) {
+        $path = resource_path("templates/{$key}/fields.json");
+        if (file_exists($path)) {
+            return response()->file($path);
+        }
+        return response()->json(['error' => 'Not found'], 404);
+    })->name('templates.fields');
+
+    Route::get('/templates/{key}/preview', function ($key) {
+        $path = resource_path("templates/{$key}/index.html");
+        if (file_exists($path)) {
+            return response()->file($path);
+        }
+        abort(404);
+    })->name('templates.preview');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

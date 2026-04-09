@@ -84,49 +84,64 @@ class PortfolioDownloadController extends Controller
 
     private function getPlaceholders(Portfolio $portfolio): array
     {
-        $nameParts = explode(' ', trim($portfolio->full_name));
+        $placeholders = [];
+        
+        // Extract standard fields
+        $data = $portfolio->toArray();
+        $dynamicFields = $data['dynamic_fields'] ?? [];
+        
+        // Merge them together, prioritizing dynamic_fields
+        $merged = array_merge($data, $dynamicFields);
+        
+        foreach ($merged as $key => $value) {
+            if (is_string($value) || is_numeric($value)) {
+                $placeholders[strtoupper($key)] = e((string) $value);
+            }
+        }
+
+        // Special handling for initials
+        $name = $merged['full_name'] ?? 'P F';
+        $nameParts = explode(' ', trim($name));
         $initials = '';
         if (count($nameParts) >= 2) {
             $initials = strtoupper(substr($nameParts[0], 0, 1) . '.' . substr($nameParts[count($nameParts)-1], 0, 1));
         } else {
-            $initials = strtoupper(substr($portfolio->full_name, 0, 2));
+            $initials = strtoupper(substr($name, 0, 2));
         }
+        $placeholders['FULL_NAME_INITIALS'] = $initials;
 
+        // Add basic HTML for backward compatibility (skills/projects)
         $skillsHtml = '';
-        foreach ($portfolio->skills as $skill) {
-            $skillsHtml .= '<div class="glass-panel px-4 py-3 rounded-xl border border-white/10 hover:border-primary/50 transition-all flex items-center justify-center text-center group">
-                <span class="text-sm font-bold tracking-tight group-hover:scale-110 transition-transform">' . e($skill) . '</span>
-            </div>';
+        $skills = $merged['skills'] ?? [];
+        if (is_array($skills)) {
+            foreach ($skills as $skill) {
+                $skillText = is_string($skill) ? $skill : json_encode($skill);
+                $skillsHtml .= '<span class="inline-block px-3 py-1 bg-opacity-20 bg-gray-500 rounded-full text-sm mr-2 mb-2">' . e($skillText) . '</span>';
+            }
         }
+        $placeholders['SKILLS_HTML'] = $skillsHtml;
 
         $projectsHtml = '';
-        foreach ($portfolio->projects as $project) {
-            $linkHtml = !empty($project['link']) ? '<a href="' . e($project['link']) . '" target="_blank" class="text-primary font-black uppercase text-[10px] tracking-widest mt-4 inline-block hover:opacity-70">View Project &nearr;</a>' : '';
-            $projectsHtml .= '<div class="glass-panel p-8 rounded-[32px] border border-white/5 hover:border-primary/20 transition-all group">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                        <i class="fa-solid fa-folder-open text-xs"></i>
-                    </div>
-                    <h4 class="text-xl font-black italic tracking-tighter">' . e($project['name']) . '</h4>
-                </div>
-                <p class="text-gray-400 text-sm leading-relaxed">' . e($project['description']) . '</p>
-                ' . $linkHtml . '
-            </div>';
+        $projects = $merged['projects'] ?? [];
+        if (is_array($projects)) {
+            foreach ($projects as $project) {
+                if (is_array($project)) {
+                    $name = $project['name'] ?? '';
+                    $desc = $project['description'] ?? '';
+                    $link = $project['link'] ?? '';
+                    $projectsHtml .= '<div style="margin-bottom: 20px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;">';
+                    $projectsHtml .= '<h3 style="font-weight:bold; margin-bottom:10px;">' . e($name) . '</h3>';
+                    $projectsHtml .= '<p style="opacity:0.8; font-size:14px; margin-bottom:10px;">' . e($desc) . '</p>';
+                    if ($link) {
+                        $projectsHtml .= '<a href="' . e($link) . '" target="_blank" style="color: inherit; text-decoration: underline;">View Project</a>';
+                    }
+                    $projectsHtml .= '</div>';
+                }
+            }
         }
+        $placeholders['PROJECTS_HTML'] = $projectsHtml;
 
-        return [
-            'FULL_NAME' => e($portfolio->full_name),
-            'FULL_NAME_INITIALS' => $initials,
-            'TITLE' => e($portfolio->title),
-            'BIO' => e($portfolio->bio),
-            'BIO_EXTENDED' => e($portfolio->bio),
-            'EMAIL' => e($portfolio->email),
-            'PHONE' => e($portfolio->phone ?? 'Not provided'),
-            'WHATSAPP_LINK' => e($portfolio->whatsapp_link ?? '#'),
-            'PRIMARY_COLOR' => $portfolio->primary_color,
-            'SKILLS_HTML' => $skillsHtml,
-            'PROJECTS_HTML' => $projectsHtml,
-        ];
+        return $placeholders;
     }
 
     private function recursiveCopy($src, $dst)

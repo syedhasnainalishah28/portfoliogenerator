@@ -1,0 +1,25 @@
+{
+    "name": "Neon Dark",
+    "style": "Cyberpunk",
+    "description": "Bold, colorful cyberpunk aesthetic with particles.",
+    "previewBg": "bg-slate-900",
+    "fields": [
+        { "name": "full_name", "label": "Full Name", "type": "text", "default": "ALEX CARTER" },
+        { "name": "title", "label": "Professional Title (Typing Effect)", "type": "text", "default": "Full Stack Developer" },
+        { "name": "bio", "label": "Bio Description", "type": "textarea", "default": "Building scalable web applications..." },
+        { "name": "location", "label": "Location", "type": "text", "default": "New York, USA" },
+        { "name": "email", "label": "Email", "type": "email", "default": "alex@example.com" },
+        { "name": "years_experience", "label": "Years Experience", "type": "number", "default": 5 },
+        { "name": "projects_count", "label": "Projects Done", "type": "number", "default": 50 },
+        { "name": "clients_count", "label": "Happy Clients", "type": "number", "default": 30 },
+        { "name": "primary_color", "label": "Neon Cyan Color", "type": "color", "default": "#00f5ff" },
+        { "name": "secondary_color", "label": "Neon Pink Color", "type": "color", "default": "#ff00ff" },
+        { "name": "whatsapp_link", "label": "Download CV / WhatsApp Link", "type": "url", "default": "https://wa.me/..." },
+        { "name": "github_url", "label": "GitHub URL", "type": "url", "default": "https://github.com/..." },
+        { "name": "linkedin_url", "label": "LinkedIn URL", "type": "url", "default": "https://linkedin.com/..." },
+        { "name": "twitter_url", "label": "Twitter/X URL", "type": "url", "default": "https://twitter.com/..." },
+        { "name": "skills", "label": "Technical Skills (Name:Percentage)", "type": "list", "default": ["React.js:90", "Node.js:80", "MongoDB:75"] },
+        { "name": "projects", "label": "Featured Projects", "type": "projects", "default": [] },
+        { "name": "hero_image", "label": "Hero Image", "type": "image", "default": null }
+    ]
+}
