@@ -149,7 +149,17 @@ class TemplateHelper
         $serviceCardsHtml = '';
         if ($templateKey === 'template_1') {
             $services = $merged['service_cards'] ?? [];
+            
+            // Hero badges from service cards (use first 3)
+            $placeholders['HERO_BADGE_1'] = 'React';
+            $placeholders['HERO_BADGE_2'] = 'Node.js';
+            $placeholders['HERO_BADGE_3'] = 'MongoDB';
+            
             if (is_array($services)) {
+                if (isset($services[0])) { $parts = explode('|', $services[0]); $placeholders['HERO_BADGE_1'] = trim($parts[1] ?? 'React'); }
+                if (isset($services[1])) { $parts = explode('|', $services[1]); $placeholders['HERO_BADGE_2'] = trim($parts[1] ?? 'Node.js'); }
+                if (isset($services[2])) { $parts = explode('|', $services[2]); $placeholders['HERO_BADGE_3'] = trim($parts[1] ?? 'MongoDB'); }
+
                 $styles = [
                     'neon-border text-neon-cyan', 
                     'neon-border-green text-neon-green', 
