@@ -40,9 +40,25 @@ Route::middleware('auth')->group(function () {
     })->name('templates.fields');
 
     Route::get('/templates/{key}/preview', function ($key) {
-        $path = resource_path("templates/{$key}/index.html");
-        if (file_exists($path)) {
-            return response()->file($path);
+        $htmlPath = resource_path("templates/{$key}/index.html");
+        $jsonPath = resource_path("templates/{$key}/fields.json");
+        
+        if (file_exists($htmlPath)) {
+            $content = file_get_contents($htmlPath);
+            
+            // If fields.json exists, we replace [[KEY]] placeholders with their default values for a perfect preview
+            if (file_exists($jsonPath)) {
+                $fieldsData = json_decode(file_get_contents($jsonPath), true);
+                if (isset($fieldsData['fields']) && is_array($fieldsData['fields'])) {
+                    foreach ($fieldsData['fields'] as $field) {
+                        $placeholder = '[[' . strtoupper($field['name']) . ']]';
+                        $default = is_string($field['default']) || is_numeric($field['default']) ? $field['default'] : '';
+                        $content = str_replace($placeholder, $default, $content);
+                    }
+                }
+            }
+            
+            return response($content)->header('Content-Type', 'text/html');
         }
         abort(404);
     })->name('templates.preview');
