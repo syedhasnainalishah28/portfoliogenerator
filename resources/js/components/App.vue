@@ -50,41 +50,6 @@
 
                 <div v-if="loadingFields" class="py-10 text-center text-gray-400 font-bold animate-pulse">Loading engine fields...</div>
                 
-                <div v-else class="space-y-8">
-                    <!-- Standard Fields -->
-                    <div class="space-y-5">
-                        <div class="flex items-center gap-2 mb-4">
-                            <div class="w-1.5 h-6 rounded-full bg-[#f28b11]"></div>
-                            <h3 class="text-sm uppercase tracking-widest font-black text-gray-800">Basic Info</h3>
-                        </div>
-                        
-                        <template v-for="field in (templateFieldsLayout.filter(f => ['text', 'email', 'number', 'url', 'color'].includes(f.type)))" :key="field.name">
-                            <div>
-                                <label class="ha-label text-xs">{{ field.label }}</label>
-                                <div v-if="field.type === 'color'" class="flex items-center gap-3">
-                                    <input v-model="form.dynamic_fields[field.name]" type="color" class="w-10 h-10 rounded-lg cursor-pointer border-2 border-gray-100 shadow-sm transition-transform hover:scale-110" />
-                                    <span class="text-xs font-mono text-gray-500 uppercase px-2 py-1 bg-gray-100 rounded">{{ form.dynamic_fields[field.name] }}</span>
-                                </div>
-                                <input v-else v-model="form.dynamic_fields[field.name]" :type="field.type" class="ha-input text-sm py-2 px-3 shadow-sm" :placeholder="`e.g. ${field.default || ''}`" />
-                            </div>
-                        </template>
-                        
-                        <template v-for="field in textareaFields" :key="field.name">
-                            <div>
-                                <label class="ha-label text-xs">{{ field.label }}</label>
-                                <textarea v-model="form.dynamic_fields[field.name]" class="ha-input text-sm py-2 px-3 min-h-[80px] resize-y shadow-sm" :placeholder="field.default"></textarea>
-                            </div>
-                        </template>
-                    </div>
-
-                    <!-- Complex Lists -->
-                    <div class="space-y-8 pt-6 border-t border-gray-100" v-if="listFields.length > 0 || projectFields.length > 0">
-                        <div class="flex items-center gap-2 mb-4">
-                            <div class="w-1.5 h-6 rounded-full bg-[#f28b11]"></div>
-                            <h3 class="text-sm uppercase tracking-widest font-black text-gray-800">Dynamic Lists</h3>
-                        </div>
-
-                        <template v-for="field in listFields" :key="field.name">
                 <div v-else class="space-y-10">
                     <template v-for="sectionName in uniqueSections" :key="sectionName">
                         <div class="space-y-5">
@@ -178,7 +143,7 @@
                         </div>
                     </template>
                 </div>
-            </div>
+
 
                 <div v-if="message || errorMessage" class="mt-8 p-3 rounded-lg text-xs font-bold text-center border shadow-sm" :class="errorMessage ? 'bg-red-50 text-red-600 border-red-100' : 'bg-emerald-50 text-emerald-700 border-emerald-100'">
                     {{ errorMessage || message }}
