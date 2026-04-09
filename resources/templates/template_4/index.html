@@ -1,69 +1,391 @@
 <!DOCTYPE html>
+<!-- Created by HA Tech | hatech.com | All Rights Reserved -->
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[[FULL_NAME]] | Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '[[PRIMARY_COLOR]]',
-                    }
-                }
-            }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zara Ahmed | Data Scientist</title>
+  <meta name="description" content="Zara Ahmed - Data Scientist & Machine Learning Engineer. Turning data into actionable insights and intelligent systems." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { outfit: ['Outfit', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+          colors: {
+            glassy: { bg: 'rgba(255,255,255,0.08)', border: 'rgba(255,255,255,0.15)' }
+          }
         }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;700&display=swap');
-        body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; }
-        .serif-title { font-family: 'Playfair Display', serif; }
-        .executive-card {
-            background: linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 2px;
-        }
-        .accent-line {
-            width: 60px;
-            height: 2px;
-            background: [[PRIMARY_COLOR]];
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { background: #0D0B1E; font-family: 'Outfit', sans-serif; color: white; overflow-x: hidden; min-height: 100vh; }
+    /* Animated gradient background */
+    .bg-animate { position: fixed; inset: 0; z-index: 0; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(80px); animation: orbFloat 8s ease-in-out infinite; }
+    .orb-1 { width: 500px; height: 500px; background: radial-gradient(#6366f1, transparent); top: -100px; left: -100px; animation-delay: 0s; }
+    .orb-2 { width: 400px; height: 400px; background: radial-gradient(#a855f7, transparent); bottom: -100px; right: -100px; animation-delay: -3s; }
+    .orb-3 { width: 300px; height: 300px; background: radial-gradient(#ec4899, transparent); top: 50%; left: 50%; animation-delay: -6s; opacity: 0.5; }
+    @keyframes orbFloat { 0%,100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(30px, -30px) scale(1.05); } 66% { transform: translate(-20px, 20px) scale(0.95); } }
+    /* Glass effect */
+    .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.12); }
+    .glass-dark { background: rgba(0,0,0,0.3); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
+    .glass-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.1); transition: all 0.4s ease; }
+    .glass-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(139,92,246,0.5); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(139,92,246,0.2); }
+    /* Typography */
+    .gradient-text { background: linear-gradient(135deg, #a855f7, #ec4899, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .mono-code { font-family: 'JetBrains Mono', monospace; }
+    /* Nav */
+    .nav-glass { background: rgba(13,11,30,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    /* Animations */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    /* Progress bars */
+    .progress-bar { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 3px; animation: fillBar 1.5s ease 0.5s both; }
+    .progress-purple { background: linear-gradient(90deg, #6366f1, #a855f7); }
+    .progress-pink { background: linear-gradient(90deg, #ec4899, #a855f7); }
+    .progress-blue { background: linear-gradient(90deg, #3b82f6, #6366f1); }
+    @keyframes fillBar { from { width: 0 } }
+    /* Input */
+    .glass-input { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 14px 18px; outline: none; border-radius: 12px; width: 100%; font-family: 'Outfit', sans-serif; font-size: 0.95rem; transition: all 0.3s ease; }
+    .glass-input:focus { border-color: #a855f7; background: rgba(168,85,247,0.05); box-shadow: 0 0 20px rgba(168,85,247,0.1); }
+    .glass-input::placeholder { color: rgba(255,255,255,0.3); }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0D0B1E; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(#6366f1, #a855f7); border-radius: 2px; }
+    /* Badge */
+    .badge { background: rgba(168,85,247,0.2); border: 1px solid rgba(168,85,247,0.3); color: #d8b4fe; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; }
+    .badge-pink { background: rgba(236,72,153,0.15); border-color: rgba(236,72,153,0.3); color: #f9a8d4; }
+    .badge-blue { background: rgba(99,102,241,0.15); border-color: rgba(99,102,241,0.3); color: #a5b4fc; }
+    /* Timeline */
+    .timeline-item { position: relative; padding-left: 28px; }
+    .timeline-item::before { content: ''; position: absolute; left: 0; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, #a855f7, #ec4899); box-shadow: 0 0 10px #a855f7; }
+    .timeline-item::after { content: ''; position: absolute; left: 4px; top: 20px; width: 2px; height: calc(100% + 16px); background: linear-gradient(to bottom, rgba(168,85,247,0.3), transparent); }
+    .timeline-item:last-child::after { display: none; }
+    .glow-btn { background: linear-gradient(135deg, #6366f1, #a855f7); padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; cursor: pointer; display: inline-block; }
+    .glow-btn:hover { box-shadow: 0 0 30px rgba(168,85,247,0.6), 0 0 60px rgba(168,85,247,0.3); transform: translateY(-2px); }
+    .outline-btn { border: 1px solid rgba(168,85,247,0.5); color: #d8b4fe; padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; display: inline-block; }
+    .outline-btn:hover { background: rgba(168,85,247,0.1); border-color: #a855f7; }
+  </style>
 </head>
-<body class="antialiased">
-    
-    <header class="max-w-7xl mx-auto px-6 py-12 flex justify-between items-end">
-        <div class="space-y-1">
-            <h2 class="text-xs uppercase tracking-[0.4em] font-bold text-gray-500">Portfolio Selection</h2>
-            <div class="serif-title text-4xl">[[FULL_NAME]]</div>
+<body class="relative">
+
+  <!-- Animated background -->
+  <div class="bg-animate">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="mono-code text-lg font-medium">
+        <span class="text-purple-400">&lt;</span>
+        <span class="gradient-text font-bold">Zara</span>
+        <span class="text-purple-400">/&gt;</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="text-white/60 hover:text-white text-sm transition-colors hover:text-purple-300">About</a>
+        <a href="#skills" class="text-white/60 hover:text-white text-sm transition-colors hover:text-purple-300">Skills</a>
+        <a href="#projects" class="text-white/60 hover:text-white text-sm transition-colors hover:text-purple-300">Projects</a>
+        <a href="#experience" class="text-white/60 hover:text-white text-sm transition-colors hover:text-purple-300">Experience</a>
+        <a href="#contact" class="text-white/60 hover:text-white text-sm transition-colors hover:text-purple-300">Contact</a>
+      </div>
+      <a href="#contact" class="glow-btn text-white text-sm">Get In Touch</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="relative min-h-screen flex items-center pt-20 z-10">
+    <div class="max-w-7xl mx-auto px-6 py-20 w-full">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+            <span class="badge">Open to Opportunities</span>
+          </div>
+          <div class="mono-code text-purple-400 text-sm">print("Hello, World!")</div>
+          <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
+            Hi, I'm<br/>
+            <span class="gradient-text">Zara Ahmed</span>
+          </h1>
+          <div class="text-xl text-white/60 leading-relaxed">
+            <span class="mono-code text-purple-300">Data Scientist</span> & <span class="mono-code text-pink-300">ML Engineer</span><br/>
+            transforming raw data into intelligent solutions.
+          </div>
+          <p class="text-white/50 max-w-lg">
+            With expertise in machine learning, deep learning, and data visualization, I help organizations make data-driven decisions that actually matter.
+          </p>
+          <div class="flex gap-4 flex-wrap">
+            <a href="#projects" class="glow-btn text-white">View Projects</a>
+            <a href="#" class="outline-btn">Download CV</a>
+          </div>
+          <div class="flex gap-5">
+            <a href="#" class="text-white/30 hover:text-purple-400 text-xl transition-colors"><i class="fab fa-github"></i></a>
+            <a href="#" class="text-white/30 hover:text-purple-400 text-xl transition-colors"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="text-white/30 hover:text-pink-400 text-xl transition-colors"><i class="fab fa-kaggle"></i></a>
+            <a href="#" class="text-white/30 hover:text-blue-400 text-xl transition-colors"><i class="fab fa-twitter"></i></a>
+          </div>
         </div>
-        <nav class="flex gap-12 text-[10px] uppercase tracking-widest font-black text-primary">
-            <a href="index.html" class="border-b border-primary">Home</a>
-            <a href="about.html" class="hover:opacity-50 transition-all">About</a>
-            <a href="contact.html" class="hover:opacity-50 transition-all">Contact</a>
-        </nav>
-    </header>
+        <!-- Code card -->
+        <div class="glass rounded-3xl p-6 fade-up">
+          <div class="flex items-center gap-2 mb-6">
+            <div class="w-3 h-3 rounded-full bg-red-400"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+            <div class="w-3 h-3 rounded-full bg-green-400"></div>
+            <span class="ml-4 text-white/30 text-xs mono-code">profile.py</span>
+          </div>
+          <pre class="mono-code text-sm leading-relaxed">
+<span class="text-purple-400">class</span> <span class="text-yellow-300">DataScientist</span>:
+  <span class="text-purple-400">def</span> <span class="text-blue-300">__init__</span>(<span class="text-orange-300">self</span>):
+    <span class="text-orange-300">self</span>.name = <span class="text-green-300">"Zara Ahmed"</span>
+    <span class="text-orange-300">self</span>.skills = [
+      <span class="text-green-300">"Machine Learning"</span>,
+      <span class="text-green-300">"Deep Learning"</span>,
+      <span class="text-green-300">"Python"</span>,
+      <span class="text-green-300">"TensorFlow"</span>,
+      <span class="text-green-300">"Data Visualization"</span>
+    ]
+    <span class="text-orange-300">self</span>.coffee = <span class="text-purple-400">True</span> <span class="text-white/30">  # always</span>
 
-
-        <section class="border-t border-gray-200 pt-24">
-            <h2 class="text-3xl font-bold mb-16 text-center">Executive Expertise</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                [[SKILLS_HTML]]
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-gray-50 py-20 border-t border-gray-100 mt-20">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold mb-6 italic">Let's build something exceptional.</h2>
-            <p class="text-gray-500 mb-10">Currently accepting strategic partnerships and freelance advisory.</p>
-            <div class="flex justify-center gap-8 text-xs uppercase tracking-widest font-bold">
-                <a href="mailto:[[EMAIL]]" class="text-brand">Enail Direct</a>
-                <a href="[[WHATSAPP_LINK]]">Message</a>
-            </div>
+  <span class="text-purple-400">def</span> <span class="text-blue-300">solve_problem</span>(<span class="text-orange-300">self</span>):
+    <span class="text-purple-400">return</span> <span class="text-green-300">"Turning data into insight 🚀"</span>
+          </pre>
+          <div class="mt-4 mono-code text-xs text-green-400 border-t border-white/10 pt-4">
+            &gt; <span class="animate-pulse">_</span>
+          </div>
         </div>
-    </footer>
+      </div>
+      <!-- Stats row -->
+      <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="glass rounded-2xl p-6 text-center fade-up">
+          <div class="text-4xl font-extrabold gradient-text mb-1">3+</div>
+          <div class="text-white/40 text-sm">Years in ML</div>
+        </div>
+        <div class="glass rounded-2xl p-6 text-center fade-up">
+          <div class="text-4xl font-extrabold gradient-text mb-1">20+</div>
+          <div class="text-white/40 text-sm">ML Models Built</div>
+        </div>
+        <div class="glass rounded-2xl p-6 text-center fade-up">
+          <div class="text-4xl font-extrabold gradient-text mb-1">5K+</div>
+          <div class="text-white/40 text-sm">Kaggle Points</div>
+        </div>
+        <div class="glass rounded-2xl p-6 text-center fade-up">
+          <div class="text-4xl font-extrabold gradient-text mb-1">15+</div>
+          <div class="text-white/40 text-sm">Publications</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 fade-up">
+        <span class="mono-code text-purple-400 text-sm">// skills.json</span>
+        <h2 class="text-4xl font-extrabold mt-3">Technical <span class="gradient-text">Expertise</span></h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="glass rounded-3xl p-8 fade-up">
+          <h3 class="text-lg font-semibold mb-6 text-purple-300">Machine Learning & AI</h3>
+          <div class="space-y-5">
+            <div><div class="flex justify-between mb-2 text-sm"><span class="text-white/70">TensorFlow / Keras</span><span class="text-purple-400">90%</span></div><div class="progress-bar"><div class="progress-fill progress-purple" style="width:90%"></div></div></div>
+            <div><div class="flex justify-between mb-2 text-sm"><span class="text-white/70">PyTorch</span><span class="text-purple-400">85%</span></div><div class="progress-bar"><div class="progress-fill progress-pink" style="width:85%"></div></div></div>
+            <div><div class="flex justify-between mb-2 text-sm"><span class="text-white/70">Scikit-learn</span><span class="text-purple-400">95%</span></div><div class="progress-bar"><div class="progress-fill progress-blue" style="width:95%"></div></div></div>
+            <div><div class="flex justify-between mb-2 text-sm"><span class="text-white/70">Computer Vision (OpenCV)</span><span class="text-purple-400">80%</span></div><div class="progress-bar"><div class="progress-fill progress-purple" style="width:80%"></div></div></div>
+            <div><div class="flex justify-between mb-2 text-sm"><span class="text-white/70">NLP / Transformers</span><span class="text-purple-400">78%</span></div><div class="progress-bar"><div class="progress-fill progress-pink" style="width:78%"></div></div></div>
+          </div>
+        </div>
+        <div class="glass rounded-3xl p-8 fade-up">
+          <h3 class="text-lg font-semibold mb-6 text-pink-300">Data & Programming</h3>
+          <div class="space-y-5">
+            <div><div class="flex justify-between mb-2 text-sm"><span class="text-white/70">Python</span><span class="text-pink-400">98%</span></div><div class="progress-bar"><div class="progress-fill progress-pink" style="width:98%"></div></div></div>
+            <div><div class="flex justify-between mb-2 text-sm"><span class="text-white/70">SQL / PostgreSQL</span><span class="text-pink-400">88%</span></div><div class="progress-bar"><div class="progress-fill progress-blue" style="width:88%"></div></div></div>
+            <div><div class="flex justify-between mb-2 text-sm"><span class="text-white/70">Pandas / NumPy</span><span class="text-pink-400">96%</span></div><div class="progress-bar"><div class="progress-fill progress-purple" style="width:96%"></div></div></div>
+            <div><div class="flex justify-between mb-2 text-sm"><span class="text-white/70">Power BI / Tableau</span><span class="text-pink-400">82%</span></div><div class="progress-bar"><div class="progress-fill progress-pink" style="width:82%"></div></div></div>
+            <div><div class="flex justify-between mb-2 text-sm"><span class="text-white/70">Apache Spark</span><span class="text-pink-400">75%</span></div><div class="progress-bar"><div class="progress-fill progress-blue" style="width:75%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 fade-up">
+        <span class="mono-code text-purple-400 text-sm">// projects</span>
+        <h2 class="text-4xl font-extrabold mt-3">Featured <span class="gradient-text">Projects</span></h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass-card rounded-3xl p-6 fade-up">
+          <div class="w-12 h-12 rounded-2xl bg-purple-500/20 flex items-center justify-center mb-5">
+            <i class="fas fa-brain text-purple-400 text-xl"></i>
+          </div>
+          <div class="flex gap-2 mb-3"><span class="badge">NLP</span><span class="badge-blue badge">Python</span></div>
+          <h3 class="text-xl font-bold mb-3">Sentiment Analysis Engine</h3>
+          <p class="text-white/50 text-sm leading-relaxed mb-5">BERT-based sentiment classifier achieving 94% accuracy on Twitter data, processing 10K+ tweets/min.</p>
+          <div class="flex gap-3">
+            <a href="#" class="text-purple-400 text-sm hover:text-purple-300 transition-colors flex items-center gap-1"><i class="fab fa-github"></i> Code</a>
+            <a href="#" class="text-pink-400 text-sm hover:text-pink-300 transition-colors flex items-center gap-1"><i class="fas fa-external-link-alt"></i> Demo</a>
+          </div>
+        </div>
+        <div class="glass-card rounded-3xl p-6 fade-up">
+          <div class="w-12 h-12 rounded-2xl bg-pink-500/20 flex items-center justify-center mb-5">
+            <i class="fas fa-eye text-pink-400 text-xl"></i>
+          </div>
+          <div class="flex gap-2 mb-3"><span class="badge-pink badge">CV</span><span class="badge">TensorFlow</span></div>
+          <h3 class="text-xl font-bold mb-3">Real-time Object Detection</h3>
+          <p class="text-white/50 text-sm leading-relaxed mb-5">YOLOv8-based object detection system for retail inventory management with 92% mAP.</p>
+          <div class="flex gap-3">
+            <a href="#" class="text-purple-400 text-sm hover:text-purple-300 transition-colors flex items-center gap-1"><i class="fab fa-github"></i> Code</a>
+            <a href="#" class="text-pink-400 text-sm hover:text-pink-300 transition-colors flex items-center gap-1"><i class="fas fa-external-link-alt"></i> Demo</a>
+          </div>
+        </div>
+        <div class="glass-card rounded-3xl p-6 fade-up">
+          <div class="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center mb-5">
+            <i class="fas fa-chart-bar text-blue-400 text-xl"></i>
+          </div>
+          <div class="flex gap-2 mb-3"><span class="badge-blue badge">Analytics</span><span class="badge">Spark</span></div>
+          <h3 class="text-xl font-bold mb-3">Customer Churn Predictor</h3>
+          <p class="text-white/50 text-sm leading-relaxed mb-5">XGBoost model predicting customer churn with 89% precision, saving $2M+ in annual revenue.</p>
+          <div class="flex gap-3">
+            <a href="#" class="text-purple-400 text-sm hover:text-purple-300 transition-colors flex items-center gap-1"><i class="fab fa-github"></i> Code</a>
+            <a href="#" class="text-pink-400 text-sm hover:text-pink-300 transition-colors flex items-center gap-1"><i class="fas fa-external-link-alt"></i> Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="py-24 relative z-10">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16 fade-up">
+        <span class="mono-code text-purple-400 text-sm">// experience.json</span>
+        <h2 class="text-4xl font-extrabold mt-3">Work <span class="gradient-text">Experience</span></h2>
+      </div>
+      <div class="glass rounded-3xl p-8 space-y-10 fade-up">
+        <div class="timeline-item pb-8">
+          <div class="text-xs badge mb-3 inline-block">2023 – Present</div>
+          <h3 class="text-xl font-bold mb-1">Senior Data Scientist</h3>
+          <div class="text-purple-400 text-sm mb-3">Google DeepMind · Full-time</div>
+          <p class="text-white/50 text-sm leading-relaxed">Leading ML research projects in natural language processing. Developed transformer-based models deployed at scale to millions of users.</p>
+        </div>
+        <div class="timeline-item pb-8">
+          <div class="text-xs badge mb-3 inline-block">2021 – 2023</div>
+          <h3 class="text-xl font-bold mb-1">Machine Learning Engineer</h3>
+          <div class="text-pink-400 text-sm mb-3">Spotify · Full-time</div>
+          <p class="text-white/50 text-sm leading-relaxed">Built recommendation algorithms serving 400M+ users. Improved discovery features resulting in 18% increase in user engagement.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="text-xs badge mb-3 inline-block">2019 – 2021</div>
+          <h3 class="text-xl font-bold mb-1">Data Analyst</h3>
+          <div class="text-blue-400 text-sm mb-3">McKinsey & Company · Full-time</div>
+          <p class="text-white/50 text-sm leading-relaxed">Data-driven consulting for Fortune 500 clients across healthcare and finance sectors.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-24 relative z-10">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-12 fade-up">
+        <span class="mono-code text-purple-400 text-sm">// contact.send()</span>
+        <h2 class="text-4xl font-extrabold mt-3">Let's <span class="gradient-text">Collaborate</span></h2>
+        <p class="text-white/50 mt-4">Interested in data science consulting, research collaboration, or just want to chat about ML?</p>
+      </div>
+      <div class="glass rounded-3xl p-8 fade-up">
+        <form class="space-y-5" onsubmit="sendMsg(event)">
+          <div class="grid md:grid-cols-2 gap-5">
+            <input class="glass-input" type="text" placeholder="Name" required />
+            <input class="glass-input" type="email" placeholder="Email" required />
+          </div>
+          <input class="glass-input" type="text" placeholder="Organization (Optional)" />
+          <textarea class="glass-input" rows="5" placeholder="Tell me about your project or question..." required></textarea>
+          <div class="flex items-center justify-between">
+            <div class="flex gap-4">
+              <a href="#" class="text-white/30 hover:text-purple-400 transition-colors text-xl"><i class="fab fa-github"></i></a>
+              <a href="#" class="text-white/30 hover:text-purple-400 transition-colors text-xl"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="text-white/30 hover:text-purple-400 transition-colors text-xl"><i class="fab fa-kaggle"></i></a>
+            </div>
+            <button type="submit" class="glow-btn text-white">Send Message</button>
+          </div>
+          <div id="msgSent" class="hidden text-center text-purple-400 mono-code text-sm py-2">&gt; Message delivered successfully! ✓</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative z-10 border-t border-white/5 py-8">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+      <div class="mono-code text-lg mb-4 md:mb-0">
+        <span class="text-purple-400">&lt;</span><span class="gradient-text font-bold">Zara</span><span class="text-purple-400">/&gt;</span>
+      </div>
+      <p class="text-white/20 text-sm">© 2025 Zara Ahmed · Created by <span class="text-purple-400">HA Tech</span></p>
+      <a href="#hero" class="text-white/30 hover:text-purple-400 transition-colors flex items-center gap-1 text-sm mt-4 md:mt-0">
+        <i class="fas fa-arrow-up"></i> Top
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // ==========================================
+    // Created by HA Tech | hatech.com
+    // Template 4: Glassmorphism Data Science Portfolio
+    // ==========================================
+
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Form submit
+    function sendMsg(e) {
+      e.preventDefault();
+      document.getElementById('msgSent').classList.remove('hidden');
+      e.target.reset();
+      setTimeout(() => document.getElementById('msgSent').classList.add('hidden'), 3000);
+    }
+
+    // Nav active state
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          const id = section.getAttribute('id');
+          document.querySelectorAll('nav a').forEach(a => {
+            a.classList.remove('text-white');
+            a.classList.add('text-white/60');
+            if (a.getAttribute('href') === '#' + id) {
+              a.classList.add('text-white', 'text-purple-300');
+            }
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,53 +1,515 @@
 <!DOCTYPE html>
+<!-- Created by HA Tech | hatech.com | All Rights Reserved -->
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[[FULL_NAME]] // CREATIVE_NODE</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '[[PRIMARY_COLOR]]',
-                    }
-                }
-            }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>James Wilson | Senior Software Engineer</title>
+  <meta name="description" content="James Wilson - Senior Software Engineer specializing in cloud architecture and enterprise solutions. Professional portfolio." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { jakarta: ['Plus Jakarta Sans', 'sans-serif'], code: ['Fira Code', 'monospace'] },
+          colors: {
+            primary: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 900: '#1e3a8a' },
+            surface: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8', 700: '#334155', 900: '#0f172a' }
+          }
         }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;900&family=Space+Mono&display=swap');
-        body { background-color: #fff; color: #000; font-family: 'Space Mono', monospace; overflow-x: hidden; }
-        .bold-font { font-family: 'Unbounded', sans-serif; text-transform: uppercase; }
-        .bg-grid {
-            background-image: radial-gradient(#000 1px, transparent 1px);
-            background-size: 30px 30px;
-            opacity: 0.05;
-        }
-        .kinetic-box {
-            box-shadow: 15px 15px 0 [[PRIMARY_COLOR]];
-            border: 4px solid #000;
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { background: #ffffff; font-family: 'Plus Jakarta Sans', sans-serif; color: #0f172a; overflow-x: hidden; }
+    /* Sidebar layout */
+    .layout { display: flex; min-height: 100vh; }
+    .sidebar { width: 280px; background: #0f172a; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 40; display: flex; flex-direction: column; transition: transform 0.3s ease; }
+    .main-content { margin-left: 280px; flex: 1; }
+    @media (max-width: 768px) { .sidebar { transform: translateX(-280px); } .sidebar.open { transform: translateX(0); } .main-content { margin-left: 0; } }
+    /* Sidebar nav */
+    .nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: rgba(255,255,255,0.5); border-radius: 10px; cursor: pointer; transition: all 0.2s ease; font-size: 0.875rem; font-weight: 500; margin: 2px 0; }
+    .nav-item:hover { background: rgba(255,255,255,0.08); color: white; }
+    .nav-item.active { background: rgba(59,130,246,0.2); color: #60a5fa; }
+    .nav-item .nav-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-center; background: rgba(255,255,255,0.06); flex-shrink: 0; }
+    /* Cards */
+    .card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; transition: all 0.3s ease; }
+    .card:hover { box-shadow: 0 10px 40px rgba(0,0,0,0.08); transform: translateY(-4px); border-color: #bfdbfe; }
+    .card-dark { background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; }
+    /* Highlight */
+    .highlight { color: #2563eb; }
+    .bg-highlight { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+    .bg-highlight-soft { background: linear-gradient(135deg, #eff6ff, #dbeafe); }
+    /* Section header */
+    .section-header { border-left: 3px solid #3b82f6; padding-left: 16px; }
+    /* Skill badge */
+    .skill-badge { background: #f8fafc; border: 1px solid #e2e8f0; color: #475569; padding: 6px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+    .skill-badge:hover { background: #eff6ff; border-color: #bfdbfe; color: #2563eb; }
+    /* Timeline */
+    .exp-item { position: relative; padding-left: 24px; }
+    .exp-item::before { content: ''; position: absolute; left: 0; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: #3b82f6; box-shadow: 0 0 0 3px #dbeafe; }
+    .exp-item::after { content: ''; position: absolute; left: 3px; top: 16px; width: 2px; height: calc(100% + 16px); background: #e2e8f0; }
+    .exp-item:last-child::after { display: none; }
+    /* Input */
+    .input-field { border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 12px 16px; width: 100%; font-family: 'Plus Jakarta Sans', sans-serif; outline: none; color: #0f172a; transition: all 0.3s ease; }
+    .input-field:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+    .input-field::placeholder { color: #94a3b8; }
+    /* Animations */
+    .enter { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+    .enter.visible { opacity: 1; transform: translateY(0); }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 5px; }
+    .mobile-toggle { display: none; }
+    @media (max-width: 768px) { .mobile-toggle { display: block; } }
+    .profile-ring { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 800; color: white; margin: 0 auto 16px; box-shadow: 0 0 0 4px rgba(59,130,246,0.2), 0 0 0 8px rgba(59,130,246,0.1); }
+    .availability-dot { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 0 3px rgba(34,197,94,0.2); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 3px rgba(34,197,94,0.2); } 50% { box-shadow: 0 0 0 6px rgba(34,197,94,0.1); } }
+    .btn-primary { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 12px 24px; border-radius: 10px; font-weight: 600; font-size: 0.9rem; border: none; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary:hover { box-shadow: 0 8px 25px rgba(59,130,246,0.4); transform: translateY(-2px); }
+    .btn-secondary { border: 1.5px solid #e2e8f0; color: #475569; padding: 12px 24px; border-radius: 10px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; background: white; }
+    .btn-secondary:hover { border-color: #3b82f6; color: #2563eb; background: #eff6ff; }
+    .section { padding: 48px; }
+    @media (max-width: 768px) { .section { padding: 24px; } }
+  </style>
 </head>
-<body class="antialiased">
-        <section class="px-10 md:px-20 py-32 bg-white">
-            <div class="grid md:grid-cols-2 gap-20 items-center">
-                <div class="order-2 md:order-1">
-                    <div class="relative group">
-                        <div class="absolute inset-0 bg-heavy -rotate-6 translate-x-4 translate-y-4 -z-10 transition-transform group-hover:rotate-0"></div>
-                        <img src="assets/hero.jpg" class="w-full border-4 border-black box-border" onerror="this.src='https://ui-avatars.com/api/?name=[[FULL_NAME]]&size=1000'" />
-                    </div>
-                </div>
-                <div class="order-1 md:order-2">
-                    <h2 class="hero-font text-5xl mb-10">THE <span class="text-heavy">SKILLS</span></h2>
-                    <div class="grid grid-cols-2 gap-6">
-                        [[SKILLS_HTML]]
-                    </div>
-                </div>
+<body>
+
+  <!-- Layout -->
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="p-6 border-b border-white/10">
+        <!-- Profile -->
+        <div class="text-center">
+          <div class="profile-ring">JW</div>
+          <h2 class="text-white font-bold text-lg">James Wilson</h2>
+          <p class="text-blue-400 text-sm mt-1">Senior Software Engineer</p>
+          <div class="flex items-center justify-center gap-2 mt-3">
+            <div class="availability-dot"></div>
+            <span class="text-green-400 text-xs">Available for work</span>
+          </div>
+        </div>
+      </div>
+      <!-- Navigation -->
+      <nav class="p-4 flex-1">
+        <p class="text-white/20 text-xs uppercase tracking-widest px-3 mb-3">Navigation</p>
+        <a href="#hero" class="nav-item active" data-section="hero">
+          <div class="nav-icon"><i class="fas fa-home text-sm"></i></div>
+          <span>Home</span>
+        </a>
+        <a href="#about" class="nav-item" data-section="about">
+          <div class="nav-icon"><i class="fas fa-user text-sm"></i></div>
+          <span>About</span>
+        </a>
+        <a href="#skills" class="nav-item" data-section="skills">
+          <div class="nav-icon"><i class="fas fa-code text-sm"></i></div>
+          <span>Skills</span>
+        </a>
+        <a href="#projects" class="nav-item" data-section="projects">
+          <div class="nav-icon"><i class="fas fa-briefcase text-sm"></i></div>
+          <span>Projects</span>
+        </a>
+        <a href="#experience" class="nav-item" data-section="experience">
+          <div class="nav-icon"><i class="fas fa-building text-sm"></i></div>
+          <span>Experience</span>
+        </a>
+        <a href="#contact" class="nav-item" data-section="contact">
+          <div class="nav-icon"><i class="fas fa-envelope text-sm"></i></div>
+          <span>Contact</span>
+        </a>
+      </nav>
+      <!-- Social links in sidebar -->
+      <div class="p-6 border-t border-white/10">
+        <p class="text-white/20 text-xs uppercase tracking-widest mb-3">Connect</p>
+        <div class="flex gap-3">
+          <a href="#" class="w-9 h-9 bg-white/5 hover:bg-blue-500/20 hover:text-blue-400 rounded-lg flex items-center justify-center text-white/50 transition-all text-sm"><i class="fab fa-github"></i></a>
+          <a href="#" class="w-9 h-9 bg-white/5 hover:bg-blue-500/20 hover:text-blue-400 rounded-lg flex items-center justify-center text-white/50 transition-all text-sm"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="w-9 h-9 bg-white/5 hover:bg-blue-500/20 hover:text-blue-400 rounded-lg flex items-center justify-center text-white/50 transition-all text-sm"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="w-9 h-9 bg-white/5 hover:bg-blue-500/20 hover:text-blue-400 rounded-lg flex items-center justify-center text-white/50 transition-all text-sm"><i class="fas fa-rss"></i></a>
+        </div>
+        <p class="text-white/15 text-xs mt-6">Built by <span class="text-blue-400">HA Tech</span></p>
+      </div>
+    </aside>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle fixed top-5 left-5 z-50 bg-primary-700 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg" id="toggleSidebar">
+      <i class="fas fa-bars" id="toggleIcon"></i>
+    </button>
+
+    <!-- Main Content -->
+    <main class="main-content bg-surface-50 min-h-screen">
+
+      <!-- Hero Section -->
+      <section id="hero" class="section min-h-screen flex items-center bg-white border-b border-surface-200">
+        <div class="max-w-3xl">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="bg-blue-100 text-blue-600 px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-2">
+              <div class="availability-dot"></div>
+              Available for New Projects
             </div>
-        </section>
+          </div>
+          <h1 class="text-5xl md:text-7xl font-extrabold text-surface-900 leading-tight mb-6">
+            Hi, I'm <span class="highlight">James</span><br/>
+            Software <span class="highlight">Engineer</span>
+          </h1>
+          <p class="text-surface-400 text-xl leading-relaxed mb-8 max-w-xl">
+            I architect and build scalable cloud infrastructure and enterprise software systems that power businesses at scale. 8+ years of experience, 60+ projects delivered.
+          </p>
+          <div class="flex flex-wrap gap-4 mb-12">
+            <a href="#projects" class="btn-primary text-sm">View Projects <i class="fas fa-arrow-right"></i></a>
+            <a href="#contact" class="btn-secondary text-sm">Hire Me <i class="fas fa-envelope"></i></a>
+            <a href="#" class="btn-secondary text-sm">Download CV <i class="fas fa-download"></i></a>
+          </div>
+          <!-- Tech stack row -->
+          <div class="flex flex-wrap gap-2">
+            <span class="code font-code text-xs bg-surface-100 text-surface-400 px-3 py-1.5 rounded-lg border border-surface-200">AWS</span>
+            <span class="code font-code text-xs bg-surface-100 text-surface-400 px-3 py-1.5 rounded-lg border border-surface-200">TypeScript</span>
+            <span class="code font-code text-xs bg-surface-100 text-surface-400 px-3 py-1.5 rounded-lg border border-surface-200">Kubernetes</span>
+            <span class="code font-code text-xs bg-surface-100 text-surface-400 px-3 py-1.5 rounded-lg border border-surface-200">PostgreSQL</span>
+            <span class="code font-code text-xs bg-surface-100 text-surface-400 px-3 py-1.5 rounded-lg border border-surface-200">Docker</span>
+            <span class="code font-code text-xs bg-surface-100 text-surface-400 px-3 py-1.5 rounded-lg border border-surface-200">Go</span>
+          </div>
+        </div>
+        <!-- Stats floating cards -->
+        <div class="hidden lg:flex flex-col gap-4 ml-auto">
+          <div class="card p-5 w-48 text-center">
+            <div class="text-4xl font-extrabold highlight mb-1">8+</div>
+            <div class="text-surface-400 text-sm">Years Experience</div>
+          </div>
+          <div class="card p-5 w-48 text-center">
+            <div class="text-4xl font-extrabold highlight mb-1">60+</div>
+            <div class="text-surface-400 text-sm">Projects Delivered</div>
+          </div>
+          <div class="card p-5 w-48 text-center">
+            <div class="text-4xl font-extrabold highlight mb-1">99%</div>
+            <div class="text-surface-400 text-sm">Client Satisfaction</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="section border-b border-surface-200 bg-surface-50">
+        <div class="section-header mb-8 enter">
+          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">About</span>
+          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">Who Am I</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="enter">
+            <p class="text-surface-400 leading-relaxed mb-4">
+              I'm a Senior Software Engineer based in San Francisco, specializing in cloud architecture, microservices, and DevOps. I hold a Master's in Computer Science from Stanford and have led engineering teams at Amazon and Stripe.
+            </p>
+            <p class="text-surface-400 leading-relaxed mb-6">
+              I'm passionate about building systems that scale gracefully and teams that grow sustainably. I believe great engineering is about people as much as it is about technology.
+            </p>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="bg-white border border-surface-200 rounded-xl p-4">
+                <div class="text-surface-300 text-xs mb-1">Name</div>
+                <div class="font-semibold text-sm">James Wilson</div>
+              </div>
+              <div class="bg-white border border-surface-200 rounded-xl p-4">
+                <div class="text-surface-300 text-xs mb-1">Location</div>
+                <div class="font-semibold text-sm">San Francisco, CA</div>
+              </div>
+              <div class="bg-white border border-surface-200 rounded-xl p-4">
+                <div class="text-surface-300 text-xs mb-1">Education</div>
+                <div class="font-semibold text-sm">M.S. Stanford</div>
+              </div>
+              <div class="bg-white border border-surface-200 rounded-xl p-4">
+                <div class="text-surface-300 text-xs mb-1">Availability</div>
+                <div class="font-semibold text-sm text-green-600 flex items-center gap-1"><div class="availability-dot w-2 h-2"></div> Open</div>
+              </div>
+            </div>
+          </div>
+          <div class="card p-6 enter bg-white">
+            <div class="font-code text-sm">
+              <div class="text-surface-300 mb-3">// james_wilson.json</div>
+              <div class="text-surface-700">{</div>
+              <div class="pl-4 space-y-1 text-surface-400">
+                <div><span class="text-blue-500">"role"</span>: <span class="text-green-600">"Sr. Software Engineer"</span>,</div>
+                <div><span class="text-blue-500">"specialization"</span>: <span class="text-green-600">"Cloud & Microservices"</span>,</div>
+                <div><span class="text-blue-500">"experience"</span>: <span class="text-orange-500">8</span>,</div>
+                <div><span class="text-blue-500">"certifications"</span>: [</div>
+                <div class="pl-4"><span class="text-green-600">"AWS Solutions Architect"</span>,</div>
+                <div class="pl-4"><span class="text-green-600">"CKA - Kubernetes"</span>,</div>
+                <div class="pl-4"><span class="text-green-600">"Google Cloud Professional"</span></div>
+                <div>],</div>
+                <div><span class="text-blue-500">"coffee_cups_today"</span>: <span class="text-orange-500">3</span></div>
+              </div>
+              <div class="text-surface-700">}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" class="section border-b border-surface-200 bg-white">
+        <div class="section-header mb-8 enter">
+          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">Skills</span>
+          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">Technical Arsenal</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="card p-6 bg-white enter">
+            <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+              <i class="fab fa-aws text-blue-600"></i>
+            </div>
+            <h3 class="font-bold text-surface-900 mb-3">Cloud & Infrastructure</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-badge">AWS</span><span class="skill-badge">GCP</span><span class="skill-badge">Azure</span>
+              <span class="skill-badge">Kubernetes</span><span class="skill-badge">Docker</span><span class="skill-badge">Terraform</span>
+            </div>
+          </div>
+          <div class="card p-6 bg-white enter">
+            <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+              <i class="fas fa-code text-green-600"></i>
+            </div>
+            <h3 class="font-bold text-surface-900 mb-3">Languages & Frameworks</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-badge">TypeScript</span><span class="skill-badge">Go</span><span class="skill-badge">Python</span>
+              <span class="skill-badge">Node.js</span><span class="skill-badge">React</span><span class="skill-badge">gRPC</span>
+            </div>
+          </div>
+          <div class="card p-6 bg-white enter">
+            <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+              <i class="fas fa-database text-purple-600"></i>
+            </div>
+            <h3 class="font-bold text-surface-900 mb-3">Databases & Tools</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-badge">PostgreSQL</span><span class="skill-badge">Redis</span><span class="skill-badge">Kafka</span>
+              <span class="skill-badge">MongoDB</span><span class="skill-badge">Elasticsearch</span><span class="skill-badge">CI/CD</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="section border-b border-surface-200 bg-surface-50">
+        <div class="section-header mb-8 enter">
+          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">Portfolio</span>
+          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">Featured Projects</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="card bg-white p-6 enter">
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <div class="flex gap-2 mb-2">
+                  <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded font-medium">Cloud</span>
+                  <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded font-medium">Open Source</span>
+                </div>
+                <h3 class="text-xl font-bold text-surface-900">CloudScale Platform</h3>
+              </div>
+              <div class="flex gap-2">
+                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fab fa-github"></i></a>
+                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <p class="text-surface-400 text-sm leading-relaxed mb-4">Auto-scaling microservices platform handling 1M+ requests/day. Built with Kubernetes, Go, and AWS. Reduced infrastructure costs by 45%.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-badge">Go</span><span class="skill-badge">Kubernetes</span><span class="skill-badge">AWS</span><span class="skill-badge">Prometheus</span>
+            </div>
+          </div>
+          <div class="card bg-white p-6 enter">
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <div class="flex gap-2 mb-2">
+                  <span class="bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded font-medium">Fintech</span>
+                  <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded font-medium">API</span>
+                </div>
+                <h3 class="text-xl font-bold text-surface-900">Payment Orchestration System</h3>
+              </div>
+              <div class="flex gap-2">
+                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fab fa-github"></i></a>
+                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <p class="text-surface-400 text-sm leading-relaxed mb-4">Enterprise payment gateway supporting 15+ payment providers with 99.99% uptime SLA. Processes $50M+ in daily transactions.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-badge">TypeScript</span><span class="skill-badge">PostgreSQL</span><span class="skill-badge">Kafka</span>
+            </div>
+          </div>
+          <div class="card bg-white p-6 enter">
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <div class="flex gap-2 mb-2">
+                  <span class="bg-red-100 text-red-700 text-xs px-2 py-1 rounded font-medium">DevOps</span>
+                  <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded font-medium">Internal Tool</span>
+                </div>
+                <h3 class="text-xl font-bold text-surface-900">DevPipeline CI/CD</h3>
+              </div>
+              <div class="flex gap-2">
+                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fab fa-github"></i></a>
+                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <p class="text-surface-400 text-sm leading-relaxed mb-4">Custom CI/CD pipeline tool with visual dashboard, automated testing, and one-click deployments. Adopted by 50+ teams.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-badge">Python</span><span class="skill-badge">React</span><span class="skill-badge">Docker</span>
+            </div>
+          </div>
+          <div class="card bg-white p-6 enter">
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <div class="flex gap-2 mb-2">
+                  <span class="bg-teal-100 text-teal-700 text-xs px-2 py-1 rounded font-medium">Analytics</span>
+                  <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded font-medium">Real-time</span>
+                </div>
+                <h3 class="text-xl font-bold text-surface-900">ObservabilityHub</h3>
+              </div>
+              <div class="flex gap-2">
+                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fab fa-github"></i></a>
+                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <p class="text-surface-400 text-sm leading-relaxed mb-4">Distributed tracing and metrics aggregation platform. Replaces 3 separate monitoring tools with unified observability stack.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-badge">Go</span><span class="skill-badge">Elasticsearch</span><span class="skill-badge">Grafana</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience" class="section border-b border-surface-200 bg-white">
+        <div class="section-header mb-8 enter">
+          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">Career</span>
+          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">Work Experience</h2>
+        </div>
+        <div class="max-w-2xl space-y-8 enter">
+          <div class="exp-item pb-8">
+            <div class="flex items-center gap-3 mb-1">
+              <h3 class="text-lg font-bold text-surface-900">Staff Software Engineer</h3>
+              <span class="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded font-medium">Current</span>
+            </div>
+            <div class="text-blue-600 text-sm font-semibold mb-1">Stripe · San Francisco, CA</div>
+            <div class="text-surface-300 text-xs mb-3">Jan 2022 – Present</div>
+            <p class="text-surface-400 text-sm leading-relaxed">Lead architect for Stripe's next-gen payment infrastructure. Manage a team of 8 engineers. Designed the distributed transaction system that reduced latency by 40%.</p>
+          </div>
+          <div class="exp-item pb-8">
+            <h3 class="text-lg font-bold text-surface-900 mb-1">Senior Software Engineer</h3>
+            <div class="text-orange-600 text-sm font-semibold mb-1">Amazon Web Services · Seattle, WA</div>
+            <div class="text-surface-300 text-xs mb-3">Mar 2019 – Dec 2021</div>
+            <p class="text-surface-400 text-sm leading-relaxed">Built core features for AWS Lambda and EC2 Auto Scaling. Filed 3 patents related to serverless compute optimization.</p>
+          </div>
+          <div class="exp-item">
+            <h3 class="text-lg font-bold text-surface-900 mb-1">Software Engineer</h3>
+            <div class="text-purple-600 text-sm font-semibold mb-1">Palantir Technologies · New York, NY</div>
+            <div class="text-surface-300 text-xs mb-3">Jun 2016 – Feb 2019</div>
+            <p class="text-surface-400 text-sm leading-relaxed">Developed data pipeline infrastructure for government and enterprise clients processing petabytes of sensitive data.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="section bg-surface-50">
+        <div class="section-header mb-8 enter">
+          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">Contact</span>
+          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">Get In Touch</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8 max-w-3xl">
+          <div class="enter">
+            <p class="text-surface-400 mb-6 text-sm leading-relaxed">Looking to hire or collaborate on an exciting project? I'm available for consulting engagements and full-time opportunities.</p>
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 flex-shrink-0"><i class="fas fa-envelope text-sm"></i></div>
+                <span class="text-surface-500 text-sm">james@example.com</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 flex-shrink-0"><i class="fas fa-phone text-sm"></i></div>
+                <span class="text-surface-500 text-sm">+1 (415) 555-9876</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 flex-shrink-0"><i class="fas fa-map text-sm"></i></div>
+                <span class="text-surface-500 text-sm">San Francisco, CA</span>
+              </div>
+            </div>
+          </div>
+          <form class="space-y-4 enter" onsubmit="handleContact(event)">
+            <input class="input-field" type="text" placeholder="Full Name" required />
+            <input class="input-field" type="email" placeholder="Work Email" required />
+            <input class="input-field" type="text" placeholder="Company (Optional)" />
+            <textarea class="input-field" rows="4" placeholder="What would you like to discuss?" required></textarea>
+            <button type="submit" class="btn-primary w-full justify-center">Send Message <i class="fas fa-paper-plane"></i></button>
+            <div id="contactDone" class="hidden text-center text-blue-600 font-medium text-sm py-2">✓ Message sent! I'll respond within 24 hours.</div>
+          </form>
+        </div>
+      </section>
+
     </main>
+  </div>
+
+  <script>
+    // ==========================================
+    // Created by HA Tech | hatech.com
+    // Template 5: Professional Light Portfolio
+    // ==========================================
+
+    // Sidebar toggle
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggleSidebar');
+    const toggleIcon = document.getElementById('toggleIcon');
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      toggleIcon.className = sidebar.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+    });
+
+    // Nav item active state
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navItems.forEach(n => n.classList.remove('active'));
+        item.classList.add('active');
+        if (window.innerWidth <= 768) sidebar.classList.remove('open');
+      });
+    });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.enter').forEach(el => observer.observe(el));
+
+    // Active nav on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const mainContent = document.querySelector('.main-content');
+    mainContent.addEventListener('scroll', () => updateActive());
+    window.addEventListener('scroll', () => updateActive());
+
+    function updateActive() {
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 200 && rect.bottom >= 200) {
+          const id = section.getAttribute('id');
+          navItems.forEach(n => {
+            n.classList.remove('active');
+            if (n.dataset.section === id) n.classList.add('active');
+          });
+        }
+      });
+    }
+
+    // Form
+    function handleContact(e) {
+      e.preventDefault();
+      document.getElementById('contactDone').classList.remove('hidden');
+      e.target.reset();
+      setTimeout(() => document.getElementById('contactDone').classList.add('hidden'), 4000);
+    }
+  </script>
 </body>
 </html>
