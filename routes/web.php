@@ -41,27 +41,52 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/templates/{key}/preview', function ($key) {
         $htmlPath = resource_path("templates/{$key}/index.html");
-        $jsonPath = resource_path("templates/{$key}/fields.json");
         
         if (file_exists($htmlPath)) {
-            $content = file_get_contents($htmlPath);
+            // For a basic GET preview, just build placeholders with empty user data (so it uses fields.json defaults)
+            $placeholders = \App\Helpers\TemplateHelper::buildPlaceholders($key, []);
             
-            // If fields.json exists, we replace [[KEY]] placeholders with their default values for a perfect preview
-            if (file_exists($jsonPath)) {
-                $fieldsData = json_decode(file_get_contents($jsonPath), true);
-                if (isset($fieldsData['fields']) && is_array($fieldsData['fields'])) {
-                    foreach ($fieldsData['fields'] as $field) {
-                        $placeholder = '[[' . strtoupper($field['name']) . ']]';
-                        $default = is_string($field['default']) || is_numeric($field['default']) ? $field['default'] : '';
-                        $content = str_replace($placeholder, $default, $content);
-                    }
-                }
+            $content = file_get_contents($htmlPath);
+            foreach ($placeholders as $ph => $val) {
+                $content = str_replace("[[{$ph}]]", $val, $content);
             }
+            
+            // Inject morphdom into the basic preview so we can update it seamlessly
+            $morphdomScript = '<script src="https://unpkg.com/morphdom@2.7.4/dist/morphdom-umd.js"></script>
+            <script>
+                window.addEventListener("message", function(e) {
+                    if (e.data && e.data.html) {
+                        morphdom(document.documentElement, e.data.html, {
+                            onBeforeElUpdated: function(fromEl, toEl) {
+                                if (fromEl.tagName === "SCRIPT") return false;
+                                return true;
+                            }
+                        });
+                    }
+                });
+            </script>';
+            $content = str_replace('</body>', $morphdomScript . '</body>', $content);
             
             return response($content)->header('Content-Type', 'text/html');
         }
         abort(404);
     })->name('templates.preview');
+
+    Route::post('/templates/{key}/live-preview', function (\Illuminate\Http\Request $request, $key) {
+        $htmlPath = resource_path("templates/{$key}/index.html");
+        
+        if (file_exists($htmlPath)) {
+            $input = $request->json()->all() ?? [];
+            $placeholders = \App\Helpers\TemplateHelper::buildPlaceholders($key, $input);
+            
+            $content = file_get_contents($htmlPath);
+            foreach ($placeholders as $ph => $val) {
+                $content = str_replace("[[{$ph}]]", $val, $content);
+            }
+            return response($content)->header('Content-Type', 'text/html');
+        }
+        abort(404);
+    })->name('templates.live-preview');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
