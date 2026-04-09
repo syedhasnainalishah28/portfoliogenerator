@@ -43,6 +43,12 @@
         { "name": "footer_logo", "label": "Footer Logo Name", "type": "text", "default": "ALEX CARTER" },
         { "name": "copyright_text", "label": "Copyright Text", "type": "text", "default": "© 2025 Alex Carter. Created with ♥ by HA Tech" },
         
+        { "name": "btn_hire_me", "label": "Button: Hire Me", "type": "text", "default": "HIRE ME" },
+        { "name": "btn_view_work", "label": "Button: View Work", "type": "text", "default": "VIEW WORK" },
+        { "name": "btn_get_in_touch", "label": "Button: Get In Touch", "type": "text", "default": "GET IN TOUCH" },
+        { "name": "btn_download_cv", "label": "Button: Download CV", "type": "text", "default": "DOWNLOAD CV" },
+        { "name": "btn_send_message", "label": "Button: Send Message", "type": "text", "default": "SEND MESSAGE" },
+        
         { "name": "hero_image", "label": "Hero Image", "type": "image", "default": null }
     ]
 }
