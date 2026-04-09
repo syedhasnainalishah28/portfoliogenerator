@@ -1,7 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/YOUR_CPANEL_USERNAME/public_html/potfoliogenerator.hatechservices.com.pk
+    - export DEPLOYPATH=/home/globalre/potfoliogenerator.hatechservices.com.pk
     - /bin/cp -R * $DEPLOYPATH
     - /bin/cp .env.example $DEPLOYPATH/.env
-    # Note: You will need to manually update .env on the server later
