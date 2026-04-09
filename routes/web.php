@@ -36,4 +36,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Deployment routes for Terminal-less Shared Hosting
+Route::get('/deploy/migrate', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        return "<h1>Migration Successful</h1><p>" . \Illuminate\Support\Facades\Artisan::output() . "</p>";
+    } catch (\Exception $e) {
+        return "<h1>Migration Failed</h1><pre>" . $e->getMessage() . "</pre>";
+    }
+});
+
+Route::get('/deploy/clear', function () {
+    \Illuminate\Support\Facades\Artisan::call('cache:clear');
+    \Illuminate\Support\Facades\Artisan::call('config:clear');
+    \Illuminate\Support\Facades\Artisan::call('view:clear');
+    return "<h1>Cache Cleared</h1>";
+});
+
 require __DIR__.'/auth.php';
