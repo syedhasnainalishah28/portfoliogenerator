@@ -37,6 +37,12 @@
             { "name": "Chat Application", "description": "Real-time messaging app with WebSocket, rooms, file sharing, and end-to-end encryption.", "link": "https://github.com" }
         ]},
         
+        { "name": "header_logo", "label": "Header Logo Name", "type": "text", "default": "ALEX" },
+        { "name": "contact_title", "label": "Contact Title", "type": "text", "default": "Let's Build Something" },
+        { "name": "contact_desc", "label": "Contact Description", "type": "textarea", "default": "Have a project in mind? Let's discuss how I can help you achieve your goals." },
+        { "name": "footer_logo", "label": "Footer Logo Name", "type": "text", "default": "ALEX CARTER" },
+        { "name": "copyright_text", "label": "Copyright Text", "type": "text", "default": "© 2025 Alex Carter. Created with ♥ by HA Tech" },
+        
         { "name": "hero_image", "label": "Hero Image", "type": "image", "default": null }
     ]
 }

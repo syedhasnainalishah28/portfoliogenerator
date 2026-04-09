@@ -236,14 +236,7 @@ const triggerLiveUpdate = async () => {
     if(!previewFrame.value || !previewFrame.value.contentWindow) return;
     
     try {
-        const payload = {};
-        Object.entries(form.dynamic_fields).forEach(([k, v]) => {
-            if (Array.isArray(v) || typeof v === 'object') {
-                payload[k] = JSON.stringify(v);
-            } else {
-                payload[k] = String(v ?? '');
-            }
-        });
+        const payload = JSON.parse(JSON.stringify(form.dynamic_fields)); // Deep clone just in case
         
         const res = await fetch(`/templates/${form.template_key}/live-preview`, {
             method: 'POST',
