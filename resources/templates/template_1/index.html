@@ -112,7 +112,7 @@
             <span class="text-white">Hi, I'm</span><br />
             <span class="neon-text text-neon-cyan">[[FULL_NAME]]</span>
           </h1>
-          <div class="font-orbitron text-xl text-gray-300 typing-cursor" id="typingText">
+          <div class="font-orbitron text-xl text-gray-300 typing-cursor" id="typingText" data-texts="[[TYPING_TEXTS]]">
             Full Stack Developer
           </div>
           <p class="text-gray-400 text-lg leading-relaxed max-w-md">
@@ -341,15 +341,16 @@
     createParticles();
 
     // Typing Effect
-    const rawTexts = '[[TYPING_TEXTS]]';
-    const texts = rawTexts.includes('[[') ? ['Full Stack Developer', 'React Specialist', 'Node.js Expert'] : rawTexts.split(',');
     let textIndex = 0, charIndex = 0, isDeleting = false;
     const typingEl = document.getElementById('typingText');
     function typeWriter() {
-      const currentText = texts[textIndex];
+      if (!typingEl) return;
+      const rawTexts = typingEl.getAttribute('data-texts') || '';
+      const texts = rawTexts.includes('[[') || !rawTexts ? ['Full Stack Developer', 'React Specialist', 'Node.js Expert'] : rawTexts.split(',');
+      const currentText = texts[textIndex % texts.length];
       if (isDeleting) {
         typingEl.textContent = currentText.substring(0, charIndex--);
-        if (charIndex < 0) { isDeleting = false; textIndex = (textIndex + 1) % texts.length; }
+        if (charIndex < 0) { isDeleting = false; textIndex++; }
       } else {
         typingEl.textContent = currentText.substring(0, charIndex++);
         if (charIndex > currentText.length) { isDeleting = true; setTimeout(typeWriter, 1500); return; }
