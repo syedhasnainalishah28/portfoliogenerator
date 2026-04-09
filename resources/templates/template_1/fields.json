@@ -2,24 +2,41 @@
     "name": "Neon Dark",
     "style": "Cyberpunk",
     "description": "Bold, colorful cyberpunk aesthetic with particles.",
-    "previewBg": "bg-slate-900",
+    "previewBg": "bg-slate-900 border-none",
     "fields": [
         { "name": "full_name", "label": "Full Name", "type": "text", "default": "ALEX CARTER" },
-        { "name": "title", "label": "Professional Title (Typing Effect)", "type": "text", "default": "Full Stack Developer" },
-        { "name": "bio", "label": "Bio Description", "type": "textarea", "default": "Building scalable web applications..." },
+        { "name": "typing_texts", "label": "Typing Effect Texts", "type": "list", "default": ["Full Stack Developer", "React Specialist", "Node.js Expert", "Problem Solver"] },
+        { "name": "hero_desc", "label": "Hero Description", "type": "textarea", "default": "I build cutting-edge digital experiences with modern technologies. Turning complex problems into elegant solutions." },
+        { "name": "email", "label": "Email Address", "type": "email", "default": "alex@example.com" },
+        { "name": "phone", "label": "Phone Number", "type": "text", "default": "+1 (555) 123-4567" },
         { "name": "location", "label": "Location", "type": "text", "default": "New York, USA" },
-        { "name": "email", "label": "Email", "type": "email", "default": "alex@example.com" },
-        { "name": "years_experience", "label": "Years Experience", "type": "number", "default": 5 },
-        { "name": "projects_count", "label": "Projects Done", "type": "number", "default": 50 },
-        { "name": "clients_count", "label": "Happy Clients", "type": "number", "default": 30 },
+        
+        { "name": "stats_1_value", "label": "Stats 1 (Value)", "type": "text", "default": "5+" },
+        { "name": "stats_1_label", "label": "Stats 1 (Label)", "type": "text", "default": "Years Experience" },
+        { "name": "stats_2_value", "label": "Stats 2 (Value)", "type": "text", "default": "50+" },
+        { "name": "stats_2_label", "label": "Stats 2 (Label)", "type": "text", "default": "Projects Done" },
+        { "name": "stats_3_value", "label": "Stats 3 (Value)", "type": "text", "default": "30+" },
+        { "name": "stats_3_label", "label": "Stats 3 (Label)", "type": "text", "default": "Happy Clients" },
+        
+        { "name": "bio_p1", "label": "Bio Paragraph 1", "type": "textarea", "default": "I'm a passionate Full Stack Developer with 5+ years of experience building scalable web applications. I specialize in JavaScript ecosystem technologies — from React frontends to Node.js backends." },
+        { "name": "bio_p2", "label": "Bio Paragraph 2", "type": "textarea", "default": "My journey started with a curiosity about how things work on the internet. Today, I build high-performance applications that serve thousands of users. I believe in clean code, continuous learning, and delivering value to clients." },
+        
         { "name": "primary_color", "label": "Neon Cyan Color", "type": "color", "default": "#00f5ff" },
-        { "name": "secondary_color", "label": "Neon Pink Color", "type": "color", "default": "#ff00ff" },
-        { "name": "whatsapp_link", "label": "Download CV / WhatsApp Link", "type": "url", "default": "https://wa.me/..." },
-        { "name": "github_url", "label": "GitHub URL", "type": "url", "default": "https://github.com/..." },
-        { "name": "linkedin_url", "label": "LinkedIn URL", "type": "url", "default": "https://linkedin.com/..." },
-        { "name": "twitter_url", "label": "Twitter/X URL", "type": "url", "default": "https://twitter.com/..." },
-        { "name": "skills", "label": "Technical Skills (Name:Percentage)", "type": "list", "default": ["React.js:90", "Node.js:80", "MongoDB:75"] },
-        { "name": "projects", "label": "Featured Projects", "type": "projects", "default": [] },
+        { "name": "secondary_color", "label": "Neon Pink Color", "type": "color", "default": "#ff006e" },
+        
+        { "name": "github_url", "label": "GitHub URL", "type": "url", "default": "https://github.com/#" },
+        { "name": "linkedin_url", "label": "LinkedIn URL", "type": "url", "default": "https://linkedin.com/#" },
+        { "name": "twitter_url", "label": "Twitter/X URL", "type": "url", "default": "https://twitter.com/#" },
+        
+        { "name": "tech_skills", "label": "Tech Skill Bars (Name:Percentage)", "type": "list", "default": ["React / Next.js:92", "Node.js / Express:88", "MongoDB / PostgreSQL:80", "TypeScript:85", "Docker / DevOps:75"] },
+        
+        { "name": "service_cards", "label": "My Arsenal Cards (IconClass|Title|Subtitle)", "type": "list", "default": ["fab fa-react|React|Frontend", "fab fa-node-js|Node.js|Backend", "fab fa-python|Python|Scripting", "fab fa-docker|Docker|DevOps", "fab fa-js-square|JavaScript|Core Language", "fas fa-database|MongoDB|Database"] },
+        
+        { "name": "projects", "label": "Featured Projects", "type": "projects", "default": [
+            { "name": "E-Commerce Platform", "description": "Full-stack e-commerce with React, Node.js, Stripe payments, and real-time inventory management.", "link": "https://github.com" },
+            { "name": "Chat Application", "description": "Real-time messaging app with WebSocket, rooms, file sharing, and end-to-end encryption.", "link": "https://github.com" }
+        ]},
+        
         { "name": "hero_image", "label": "Hero Image", "type": "image", "default": null }
     ]
 }

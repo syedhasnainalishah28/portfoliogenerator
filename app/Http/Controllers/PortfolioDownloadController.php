@@ -124,22 +124,126 @@ class PortfolioDownloadController extends Controller
         $projectsHtml = '';
         $projects = $merged['projects'] ?? [];
         if (is_array($projects)) {
+            $projIdx = 0;
+            $projStyles = [
+                ['neon-border', '', 'text-neon-cyan', 'from-neon-cyan/20'],
+                ['neon-border-green', 'text-neon-green', 'text-neon-green', 'from-neon-green/20'],
+                ['neon-border-pink', 'text-neon-pink', 'text-neon-pink', 'from-neon-pink/20'],
+            ];
             foreach ($projects as $project) {
                 if (is_array($project)) {
                     $name = $project['name'] ?? '';
                     $desc = $project['description'] ?? '';
                     $link = $project['link'] ?? '';
-                    $projectsHtml .= '<div style="margin-bottom: 20px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;">';
-                    $projectsHtml .= '<h3 style="font-weight:bold; margin-bottom:10px;">' . e($name) . '</h3>';
-                    $projectsHtml .= '<p style="opacity:0.8; font-size:14px; margin-bottom:10px;">' . e($desc) . '</p>';
-                    if ($link) {
-                        $projectsHtml .= '<a href="' . e($link) . '" target="_blank" style="color: inherit; text-decoration: underline;">View Project</a>';
+                    
+                    if ($portfolio->template_key === 'template_1') {
+                        $ps = $projStyles[$projIdx % 3];
+                        $border = $ps[0];
+                        $badgeTxt = $ps[1] ? $ps[1] : 'text-neon-cyan';
+                        $iconClr = $ps[2];
+                        $grad = $ps[3];
+                        
+                        $projectsHtml .= '<div class="' . $border . ' card-hover rounded-xl overflow-hidden bg-dark-800/60 backdrop-blur section-reveal">
+          <div class="h-48 bg-gradient-to-br ' . $grad . ' to-dark-900 flex items-center justify-center">
+            <i class="fas fa-rocket text-6xl ' . $iconClr . '" style="text-shadow:0 0 20px currentColor"></i>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="' . $badgeTxt . ' font-orbitron text-xs">WEB APP</span>
+              <div class="flex gap-2">';
+                        if ($link) {
+                            $projectsHtml .= '<a href="' . e($link) . '" target="_blank" class="text-gray-500 hover:' . $badgeTxt . ' transition-colors"><i class="fas fa-external-link-alt"></i></a>';
+                        }
+                        $projectsHtml .= '</div>
+            </div>
+            <h3 class="font-orbitron text-lg text-white mb-2">' . e($name) . '</h3>
+            <p class="text-gray-400 text-sm mb-4">' . e($desc) . '</p>
+          </div>
+        </div>';
+                    } else {
+                        // Generic
+                        $projectsHtml .= '<div style="margin-bottom: 20px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;">';
+                        $projectsHtml .= '<h3 style="font-weight:bold; margin-bottom:10px;">' . e($name) . '</h3>';
+                        $projectsHtml .= '<p style="opacity:0.8; font-size:14px; margin-bottom:10px;">' . e($desc) . '</p>';
+                        if ($link) {
+                            $projectsHtml .= '<a href="' . e($link) . '" target="_blank" style="color: inherit; text-decoration: underline;">View Project</a>';
+                        }
+                        $projectsHtml .= '</div>';
                     }
-                    $projectsHtml .= '</div>';
+                    $projIdx++;
                 }
             }
         }
         $placeholders['PROJECTS_HTML'] = $projectsHtml;
+
+        // Specialized Template 1 HTML
+        $techSkillsHtml = '';
+        if ($portfolio->template_key === 'template_1') {
+            $techSkills = $merged['tech_skills'] ?? [];
+            if (is_array($techSkills)) {
+                $colors = [
+                    'style="width:%s%%"', 
+                    'style="width:%s%%; background:linear-gradient(90deg,#39ff14,#00f5ff)"',
+                    'style="width:%s%%; background:linear-gradient(90deg,#bf00ff,#ff006e)"',
+                    'style="width:%s%%; background:linear-gradient(90deg,#ff006e,#bf00ff)"'
+                ];
+                $colorIdx = 0;
+                foreach ($techSkills as $skill) {
+                    $parts = explode(':', $skill);
+                    $name = trim($parts[0] ?? 'Skill');
+                    $pct = trim($parts[1] ?? '80');
+                    $colorStyle = sprintf($colors[$colorIdx % count($colors)], $pct);
+                    $techSkillsHtml .= '<div>
+              <div class="flex justify-between mb-2"><span class="text-gray-300 text-sm">' . e($name) . '</span><span class="text-neon-cyan text-sm">' . e($pct) . '%</span></div>
+              <div class="w-full bg-dark-700 rounded h-1"><div class="skill-bar" ' . $colorStyle . '></div></div>
+            </div>';
+                    $colorIdx++;
+                }
+            }
+        }
+        $placeholders['TECH_SKILLS_HTML'] = $techSkillsHtml;
+
+        $serviceCardsHtml = '';
+        if ($portfolio->template_key === 'template_1') {
+            $services = $merged['service_cards'] ?? [];
+            if (is_array($services)) {
+                $styles = [
+                    'neon-border text-neon-cyan', 
+                    'neon-border-green text-neon-green', 
+                    'neon-border-pink text-neon-pink', 
+                    'border border-[#bf00ff] shadow-[0_0_15px_#bf00ff44] text-[#bf00ff]'
+                ];
+                $shadows = ['#00f5ff', '#39ff14', '#ff006e', '#bf00ff'];
+                
+                $styleIdx = 0;
+                foreach ($services as $service) {
+                    $parts = explode('|', $service);
+                    $icon = trim($parts[0] ?? 'fas fa-code');
+                    $title = trim($parts[1] ?? 'Service');
+                    $sub = trim($parts[2] ?? 'Category');
+                    
+                    $s = $styles[$styleIdx % count($styles)];
+                    $sh = $shadows[$styleIdx % count($shadows)];
+                    
+                    // The first three use specific classes for the border, the 4th uses inline style.
+                    // For simplicity, we just apply the class and color.
+                    $boxStyle = $styleIdx % 4 === 3 ? 'style="border:1px solid #bf00ff; box-shadow:0 0 15px #bf00ff44"' : '';
+                    $iconStyle = $styleIdx % 4 === 3 ? 'style="color:#bf00ff; text-shadow:0 0 15px #bf00ff"' : 'style="text-shadow:0 0 15px ' . $sh . '"';
+                    $baseClass = $styleIdx % 4 === 3 ? '' : explode(' ', $s)[0];
+                    $textColor = $styleIdx % 4 === 3 ? '' : explode(' ', $s)[1];
+                    
+                    $serviceCardsHtml .= '<div class="' . $baseClass . ' card-hover rounded-xl p-6 bg-dark-800/60 backdrop-blur text-center section-reveal" ' . $boxStyle . '>
+          <i class="' . e($icon) . ' text-5xl ' . $textColor . ' mb-4" ' . $iconStyle . '></i>
+          <div class="font-orbitron text-sm text-white">' . e($title) . '</div>
+          <div class="text-gray-500 text-xs mt-1">' . e($sub) . '</div>
+        </div>';
+                    $styleIdx++;
+                }
+            }
+        }
+        $placeholders['SERVICE_CARDS_HTML'] = $serviceCardsHtml;
+        
+        $placeholders['TYPING_TEXTS'] = is_array($merged['typing_texts'] ?? '') ? implode(',', $merged['typing_texts']) : ($merged['typing_texts'] ?? 'Full Stack Developer');
 
         return $placeholders;
     }
