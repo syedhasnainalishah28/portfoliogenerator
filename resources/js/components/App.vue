@@ -85,44 +85,100 @@
                         </div>
 
                         <template v-for="field in listFields" :key="field.name">
-                            <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
-                                <div class="flex items-center justify-between mb-3">
-                                    <h4 class="text-xs font-bold text-gray-700">{{ field.label }}</h4>
-                                    <button class="text-[10px] font-bold text-white bg-gray-800 hover:bg-black px-2 py-1 rounded shadow-sm transition-colors" type="button" @click="addListItem(field.name)">+ ADD ITEM</button>
-                                </div>
-                                <div class="space-y-2">
-                                    <div v-for="(_, i) in form.dynamic_fields[field.name]" :key="`list-${field.name}-${i}`" class="relative group">
-                                        <input v-model="form.dynamic_fields[field.name][i]" class="ha-input text-sm py-1.5 px-3 pr-8 shadow-sm bg-white" placeholder="Value" />
-                                        <button class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-300 hover:text-red-500 transition-colors p-1 bg-white rounded-md" type="button" @click="removeListItem(field.name, i)">
-                                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
-                                        </button>
-                                    </div>
-                                </div>
+                <div v-else class="space-y-10">
+                    <template v-for="sectionName in uniqueSections" :key="sectionName">
+                        <div class="space-y-5">
+                            <div class="flex items-center gap-2 mb-4">
+                                <div class="w-1.5 h-6 rounded-full bg-[#f28b11]"></div>
+                                <h3 class="text-sm uppercase tracking-widest font-black text-gray-800">{{ sectionName }}</h3>
                             </div>
-                        </template>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <template v-for="field in getFieldsBySection(sectionName)" :key="field.name">
+                                    <div :class="{'md:col-span-2': ['textarea', 'list', 'projects', 'image'].includes(field.type)}">
+                                        
+                                        <!-- Text / Email / URL / Number -->
+                                        <template v-if="['text', 'email', 'number', 'url'].includes(field.type)">
+                                            <label class="ha-label text-xs">{{ field.label }}</label>
+                                            <input v-model="form.dynamic_fields[field.name]" :type="field.type" class="ha-input text-sm py-2 px-3 shadow-sm bg-white" :placeholder="`e.g. ${field.default || ''}`" />
+                                        </template>
+                                        
+                                        <!-- Color -->
+                                        <template v-else-if="field.type === 'color'">
+                                            <label class="ha-label text-xs">{{ field.label }}</label>
+                                            <div class="flex items-center gap-3">
+                                                <input v-model="form.dynamic_fields[field.name]" type="color" class="w-10 h-10 rounded-lg cursor-pointer border-2 border-gray-100 shadow-sm transition-transform hover:scale-110" />
+                                                <span class="text-xs font-mono text-gray-500 uppercase px-2 py-1 bg-gray-100 rounded">{{ form.dynamic_fields[field.name] }}</span>
+                                            </div>
+                                        </template>
 
-                        <template v-for="field in projectFields" :key="field.name">
-                            <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
-                                <div class="flex items-center justify-between mb-4">
-                                    <h4 class="text-xs font-bold text-gray-700">{{ field.label }}</h4>
-                                    <button class="text-[10px] font-bold text-[#f28b11] bg-orange-100 hover:bg-orange-200 px-2 py-1 rounded shadow-sm transition-colors" type="button" @click="addProject(field.name)">+ ADD PROJECT</button>
-                                </div>
-                                <div class="space-y-4">
-                                    <div v-for="(project, i) in form.dynamic_fields[field.name]" :key="`proj-${field.name}-${i}`" class="rounded-lg bg-white border border-gray-200 p-4 relative shadow-sm transition-shadow hover:shadow-md">
-                                        <button class="absolute -right-2 -top-2 bg-red-100 rounded-full w-6 h-6 flex items-center justify-center text-red-600 hover:bg-red-500 hover:text-white transition-colors shadow-sm" type="button" @click="removeProject(field.name, i)">
-                                            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg>
-                                        </button>
-                                        <div class="space-y-3">
-                                            <div><input v-model="project.name" class="ha-input text-sm py-1.5 px-3 bg-gray-50 focus:bg-white" placeholder="Project Name" /></div>
-                                            <div><input v-model="project.link" class="ha-input text-sm py-1.5 px-3 bg-gray-50 focus:bg-white" placeholder="External URL" /></div>
-                                            <div><textarea v-model="project.description" class="ha-input text-sm py-1.5 px-3 bg-gray-50 focus:bg-white min-h-[50px]" placeholder="Short description"></textarea></div>
-                                        </div>
+                                        <!-- Textarea -->
+                                        <template v-else-if="field.type === 'textarea'">
+                                            <label class="ha-label text-xs">{{ field.label }}</label>
+                                            <textarea v-model="form.dynamic_fields[field.name]" class="ha-input text-sm py-2 px-3 min-h-[80px] resize-y shadow-sm bg-white" :placeholder="field.default"></textarea>
+                                        </template>
+
+                                        <!-- Image -->
+                                        <template v-else-if="field.type === 'image'">
+                                            <label class="ha-label text-xs">{{ field.label }}</label>
+                                            <div class="p-5 rounded-xl border border-dashed border-gray-300 bg-white flex flex-col items-center justify-center gap-3 shadow-sm">
+                                                <div class="text-center">
+                                                    <label class="text-[#f28b11] font-semibold text-sm cursor-pointer hover:underline">
+                                                        Upload Image
+                                                        <input type="file" class="hidden" accept=".jpg,.jpeg,.png,.webp" @change="e => selectDynamicImage(e, field.name)" />
+                                                    </label>
+                                                    <p class="text-xs text-[#9ca3af] mt-1" v-if="form.dynamic_fields[field.name] === 'uploaded' || form.images[field.name]">Image selected</p>
+                                                </div>
+                                            </div>
+                                        </template>
+
+                                        <!-- Simple List -->
+                                        <template v-else-if="field.type === 'list'">
+                                            <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 shadow-sm">
+                                                <div class="flex items-center justify-between mb-3">
+                                                    <h4 class="text-xs font-bold text-gray-700">{{ field.label }}</h4>
+                                                    <button class="text-[10px] font-bold text-white bg-gray-800 hover:bg-black px-2 py-1 rounded shadow-sm transition-colors" type="button" @click="addListItem(field.name)">+ ADD ITEM</button>
+                                                </div>
+                                                <div class="space-y-2">
+                                                    <div v-for="(_, i) in form.dynamic_fields[field.name]" :key="`list-${field.name}-${i}`" class="relative group">
+                                                        <input v-model="form.dynamic_fields[field.name][i]" class="ha-input text-sm py-1.5 px-3 pr-8 shadow-sm bg-white" placeholder="Value" />
+                                                        <button class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-300 hover:text-red-500 transition-colors p-1 bg-white rounded-md" type="button" @click="removeListItem(field.name, i)">
+                                                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+
+                                        <!-- Complex Projects List -->
+                                        <template v-else-if="field.type === 'projects'">
+                                            <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 shadow-sm">
+                                                <div class="flex items-center justify-between mb-4">
+                                                    <h4 class="text-xs font-bold text-gray-700">{{ field.label }}</h4>
+                                                    <button class="text-[10px] font-bold text-[#f28b11] bg-orange-100 hover:bg-orange-200 px-2 py-1 rounded shadow-sm transition-colors" type="button" @click="addProject(field.name)">+ ADD PROJECT</button>
+                                                </div>
+                                                <div class="space-y-4">
+                                                    <div v-for="(project, i) in form.dynamic_fields[field.name]" :key="`proj-${field.name}-${i}`" class="rounded-lg bg-white border border-gray-200 p-4 relative shadow-sm transition-shadow hover:shadow-md">
+                                                        <button class="absolute -right-2 -top-2 bg-red-100 rounded-full w-6 h-6 flex items-center justify-center text-red-600 hover:bg-red-500 hover:text-white transition-colors shadow-sm" type="button" @click="removeProject(field.name, i)">
+                                                            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg>
+                                                        </button>
+                                                        <div class="space-y-3">
+                                                            <div><input v-model="project.name" class="ha-input text-sm py-1.5 px-3 bg-gray-50 focus:bg-white" placeholder="Project Name" /></div>
+                                                            <div><input v-model="project.link" class="ha-input text-sm py-1.5 px-3 bg-gray-50 focus:bg-white" placeholder="External URL" /></div>
+                                                            <div><textarea v-model="project.description" class="ha-input text-sm py-1.5 px-3 bg-gray-50 focus:bg-white min-h-[50px]" placeholder="Short description"></textarea></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+
                                     </div>
-                                </div>
+                                </template>
                             </div>
-                        </template>
-                    </div>
+                        </div>
+                    </template>
                 </div>
+            </div>
 
                 <div v-if="message || errorMessage" class="mt-8 p-3 rounded-lg text-xs font-bold text-center border shadow-sm" :class="errorMessage ? 'bg-red-50 text-red-600 border-red-100' : 'bg-emerald-50 text-emerald-700 border-emerald-100'">
                     {{ errorMessage || message }}
@@ -187,11 +243,18 @@ const form = reactive({
 });
 
 // Computed properties to categorize fields
-const textFields = computed(() => templateFieldsLayout.value.filter(f => ['text', 'email', 'url', 'number', 'color'].includes(f.type)));
-const textareaFields = computed(() => templateFieldsLayout.value.filter(f => f.type === 'textarea'));
-const listFields = computed(() => templateFieldsLayout.value.filter(f => f.type === 'list'));
-const projectFields = computed(() => templateFieldsLayout.value.filter(f => f.type === 'projects'));
-const imageFields = computed(() => templateFieldsLayout.value.filter(f => f.type === 'image'));
+const uniqueSections = computed(() => {
+    if (!templateFieldsLayout.value || templateFieldsLayout.value.length === 0) return [];
+    const sections = new Set();
+    templateFieldsLayout.value.forEach(f => {
+        sections.add(f.section || 'General Settings');
+    });
+    return Array.from(sections);
+});
+
+const getFieldsBySection = (sectionName) => {
+    return templateFieldsLayout.value.filter(f => (f.section || 'General Settings') === sectionName);
+};
 
 async function fetchTemplateFields() {
     loadingFields.value = true;
