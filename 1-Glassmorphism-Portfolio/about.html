@@ -1,0 +1,171 @@
+<!-- HA Tech students: Yeh is template ka About page hai, is me grid aur layouts samjhaye gaye hain -->
+<!-- HTML5 ka document type -->
+<!DOCTYPE html>
+<!-- HTML ka main tag English language k sath -->
+<html lang="en">
+<!-- Head section jahan files aur links load hote hain -->
+
+<head>
+    <!-- Har character aur symbol display karne ki support -->
+    <meta charset="UTF-8">
+    <!-- Responsive banane k liye zaroori meta tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page ka naam jo upar browser tab me nazar ayega -->
+    <title>HA Tech Premium Glassmorphism - About</title>
+    <!-- Tailwind CSS ki framework include ki gayi hai -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Icons show karne k liye FontAwesome lagaya gaya hai -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Inline styles (CSS) likhne ka tag -->
+    <style>
+        /* Body pe dark blue rang dia aur font set kiya */
+        body {
+            background-color: #0b1120;
+            font-family: sans-serif;
+        }
+
+        /* Glass panel ki designing, pichle page wali same property */
+        .glass-panel {
+            /* Transparency background k sath (safaid rang lakin halka) */
+            background: rgba(255, 255, 255, 0.05);
+            /* Pichay ka background jahan se dhundla(blur) nazar aaway */
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            /* Border chamkदार (10% safaid) */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Roshni (Glow) effect ki class */
+        .glow-blob {
+            mix-blend-screen: screen;
+            filter: blur(120px);
+        }
+    </style>
+</head>
+<!-- Body, jahan sara actual visual part hota hai -->
+<!-- text-white rang de raha hai aur overflow-y-auto page ko scroll karne deta hai -->
+
+<body class="antialiased text-white relative min-h-screen overflow-y-auto">
+
+    <!-- Background glowing shapes (Upar aur neechay ki roshniyan) -->
+    <div class="absolute -top-[10%] left-[20%] w-[40vw] h-[40vw] bg-indigo-600 rounded-full glow-blob opacity-30 fixed">
+    </div>
+    <div class="absolute bottom-[0%] right-[10%] w-[30vw] h-[30vw] bg-pink-600 rounded-full glow-blob opacity-30 fixed">
+    </div>
+
+    <!-- Website ka Navbar -->
+    <!-- z-50 front pe rakhta hai -->
+    <nav class="relative z-50 flex justify-between items-center p-8 max-w-7xl mx-auto">
+        <!-- Text Logo -->
+        <div class="text-3xl font-extrabold tracking-tighter">
+            <!-- Text gradient style coloring -->
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-indigo-400">HA.</span>Tech
+        </div>
+        <!-- Desktop menu links -->
+        <!-- md:flex mobile k ilawa baki screens pe nazar aayega -->
+        <div class="hidden md:flex gap-10 font-bold text-gray-300">
+            <!-- Home link (Unactive state) -->
+            <a href="index.html" class="hover:text-white transition-colors">Home</a>
+            <!-- About link (Active state, text-white rang dia) -->
+            <a href="about.html" class="text-white transition-colors">About</a>
+            <!-- Contact link (Unactive) -->
+            <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+        </div>
+        <!-- Right side icon nav button -->
+        <a href="contact.html"
+            class="px-6 py-2 rounded-full border border-white/20 hover:bg-white/10 transition-all font-semibold">
+            Let's Talk <i class="fa-solid fa-arrow-right ml-2 text-pink-400"></i>
+        </a>
+    </nav>
+
+    <!-- Main Content Area (About page ka) -->
+    <!-- z-10 content ko roshniyo se uper rakhta hai, py-12 pichay se padding deta hai -->
+    <main class="relative z-10 max-w-7xl mx-auto px-6 py-12">
+        <!-- Text Heading Container -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-black mb-4">About <span class="text-indigo-400">Me</span></h1>
+            <!-- Chota wazahat text -->
+            <p class="text-gray-400 max-w-2xl mx-auto">Hum apni designing aur coding ki skills ko use kar ke problems
+                solve karte hain. Ye aik digital artist ki profile hai.</p>
+        </div>
+
+        <!-- Layout Grid (grid-cols-1 mobile k liye, md:grid-cols-3 lap top k liye yani 3 dabbas) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- Pahla sheeshe ka box (Left Column - Developer Image/Info) -->
+            <!-- col-span-1 ka matlab ye 1 column ki jagah lega -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col items-center border border-white/10 col-span-1">
+                <!-- Gol shakal me user avatar (tasveer), bg-gray-800 default color k sath -->
+                <div
+                    class="w-32 h-32 rounded-full bg-gray-800 overflow-hidden mb-6 border-4 border-indigo-500/50 shadow-[0_0_20px_rgba(99,102,241,0.5)] flex items-center justify-center">
+                    <!-- Icon placeholder ki jagah, aap is me <img> bhi laga sakte hain -->
+                    <i class="fa-solid fa-user-astronaut text-5xl text-gray-400"></i>
+                </div>
+                <!-- Developer ka naam -->
+                <h2 class="text-2xl font-bold mb-2">Ahmad Raza</h2>
+                <!-- Choti description -->
+                <p class="text-pink-400 font-semibold mb-6">Senior UI Developer</p>
+                <!-- Social media icons ka group -->
+                <div class="flex gap-4">
+                    <!-- Har icon ka apna FontAwesome class, hover effect k sath -->
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all"><i
+                            class="fa-brands fa-github"></i></a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all"><i
+                            class="fa-brands fa-linkedin-in text-blue-400"></i></a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all"><i
+                            class="fa-brands fa-dribbble text-pink-400"></i></a>
+                </div>
+            </div>
+
+            <!-- Dusra bara hissa (Right 2 Columns - Details aur Skills) -->
+            <!-- md:col-span-2 ka matlab ye 2 columns ki jagah lega -->
+            <div class="glass-panel p-8 md:p-12 rounded-3xl col-span-1 md:col-span-2">
+                <!-- Choti heading -->
+                <h3 class="text-2xl font-bold mb-4 border-b border-white/10 pb-4">My Journey</h3>
+                <!-- Paragraph text -->
+                <p class="text-gray-300 mb-8 leading-relaxed">
+                    Main 5 saalon se websites bana raha hun. Mera maqsad sirf code likhna nahi balkay aese experiences
+                    banana hai jo user ko pasand ayein. Glassmorphism aur modern tailwind designing meri favorite hain.
+                </p>
+
+                <!-- Skills ki heading -->
+                <h3 class="text-xl font-bold mb-6">Technical Skills</h3>
+
+                <!-- Skills dikhane k liye grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <!-- Har skill ki aik patti (chip), bg-white/5 se halka rang dia -->
+                    <div
+                        class="bg-white/5 rounded-xl p-4 text-center border border-white/5 hover:border-indigo-500/50 transition-all">
+                        <i class="fa-brands fa-react text-blue-400 text-3xl mb-2"></i>
+                        <div class="font-semibold text-sm">React JS</div>
+                    </div>
+                    <!-- Skill 2 -->
+                    <div
+                        class="bg-white/5 rounded-xl p-4 text-center border border-white/5 hover:border-pink-500/50 transition-all">
+                        <i class="fa-brands fa-css3 text-pink-400 text-3xl mb-2"></i>
+                        <div class="font-semibold text-sm">Tailwind CSS</div>
+                    </div>
+                    <!-- Skill 3 -->
+                    <div
+                        class="bg-white/5 rounded-xl p-4 text-center border border-white/5 hover:border-yellow-500/50 transition-all">
+                        <i class="fa-brands fa-js text-yellow-400 text-3xl mb-2"></i>
+                        <div class="font-semibold text-sm">JavaScript</div>
+                    </div>
+                    <!-- Skill 4 -->
+                    <div
+                        class="bg-white/5 rounded-xl p-4 text-center border border-white/5 hover:border-green-500/50 transition-all">
+                        <i class="fa-brands fa-node-js text-green-400 text-3xl mb-2"></i>
+                        <div class="font-semibold text-sm">Node backend</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>

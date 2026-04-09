@@ -1,0 +1,156 @@
+<!-- HA Tech k students k liye khasoosi hidayat: Har line ko ghaur se parhain -->
+<!-- Yeh batata hai k file HTML version 5 ki hai -->
+<!DOCTYPE html>
+<!-- html website ka sub se main tag hai, lang="en" english language set karta hai -->
+<html lang="en">
+<!-- head us hissay ko kehte hain jahan links aur meta settings hoti hain, jo samne nazar nahi aati -->
+
+<head>
+    <!-- charset="UTF-8" ensures k har tarah ki language support ho -->
+    <meta charset="UTF-8">
+    <!-- yeh meta tag mobile aur choti screens pe website ko theek se adjust karne k liye hai -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title wo text hai jo browser k uper tab mai likha aata hai -->
+    <title>HA Tech Premium Glassmorphism - Home</title>
+    <!-- Yahan hum Tailwind CSS ka latest script run kar rahay hain ta k classes use kar sakein -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Yeh FontAwesome ka CDN link hai, jis se hum professional icons use karein ge -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Inline CSS k liye style tag -->
+    <style>
+        /* Body pe poori website ka dark aur premium background lagaya gaya hai */
+        body {
+            /* bilkul dark navy-blue background hai */
+            background-color: #0b1120;
+        }
+
+        /* yeh class asar mai asli glassmorphism laigi */
+        .glass-panel {
+            /* halka sa safaid background sirf 5% opacity k sath */
+            background: rgba(255, 255, 255, 0.05);
+            /* yehi wo command hai jo background ko dhandla (blur) karti hai asli sheeshe ki tarah */
+            backdrop-filter: blur(24px);
+            /* ios (apple) devices pe blur chalane k liye */
+            -webkit-backdrop-filter: blur(24px);
+            /* border halka aur chamkeela dia hai, border-white/10 ka matlab 10% white */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* box-shadow 3D effect aur peechay saya paida karta hai */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* yeh chamakti hui roshniyan hain jo peache glowing effect degi */
+        .glow-blob {
+            /* blend mode asar mai dono colors ko mix kar k roshni deta hai */
+            mix-blend-screen: screen;
+            /* aur blur itna ziada k shape khatam ho k roshni ban jaye */
+            filter: blur(120px);
+        }
+    </style>
+</head>
+<!-- Body website ka wo hissa hai jo asar user ko nazar aata hai -->
+<!-- antialiased text ko smooth karta hai, text-white rang deta hai -->
+
+<body class="antialiased text-white relative min-h-screen overflow-hidden font-sans">
+
+    <!-- Background glowing blob 1 (Neele rang ka bada saya) -->
+    <!-- absolute apni jagah chord k left bottom par fix ho jata hai -->
+    <div class="absolute -bottom-[20%] -left-[10%] w-[50vw] h-[50vw] bg-indigo-600 rounded-full glow-blob opacity-40">
+    </div>
+
+    <!-- Background glowing blob 2 (Gulaabi rang ka saya) -->
+    <div class="absolute top-[0%] -right-[10%] w-[40vw] h-[40vw] bg-pink-600 rounded-full glow-blob opacity-40"></div>
+
+    <!-- Main Navigation Bar, jahan se user dusre pages pe jayega -->
+    <!-- z-50 element ko doosri cheezon pe uper rakhta hai -->
+    <nav class="relative z-50 flex justify-between items-center p-8 max-w-7xl mx-auto">
+        <!-- Logo ka section -->
+        <div class="text-3xl font-extrabold tracking-tighter">
+            <!-- text-transparent aur bg-gradient mil kar gradient text (rangeen alfaz) banatay hain -->
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-indigo-400">HA.</span>Tech
+        </div>
+        <!-- Links ka hissa, sirf bari screen pe flex dekhega mobile pe chup jayega (hidden) -->
+        <div class="hidden md:flex gap-10 font-bold text-gray-300">
+            <!-- Home link (Active hai is liye text-white hai) -->
+            <a href="index.html" class="text-white hover:text-pink-400 transition-colors">Home</a>
+            <!-- About link, next file ka reference hai -->
+            <a href="about.html" class="hover:text-white transition-colors">About</a>
+            <!-- Contact link -->
+            <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+        </div>
+        <!-- Right side icon button -->
+        <a href="contact.html"
+            class="px-6 py-2 rounded-full border border-white/20 hover:bg-white/10 transition-all font-semibold">
+            <!-- FontAwesome icon lagaya gaya hai -->
+            Lets Talk <i class="fa-solid fa-arrow-right ml-2 text-pink-400"></i>
+        </a>
+    </nav>
+
+    <!-- Main content container (Glass card wala hissa) -->
+    <!-- z-10 ta k background objects pechey hi rahain -->
+    <main class="relative z-10 flex items-center justify-center min-h-[80vh] p-6">
+        <!-- Hamari premium glass-panel class jis me asal jadu hai, rounded-3xl corners ko goal karti hai -->
+        <div
+            class="glass-panel w-full max-w-5xl p-10 md:p-16 rounded-3xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+            <!-- Left Side: Text and Intro -->
+            <div>
+                <!-- Chota sub-heading -->
+                <p class="text-pink-400 font-bold tracking-widest uppercase text-sm mb-4">
+                    <i class="fa-solid fa-code text-indigo-400 mr-2"></i> Premium Developer
+                </p>
+                <!-- Bari Heading, leading-tight se line gap kam hota hai -->
+                <h1 class="text-5xl lg:text-7xl font-black mb-6 leading-tight">
+                    Next Level <br>
+                    <!-- Dobara gradient text use kar rahay hain emphasis k liye -->
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-indigo-400">Digital</span>
+                    Art.
+                </h1>
+                <!-- Paragraph text -->
+                <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                    Welcome to HA Tech's premium glassmorphism template. Asal designing ka maza clean code aur perfect
+                    alignments mai hai. Check our pages.
+                </p>
+                <!-- Buttons group -->
+                <div class="flex gap-4">
+                    <!-- Explore button, bg-white/10 ka matlab background white ho ga aur opacity 10% hogi -->
+                    <a href="about.html"
+                        class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)]">
+                        <i class="fa-solid fa-user-astronaut mr-2"></i> About Me
+                    </a>
+                    <!-- Dusra sadah button -->
+                    <a href="contact.html"
+                        class="px-8 py-4 border border-white/20 hover:bg-white/10 rounded-xl font-bold transition-all">
+                        Contact <i class="fa-solid fa-paper-plane ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Side: Decorative elements ya stats -->
+            <div class="grid grid-cols-2 gap-6 relative">
+                <!-- Chota sheeshe ka glass card (Number 1) -->
+                <!-- hover:-translate-y-2 uper ki janib uthayega mouse laane par -->
+                <div
+                    class="glass-panel p-8 rounded-2xl flex flex-col items-center justify-center text-center transform hover:-translate-y-2 transition-transform duration-300">
+                    <i
+                        class="fa-brands fa-html5 text-5xl text-orange-500 mb-4 drop-shadow-[0_0_10px_rgba(249,115,22,0.5)]"></i>
+                    <h3 class="text-xl font-bold">HTML5</h3>
+                    <p class="text-gray-400 text-sm mt-2">Clean Syntax</p>
+                </div>
+                <!-- Chota sheeshe ka glass card (Number 2) -->
+                <div
+                    class="glass-panel p-8 rounded-2xl flex flex-col items-center justify-center text-center transform hover:-translate-y-2 transition-transform duration-300 mt-12">
+                    <!-- mt-12 margin top hai, ye card pehle wale k muqablay niche hoga (staggered effect layout) -->
+                    <i
+                        class="fa-brands fa-css3-alt text-5xl text-blue-500 mb-4 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]"></i>
+                    <h3 class="text-xl font-bold">CSS3</h3>
+                    <p class="text-gray-400 text-sm mt-2">Tailwind Magix</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>

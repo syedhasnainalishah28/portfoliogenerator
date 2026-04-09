@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { 
+    --maroon: #2a080d; 
+    --orange: #f28b11;
+    --yellow: #f2b311;
+    --text-primary: #1e1b20;
+    --text-muted: #5e5963;
+    --bg-page: #fbfbfb;
+    --bg-surface: #ffffff;
+    --border-soft: #e5e7eb;
+}
+
+body { 
+    background-color: var(--bg-page); 
+    color: var(--text-primary); 
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.ha-card { 
+    background: var(--bg-surface); 
+    border: 1px solid var(--border-soft); 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); 
+    border-radius: 16px; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ha-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+}
+
+.ha-input { 
+    width: 100%; 
+    border: 1px solid #d1d5db; 
+    border-radius: 10px; 
+    padding: 0.75rem 1rem; 
+    background: var(--bg-surface); 
+    color: var(--text-primary); 
+    transition: border-color 0.2s ease, box-shadow 0.2s ease; 
+}
+
+.ha-input::placeholder { 
+    color: #9ca3af; 
+}
+
+.ha-input:focus { 
+    outline: none; 
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(242, 139, 17, 0.2); 
+}
+
+.ha-label { 
+    font-size: 0.85rem; 
+    font-weight: 600; 
+    color: var(--text-muted); 
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.ha-btn { 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent; 
+    border-radius: 10px; 
+    background: var(--maroon); 
+    color: #ffffff; 
+    font-weight: 600; 
+    transition: all 0.2s ease; 
+    cursor: pointer;
+}
+
+.ha-btn:hover { 
+    background: #1f060a; 
+    box-shadow: 0 4px 12px rgba(42, 8, 13, 0.15); 
+}
+
+.ha-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-soft); 
+    border-radius: 10px; 
+    background: var(--bg-surface); 
+    color: var(--text-primary); 
+    font-weight: 600; 
+    transition: all 0.2s ease; 
+    cursor: pointer;
+}
+
+.ha-btn-secondary:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+/* Glassmorphism utility */
+.glass-nav {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+}

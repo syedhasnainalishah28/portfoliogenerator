@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[[FULL_NAME]] | Digital Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '[[PRIMARY_COLOR]]',
+                    },
+                    fontFamily: {
+                        sans: ['SF Pro Display', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #f5f5f7; color: #1d1d1f; overflow-x: hidden; }
+        .apple-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #1d1d1f 0%, [[PRIMARY_COLOR]] 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-primary/20 selection:text-primary">
+    
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-tight">[[FULL_NAME]]</div>
+            <div class="flex gap-10 text-sm font-medium opacity-60">
+                <a href="index.html" class="hover:opacity-100 transition-opacity">Work</a>
+                <a href="about.html" class="hover:opacity-100 transition-opacity">About</a>
+                <a href="contact.html" class="hover:opacity-100 transition-opacity">Contact</a>
+            </div>
+            <a href="contact.html" class="bg-black text-white px-5 py-2 rounded-full text-xs font-bold hover:scale-105 transition-transform">Inquire</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 pt-40 pb-20">
+        <div class="text-center mb-24">
+            <p class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4">[[TITLE]]</p>
+            <h1 class="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-[1.05] text-gradient">
+                Crafting digital <br> elegance.
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                [[BIO]]
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+            <div class="lg:col-span-7">
+                <div class="apple-card overflow-hidden group">
+                    <img src="assets/hero.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" onerror="this.src='https://ui-avatars.com/api/?name=[[FULL_NAME]]&size=1000&background=f0f0f0'" />
+                </div>
+            </div>
+            <div class="lg:col-span-5 space-y-10">
+                <div class="apple-card p-10">
+                    <h2 class="text-2xl font-bold mb-6">Expertise</h2>
+                    <div class="flex flex-wrap gap-2">
+                        [[SKILLS_HTML]]
+                    </div>
+                </div>
+                <div class="apple-card p-10 bg-primary/5 border-primary/10">
+                    <h2 class="text-2xl font-bold mb-4 italic">Next Step?</h2>
+                    <p class="text-gray-600 mb-8 text-sm">Have a bold project in mind? Lets collaborate and bring it to life.</p>
+                    <a href="contact.html" class="text-primary font-bold flex items-center gap-2">Get in touch <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-32">
+            <h2 class="text-4xl font-black tracking-tight mb-16 px-4 border-l-4 border-primary">Featured Work</h2>
+            <div class="grid md:grid-cols-2 gap-10">
+                [[PROJECTS_HTML]]
+            </div>
+        </div>
+    </main>
+
+    <footer class="max-w-7xl mx-auto px-6 py-20 border-t border-gray-100 flex flex-col items-center">
+        <div class="text-2xl font-black mb-8">[[FULL_NAME]]</div>
+        <p class="text-gray-400 text-sm">© [[FULL_NAME]] // ALL RIGHTS RESERVED PER 2026</p>
+    </footer>
+</body>
+</html>

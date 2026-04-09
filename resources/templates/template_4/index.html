@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[[FULL_NAME]] | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '[[PRIMARY_COLOR]]',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;700&display=swap');
+        body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; }
+        .serif-title { font-family: 'Playfair Display', serif; }
+        .executive-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+        }
+        .accent-line {
+            width: 60px;
+            height: 2px;
+            background: [[PRIMARY_COLOR]];
+        }
+    </style>
+</head>
+<body class="antialiased">
+    
+    <header class="max-w-7xl mx-auto px-6 py-12 flex justify-between items-end">
+        <div class="space-y-1">
+            <h2 class="text-xs uppercase tracking-[0.4em] font-bold text-gray-500">Portfolio Selection</h2>
+            <div class="serif-title text-4xl">[[FULL_NAME]]</div>
+        </div>
+        <nav class="flex gap-12 text-[10px] uppercase tracking-widest font-black text-primary">
+            <a href="index.html" class="border-b border-primary">Home</a>
+            <a href="about.html" class="hover:opacity-50 transition-all">About</a>
+            <a href="contact.html" class="hover:opacity-50 transition-all">Contact</a>
+        </nav>
+    </header>
+
+
+        <section class="border-t border-gray-200 pt-24">
+            <h2 class="text-3xl font-bold mb-16 text-center">Executive Expertise</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                [[SKILLS_HTML]]
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-50 py-20 border-t border-gray-100 mt-20">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6 italic">Let's build something exceptional.</h2>
+            <p class="text-gray-500 mb-10">Currently accepting strategic partnerships and freelance advisory.</p>
+            <div class="flex justify-center gap-8 text-xs uppercase tracking-widest font-bold">
+                <a href="mailto:[[EMAIL]]" class="text-brand">Enail Direct</a>
+                <a href="[[WHATSAPP_LINK]]">Message</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

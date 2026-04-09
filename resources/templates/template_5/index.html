@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[[FULL_NAME]] // CREATIVE_NODE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '[[PRIMARY_COLOR]]',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;900&family=Space+Mono&display=swap');
+        body { background-color: #fff; color: #000; font-family: 'Space Mono', monospace; overflow-x: hidden; }
+        .bold-font { font-family: 'Unbounded', sans-serif; text-transform: uppercase; }
+        .bg-grid {
+            background-image: radial-gradient(#000 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.05;
+        }
+        .kinetic-box {
+            box-shadow: 15px 15px 0 [[PRIMARY_COLOR]];
+            border: 4px solid #000;
+        }
+    </style>
+</head>
+<body class="antialiased">
+        <section class="px-10 md:px-20 py-32 bg-white">
+            <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div class="order-2 md:order-1">
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-heavy -rotate-6 translate-x-4 translate-y-4 -z-10 transition-transform group-hover:rotate-0"></div>
+                        <img src="assets/hero.jpg" class="w-full border-4 border-black box-border" onerror="this.src='https://ui-avatars.com/api/?name=[[FULL_NAME]]&size=1000'" />
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h2 class="hero-font text-5xl mb-10">THE <span class="text-heavy">SKILLS</span></h2>
+                    <div class="grid grid-cols-2 gap-6">
+                        [[SKILLS_HTML]]
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
