@@ -1,122 +1,140 @@
 @extends('admin.layout')
-@section('title', 'Vault Management')
+@section('title', 'Vault Analytics')
 @section('page-title', 'Vault Analytics')
 
 @section('content')
-<div class="space-y-10">
-    <div class="flex gap-6 mb-8 flex-wrap items-center justify-between">
-        {{-- Search + Filter --}}
-        <form method="GET" class="flex gap-4 flex-wrap items-center bg-white/[0.02] p-2 rounded-2x border border-white/5 backdrop-blur-md">
-            <div class="relative group">
-                <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-[#D4A853] transition-colors"></i>
-                <input type="text" name="search" value="{{ request('search') }}" placeholder="Search signature, user, mail..."
-                    class="ha-input !pl-12 !py-3 !px-6 w-64 md:w-96 border-none bg-white/[0.03] shadow-none focus:bg-white/[0.05]">
+<div class="space-y-8">
+    
+    <!-- Header Controls -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-brand-panel border border-white/5 rounded-2xl p-6 backdrop-blur-xl">
+        <div class="flex items-center gap-4">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-white/40">Vault Filter:</span>
+            <div class="flex gap-2">
+                <a href="{{ route('admin.licenses.index') }}" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all {{ request('status') ? 'bg-white/5 text-white/40 hover:text-white' : 'bg-brand-gold/10 text-brand-gold border border-brand-gold/20' }}">All Keys</a>
+                <a href="{{ route('admin.licenses.index', ['status' => 'active']) }}" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all {{ request('status') === 'active' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-white/5 text-white/40 hover:text-white' }}">Active Uplinks</a>
+                <a href="{{ route('admin.licenses.index', ['status' => 'expired']) }}" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all {{ request('status') === 'expired' ? 'bg-red-500/10 text-red-500 border border-red-500/20' : 'bg-white/5 text-white/40 hover:text-white' }}">Terminated</a>
+                <a href="{{ route('admin.licenses.index', ['status' => 'unassigned']) }}" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all {{ request('status') === 'unassigned' ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20' : 'bg-white/5 text-white/40 hover:text-white' }}">Dormant</a>
             </div>
-            
-            <div class="h-8 w-px bg-white/10 mx-2 hidden sm:block"></div>
-            
-            <div class="flex items-center gap-2">
-                <a href="{{ route('admin.licenses.index') }}" class="px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all {{ !request('status') ? 'bg-white/10 text-white' : 'text-white/30 hover:text-white hover:bg-white/5' }}">Static</a>
-                @foreach(['active','expired','unused'] as $s)
-                <a href="{{ route('admin.licenses.index', ['status' => $s] + request()->except('status')) }}"
-                    class="px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all {{ request('status') === $s ? 'badge-'.$s : 'text-white/30 hover:text-white hover:bg-white/5' }}">
-                    {{ $s }}
-                </a>
-                @endforeach
+        </div>
+        
+        <div class="flex items-center gap-4">
+            <div class="text-[10px] font-bold uppercase tracking-widest text-white/30 hidden lg:block mr-4 border-r border-white/10 pr-4">
+                Total Keys: {{ $licenses->total() }}
             </div>
-        </form>
-
-        <a href="{{ route('admin.licenses.generate') }}" class="ha-btn-gold !py-3.5 !px-8 flex items-center gap-3">
-            <i class="fas fa-plus text-[10px]"></i>
-            Forge Key
-        </a>
+            <a href="{{ route('admin.licenses.generate') }}" class="px-5 py-2.5 rounded-xl bg-brand-gold text-black text-[10px] font-bold uppercase tracking-widest hover:brightness-110 shadow-lg shadow-brand-gold/20 transition-all flex items-center gap-2">
+                <i class="fas fa-plus"></i> Manual Forge
+            </a>
+        </div>
     </div>
 
-    <!-- License Vault -->
-    <div class="table-container">
-        <table class="w-full border-collapse">
-            <thead>
-                <tr>
-                    <th class="table-th">Cryptographic Signature</th>
-                    <th class="table-th">Assigned Agent</th>
-                    <th class="table-th">Framework Tier</th>
-                    <th class="table-th">Deployment</th>
-                    <th class="table-th">Expiry Node</th>
-                    <th class="table-th">Status</th>
-                    <th class="table-th text-right">Modifications</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($licenses as $license)
-                <tr class="table-row">
-                    <td class="table-td">
-                        <div class="font-mono text-[11px] font-black tracking-[0.2em] text-[#D4A853]">
-                            {{ $license->license_key }}
-                        </div>
-                    </td>
-                    <td class="table-td">
-                        @if($license->user)
-                            <div class="font-bold text-white text-sm">{{ $license->user->name }}</div>
-                            <div class="text-[10px] text-white/30 font-black uppercase tracking-wider mt-0.5">{{ $license->user->email }}</div>
-                        @else
-                            <div class="inline-flex items-center gap-2 px-2.5 py-1 bg-white/[0.03] border border-white/5 rounded text-[9px] font-black uppercase tracking-widest text-white/20">
-                                <i class="fas fa-unlink"></i>
-                                Unbound
+    <!-- Data Table -->
+    <div class="bg-brand-panel border border-white/5 rounded-2xl overflow-hidden backdrop-blur-xl">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left whitespace-nowrap">
+                <thead>
+                    <tr class="bg-white/[0.02] border-b border-white/5 text-[10px] font-bold uppercase tracking-widest text-white/30">
+                        <th class="px-8 py-5">Cryptographic Signature</th>
+                        <th class="px-8 py-5">Assigned Agent (Uplink)</th>
+                        <th class="px-8 py-5">Tier Class</th>
+                        <th class="px-8 py-5 text-center">Lifecycle Limit</th>
+                        <th class="px-8 py-5 text-center">Protocol State</th>
+                        <th class="px-8 py-5 text-right">Extend Override</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-white/5 text-sm">
+                    @forelse($licenses as $license)
+                    <tr class="hover:bg-white/[0.02] transition-colors group">
+                        <!-- Key -->
+                        <td class="px-8 py-5">
+                            <span class="font-mono text-sm tracking-widest font-black text-brand-gold bg-brand-gold/5 border border-brand-gold/10 px-3 py-1.5 rounded-lg select-all">
+                                {{ $license->license_key }}
+                            </span>
+                        </td>
+
+                        <!-- User -->
+                        <td class="px-8 py-5">
+                            @if($license->user)
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/60 text-xs font-bold">
+                                        {{ strtoupper(substr($license->user->name, 0, 1)) }}
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="font-semibold text-white text-xs">{{ $license->user->name }}</span>
+                                        <span class="text-[9px] font-bold tracking-wider uppercase text-white/30 mt-0.5">Assigned</span>
+                                    </div>
+                                </div>
+                            @else
+                                <span class="bg-white/5 text-white/40 border border-white/10 px-3 py-1.5 rounded-lg text-[9px] font-bold uppercase tracking-widest">
+                                    Offline (Dormant)
+                                </span>
+                            @endif
+                        </td>
+
+                        <!-- Plan -->
+                        <td class="px-8 py-5">
+                            <div class="flex flex-col">
+                                <span class="font-bold text-white text-xs">{{ $license->plan->name }}</span>
+                                <span class="text-[9px] font-bold tracking-widest uppercase text-white/30">{{ $license->duration_months }} Months</span>
                             </div>
-                        @endif
-                    </td>
-                    <td class="table-td">
-                        <span class="text-xs font-bold text-white/70">{{ $license->plan->name }}</span>
-                    </td>
-                    <td class="table-td">
-                        <div class="text-[10px] font-black uppercase text-white/30 tracking-widest">
-                            <i class="far fa-calendar-check mr-1.5 text-white/10"></i>
-                            {{ $license->activated_at ? $license->activated_at->format('d M y') : 'N/A' }}
-                        </div>
-                    </td>
-                    <td class="table-td text-[11px] font-bold {{ $license->isExpired() ? 'text-red-500/60' : 'text-emerald-500/60' }}">
-                        {{ $license->expires_at?->format('d M y') ?? '—' }}
-                    </td>
-                    <td class="table-td">
-                        <span class="badge badge-{{ $license->status_badge }}">
-                            {{ $license->status_badge }}
-                        </span>
-                    </td>
-                    <td class="table-td">
-                        <div class="flex items-center justify-end gap-4">
-                            {{-- Extend Flow --}}
-                            <form method="POST" action="{{ route('admin.licenses.extend', $license) }}" class="flex items-center bg-white/[0.03] p-1 border border-white/5 rounded-xl">
-                                @csrf
-                                <input type="number" name="months" value="1" min="1" max="24"
-                                    class="w-10 bg-transparent border-none text-center text-[11px] font-black text-white focus:outline-none">
-                                <button type="submit" class="px-4 py-2 bg-[#D4A853] text-[#050508] text-[9px] font-black uppercase tracking-widest rounded-lg hover:brightness-110 transition-all">Extend</button>
-                            </form>
-                            
-                            {{-- Termination --}}
-                            <form method="POST" action="{{ route('admin.licenses.expire', $license) }}">
-                                @csrf
-                                <button type="submit" class="w-9 h-9 flex items-center justify-center rounded-xl bg-red-500/5 border border-red-500/10 text-red-500/40 hover:text-red-500 hover:bg-red-500/10 transition-all" onclick="return confirm('Kill this license instantly?')">
-                                    <i class="fas fa-trash-alt text-xs"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="7" class="table-td text-center py-24">
-                        <i class="fas fa-key text-4xl text-white/5 mb-4 block"></i>
-                        <span class="text-white/20 font-black uppercase tracking-widest text-xs">No records found in the vault.</span>
-                    </td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
+                        </td>
+
+                        <!-- Expiry -->
+                        <td class="px-8 py-5 text-center">
+                            @if($license->expires_at)
+                                <div class="flex flex-col gap-1 items-center">
+                                    <span class="font-bold text-white text-xs">{{ $license->expires_at->format('M d, Y') }}</span>
+                                    <span class="text-[9px] font-bold tracking-widest uppercase text-white/30">
+                                        {{ $license->expires_at->diffForHumans() }}
+                                    </span>
+                                </div>
+                            @else
+                                <span class="text-white/20 font-bold text-xl">-</span>
+                            @endif
+                        </td>
+
+                        <!-- Status -->
+                        <td class="px-8 py-5 text-center">
+                            @if(!$license->user_id)
+                                <span class="bg-amber-500/10 text-amber-500 border border-amber-500/20 px-3 py-1.5 rounded-lg text-[9px] font-bold uppercase tracking-widest">Unassigned</span>
+                            @elseif(!$license->expires_at || $license->expires_at->isFuture())
+                                <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-lg text-[9px] font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(16,185,129,0.1)]">Active</span>
+                            @else
+                                <span class="bg-red-500/10 text-red-500 border border-red-500/20 px-3 py-1.5 rounded-lg text-[9px] font-bold uppercase tracking-widest">Terminated</span>
+                            @endif
+                        </td>
+
+                        <!-- Extension -->
+                        <td class="px-8 py-5 text-right">
+                            @if($license->user_id)
+                                <form method="POST" action="{{ route('admin.licenses.extend', $license) }}" class="inline-block" onsubmit="return confirm('Initiate protocol extension by 1 month?')">
+                                    @csrf
+                                    <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.03] border border-white/10 hover:border-brand-gold/30 hover:bg-brand-gold/10 hover:text-brand-gold text-white/50 text-xs font-bold uppercase tracking-wider transition-all">
+                                        <i class="fas fa-arrow-up-right-dots"></i> Sync +1M
+                                    </button>
+                                </form>
+                            @else
+                                <span class="text-[9px] font-bold tracking-widest uppercase text-white/20">Requires Payload Bonding</span>
+                            @endif
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="6" class="px-8 py-24 text-center">
+                            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/5 text-white/20 mb-4">
+                                <i class="fas fa-key text-2xl"></i>
+                            </div>
+                            <p class="text-sm font-semibold text-white/40 italic">Vault is empty.</p>
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 
     @if($licenses->hasPages())
     <div class="mt-8">
-        {{ $licenses->withQueryString()->links() }}
+        {{ $licenses->links() }}
     </div>
     @endif
 </div>
