@@ -140,12 +140,37 @@ Route::get('/ha-secure-deploy/storage', function () {
     }
 });
 
+Route::get('/ha-secure-deploy/seed', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
+        return "<div style='background:#f0fdf4; color:#166534; padding:20px; border-radius:8px; font-family:sans-serif;'>
+                    <h1 style='margin-top:0;'>Seeding Successful</h1>
+                    <pre style='background:#ffffff; padding:10px; border:1px solid #dcfce7;'>" . \Illuminate\Support\Facades\Artisan::output() . "</pre>
+                </div>";
+    } catch (\Exception $e) {
+        return "<div style='background:#fef2f2; color:#991b1b; padding:20px; border-radius:8px; font-family:sans-serif;'>
+                    <h1 style='margin-top:0;'>Seeding Failed</h1>
+                    <pre style='background:#ffffff; padding:10px; border:1px solid #fee2e2;'>" . $e->getMessage() . "</pre>
+                </div>";
+    }
+});
+
 Route::get('/ha-secure-deploy/clear', function () {
     \Illuminate\Support\Facades\Artisan::call('cache:clear');
     \Illuminate\Support\Facades\Artisan::call('config:clear');
     \Illuminate\Support\Facades\Artisan::call('view:clear');
     \Illuminate\Support\Facades\Artisan::call('route:clear');
     return "<h1>Cache Cleared Successfully</h1>";
+});
+
+// Automation Dispatch Node
+Route::get('/system/dispatch/v2-signal-3192', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('schedule:run');
+        return "DISPATCH_SUCCESS: System synchronized and automated tasks processed.";
+    } catch (\Exception $e) {
+        return "DISPATCH_ERROR: " . $e->getMessage();
+    }
 });
 
 // Admin Routes (Obfuscated URL)
