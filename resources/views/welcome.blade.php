@@ -204,8 +204,87 @@
                 </div>
         </section>
         
-        
-        
+        <!-- Coming Soon Section: HA Tech Proposal Architect -->
+        <section id="proposal-architect" class="py-16 md:py-24 relative z-20 bg-white">
+            <div class="mx-auto max-w-7xl px-6">
+                <!-- Premium Glass/Gradient Card -->
+                <div class="relative rounded-3xl overflow-hidden p-8 sm:p-12 md:p-16 border border-[#e5e7eb] shadow-[0_20px_50px_rgba(30,27,32,0.05)] bg-[#fafafa]">
+                    
+                    <!-- Decorative Background -->
+                    <div class="absolute inset-0 z-0">
+                        <div class="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-[#f2b311]/20 to-[#f28b11]/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-[#f28b11]/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+                        <!-- Subtle Pattern -->
+                        <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#1e1b20 1px, transparent 1px), linear-gradient(90deg, #1e1b20 1px, transparent 1px); background-size: 24px 24px;"></div>
+                    </div>
+
+                    <div class="relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                        
+                        <!-- Content Side -->
+                        <div class="flex-1 space-y-6">
+                            <!-- Badges -->
+                            <div class="flex flex-wrap items-center gap-3">
+                                <div class="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 px-4 py-1.5 text-[10px] md:text-xs font-black tracking-widest text-[#ed8b00] uppercase shadow-sm">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#f28b11] animate-pulse"></span>
+                                    In Development
+                                </div>
+                                <div class="inline-flex items-center gap-2 rounded-full border border-[#1e1b20] bg-[#1e1b20] px-4 py-1.5 text-[10px] md:text-xs font-black tracking-widest text-white uppercase shadow-md">
+                                    <i class="fas fa-bolt text-[#f2b311]"></i>
+                                    Powered by HA Tech
+                                </div>
+                            </div>
+                            
+                            <!-- Heading -->
+                            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-[#1e1b20] leading-[1.1]">
+                                Proposal <span class="bg-gradient-to-r from-[#f28b11] to-[#f2b311] bg-clip-text text-transparent">Architect</span>
+                            </h2>
+                            
+                            <!-- Paragraph -->
+                            <p class="text-[#5e5963] text-base md:text-lg leading-relaxed max-w-2xl font-medium">
+                                Stop losing clients because you don't know what to say. With our exclusive architect tool, you simply describe the client's needs, and the system builds a high-converting, professional proposal in seconds. Whether it’s Upwork, Fiverr, or WhatsApp—close deals like a pro.
+                            </p>
+                        </div>
+                        
+                        <!-- Visual/Graphic Side -->
+                        <div class="w-full md:w-[400px] shrink-0 relative perspective-1000 hidden sm:block">
+                            <div class="relative bg-white border border-[#e5e7eb] rounded-2xl shadow-xl p-6 transform-style-3d rotate-y-[-5deg] rotate-x-[5deg] hover:rotate-0 transition-transform duration-700 ease-out z-10 hover:shadow-[0_20px_60px_rgba(242,139,17,0.15)]">
+                                <!-- Mockup UI -->
+                                <div class="flex items-center gap-2 border-b border-gray-100 pb-3 mb-5">
+                                    <div class="w-7 h-7 rounded bg-[#f28b11]/10 flex items-center justify-center text-[#f28b11]"><i class="fas fa-robot text-xs"></i></div>
+                                    <div class="text-[10px] font-black tracking-widest text-[#1e1b20] uppercase">HA Tech System</div>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="h-3 w-1/3 bg-gray-200 rounded-full"></div>
+                                    <div class="space-y-2.5">
+                                        <div class="h-2 w-full bg-gray-100 rounded-full"></div>
+                                        <div class="h-2 w-5/6 bg-gray-100 rounded-full"></div>
+                                        <div class="h-2 w-full bg-gray-100 rounded-full"></div>
+                                        <div class="h-2 w-4/6 bg-gray-100 rounded-full"></div>
+                                    </div>
+                                    <div class="mt-4 pt-4 border-t border-gray-100 flex justify-end">
+                                        <div class="px-4 py-1.5 bg-gradient-to-r from-[#f28b11] to-[#f2b311] text-white text-[10px] font-bold uppercase tracking-wider rounded-md shadow-md">Architecting...</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Backdrop elements -->
+                            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-gradient-to-br from-[#f28b11] to-[#f2b311] rounded-2xl opacity-10 blur-2xl"></div>
+                        </div>
+
+                    </div>
+
+                    <!-- Updates Footer Badge -->
+                    <div class="relative z-10 mt-10 md:mt-14 pt-6 md:pt-8 border-t border-[#e5e7eb] text-center flex flex-col items-center justify-center">
+                        <div class="inline-flex items-center gap-3 text-[#5e5963] text-xs md:text-sm font-medium px-4">
+                            <span class="w-8 h-8 rounded-full bg-[#f28b11]/10 text-[#f28b11] flex items-center justify-center shrink-0">
+                                <i class="fas fa-sync-alt rotate-[45deg]"></i>
+                            </span>
+                            Part of our continuous evolution. New features and templates are added monthly to keep your toolkit ahead of the game.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
 
         <!-- Premium Feature Cards -->
         <section id="features" class="bg-white border-y border-[#e5e7eb] py-24 relative z-20">
