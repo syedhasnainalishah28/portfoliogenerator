@@ -94,20 +94,36 @@ Route::middleware('auth')->group(function () {
 });
 
 // Deployment routes for Terminal-less Shared Hosting
-Route::get('/deploy/migrate', function () {
+Route::get('/ha-secure-deploy/migrate', function () {
     try {
         \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
-        return "<h1>Migration Successful</h1><p>" . \Illuminate\Support\Facades\Artisan::output() . "</p>";
+        return "<div style='background:#f0fdf4; color:#166534; padding:20px; border-radius:8px; font-family:sans-serif;'>
+                    <h1 style='margin-top:0;'>Migration Successful</h1>
+                    <pre style='background:#ffffff; padding:10px; border:1px solid #dcfce7;'>" . \Illuminate\Support\Facades\Artisan::output() . "</pre>
+                </div>";
     } catch (\Exception $e) {
-        return "<h1>Migration Failed</h1><pre>" . $e->getMessage() . "</pre>";
+        return "<div style='background:#fef2f2; color:#991b1b; padding:20px; border-radius:8px; font-family:sans-serif;'>
+                    <h1 style='margin-top:0;'>Migration Failed</h1>
+                    <pre style='background:#ffffff; padding:10px; border:1px solid #fee2e2;'>" . $e->getMessage() . "</pre>
+                </div>";
     }
 });
 
-Route::get('/deploy/clear', function () {
+Route::get('/ha-secure-deploy/storage', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('storage:link');
+        return "<h1>Storage Link Created</h1>";
+    } catch (\Exception $e) {
+        return "<h1>Storage Link Error</h1><pre>" . $e->getMessage() . "</pre>";
+    }
+});
+
+Route::get('/ha-secure-deploy/clear', function () {
     \Illuminate\Support\Facades\Artisan::call('cache:clear');
     \Illuminate\Support\Facades\Artisan::call('config:clear');
     \Illuminate\Support\Facades\Artisan::call('view:clear');
-    return "<h1>Cache Cleared</h1>";
+    \Illuminate\Support\Facades\Artisan::call('route:clear');
+    return "<h1>Cache Cleared Successfully</h1>";
 });
 
 require __DIR__.'/auth.php';
