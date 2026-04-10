@@ -5,6 +5,68 @@
 @section('content')
 <div class="space-y-12 pb-20">
 
+    <!-- Global Platform Identity & SEO -->
+    <div class="bg-brand-panel border border-white/5 rounded-3xl overflow-hidden backdrop-blur-xl">
+        <div class="px-8 py-6 border-b border-white/5 bg-white/[0.01]">
+            <h3 class="font-syne font-bold text-white text-xl">Platform Identity & SEO</h3>
+            <p class="text-[10px] font-bold uppercase tracking-widest text-white/40 mt-1">Configure global application variables and branding</p>
+        </div>
+        <form method="POST" action="{{ route('admin.settings.globals') }}" enctype="multipart/form-data" class="p-8 space-y-8">
+            @csrf
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- App Name -->
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-white/50 mb-3">Protocol Identity (Platform Name)</label>
+                    <div class="relative">
+                        <i class="fas fa-satellite-dish absolute left-4 top-1/2 -translate-y-1/2 text-white/20"></i>
+                        <input type="text" name="app_name" value="{{ old('app_name', $settings['app_name'] ?? config('app.name')) }}" required
+                            class="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-sm font-semibold text-white focus:outline-none focus:border-brand-gold/50 focus:ring-1 focus:ring-brand-gold/50 transition-all">
+                    </div>
+                </div>
+
+                <!-- Webmaster Email -->
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-white/50 mb-3">Webmaster Uplink (Contact Email)</label>
+                    <div class="relative">
+                        <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-white/20"></i>
+                        <input type="email" name="contact_email" value="{{ old('contact_email', $settings['contact_email'] ?? '') }}" required
+                            class="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-sm font-semibold text-white focus:outline-none focus:border-brand-gold/50 focus:ring-1 focus:ring-brand-gold/50 transition-all">
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Favicon Upload -->
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-white/50 mb-3">System Favicon (.PNG, .ICO)</label>
+                    <div class="relative flex items-center gap-4">
+                        @if(isset($settings['favicon_path']))
+                            <img src="{{ Storage::url($settings['favicon_path']) }}" class="w-12 h-12 rounded bg-white/10 p-1 border border-white/20" alt="Current Favicon">
+                        @else
+                            <div class="w-12 h-12 rounded bg-white/5 border border-white/10 flex items-center justify-center text-white/20">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        @endif
+                        <input type="file" name="favicon" accept="image/*" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-brand-gold/10 file:text-brand-gold hover:file:bg-brand-gold/20 flex-1 cursor-pointer">
+                    </div>
+                </div>
+
+                <!-- Meta Description -->
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-white/50 mb-3">SEO Meta Description</label>
+                    <textarea name="meta_description" rows="3" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-gold/50 focus:ring-1 focus:ring-brand-gold/50 transition-all font-mono leading-relaxed" placeholder="Enter SEO optimizing description...">{{ old('meta_description', $settings['meta_description'] ?? '') }}</textarea>
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-white/5 flex justify-end">
+                <button type="submit" class="px-8 py-3.5 rounded-xl bg-brand-gold text-black text-xs font-bold uppercase tracking-widest hover:brightness-110 shadow-[0_0_30px_rgba(212,168,83,0.15)] transition-all flex items-center gap-3">
+                    <i class="fas fa-save"></i> Save Global Identity
+                </button>
+            </div>
+        </form>
+    </div>
+
     <!-- Email Diagnostics -->
     <div class="bg-brand-panel border border-white/5 rounded-3xl overflow-hidden backdrop-blur-xl">
         <div class="px-8 py-6 border-b border-white/5 bg-white/[0.01]">

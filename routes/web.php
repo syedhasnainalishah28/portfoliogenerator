@@ -14,6 +14,18 @@ use App\Http\Controllers\Admin\PlanController as AdminPlanController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Middleware\CheckLicense;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/migrate-db', function () {
+    try {
+        Artisan::call('migrate', ['--force' => true]);
+        Artisan::call('storage:link');
+        Artisan::call('optimize:clear');
+        return "Migration completed, storage linked, and caches cleared!";
+    } catch (\Exception $e) {
+        return "Error: " . $e->getMessage();
+    }
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -196,8 +208,9 @@ Route::prefix('hasnainalishah-access-3192112004')->name('admin.')->group(functio
         Route::post('/licenses/{license}/extend', [AdminLicenseController::class, 'extend'])->name('licenses.extend');
         Route::post('/licenses/{license}/expire', [AdminLicenseController::class, 'expire'])->name('licenses.expire');
 
-        // Settings (Plans & Payment Methods)
+        // Settings (Global, Plans & Payment Methods)
         Route::get('/settings', [AdminPlanController::class, 'index'])->name('settings');
+        Route::post('/settings/globals', [AdminPlanController::class, 'updateGlobals'])->name('settings.globals');
         Route::patch('/plans/{plan}', [AdminPlanController::class, 'updatePlan'])->name('plans.update');
         Route::post('/payment-methods', [AdminPlanController::class, 'storePaymentMethod'])->name('payment-methods.store');
         Route::patch('/payment-methods/{method}', [AdminPlanController::class, 'updatePaymentMethod'])->name('payment-methods.update');
