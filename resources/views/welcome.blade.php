@@ -211,11 +211,15 @@
                 <div class="relative rounded-3xl overflow-hidden p-8 sm:p-12 md:p-16 border border-[#e5e7eb] shadow-[0_20px_50px_rgba(30,27,32,0.05)] bg-[#fafafa]">
                     
                     <!-- Decorative Background -->
-                    <div class="absolute inset-0 z-0">
+                    <div class="absolute inset-0 z-0 overflow-hidden flex items-center justify-center">
                         <div class="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-[#f2b311]/20 to-[#f28b11]/10 rounded-full blur-3xl pointer-events-none"></div>
                         <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-[#f28b11]/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
                         <!-- Subtle Pattern -->
                         <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#1e1b20 1px, transparent 1px), linear-gradient(90deg, #1e1b20 1px, transparent 1px); background-size: 24px 24px;"></div>
+                        <!-- COMING SOON Watermark -->
+                        <div class="absolute pointer-events-none select-none -rotate-12 translate-y-8">
+                            <span class="text-[6rem] sm:text-[10rem] md:text-[14rem] font-extrabold tracking-tighter text-[#1e1b20] opacity-[0.02] whitespace-nowrap leading-none">COMING SOON</span>
+                        </div>
                     </div>
 
                     <div class="relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-16">
