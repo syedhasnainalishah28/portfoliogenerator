@@ -78,17 +78,35 @@
                 </div>
             </section>
             
-            <!-- License Next Phase Tracker -->
-            <section class="ha-card p-5 lg:p-6 lg:col-span-12">
+            <!-- License Tracker -->
+            <section class="ha-card p-5 lg:p-6 lg:col-span-12 {{ auth()->user()->hasActiveLicense() ? 'border-l-4 border-l-green-500' : 'border-l-4 border-l-red-500' }}">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
                         <h4 class="text-base font-bold text-[#1e1b20] flex items-center gap-2">
-                            <svg class="w-5 h-5 text-[#f2b311]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-                            License Verification
+                            @if(auth()->user()->hasActiveLicense())
+                                <svg class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                License Verified
+                            @else
+                                <svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                No Active License
+                            @endif
                         </h4>
-                        <p class="mt-1 text-xs md:text-sm text-[#5e5963] max-w-2xl">
-                            License functionality is planned for the next phase of "The Gen Z Hustle" launch. Currently, you have full unrestricted access to the generator.
-                        </p>
+                        
+                        @if(auth()->user()->hasActiveLicense())
+                            <div class="mt-3 text-sm text-[#5e5963]">
+                                Associated Plan: <strong class="text-black">{{ auth()->user()->license?->plan?->name ?? 'Custom' }}</strong>
+                            </div>
+                            <div class="mt-2 text-sm text-[#5e5963]">
+                                Connection Key: <code class="font-bold text-[#f28b11] bg-orange-50 px-2 py-1 rounded shadow-inner">{{ auth()->user()->license?->license_key ?? 'N/A' }}</code>
+                            </div>
+                            <p class="mt-2 text-xs text-[#5e5963]">
+                                Expiry Date: <strong class="text-[#1e1b20]">{{ auth()->user()->license_expires_at?->format('F d, Y') ?? 'N/A' }}</strong>
+                            </p>
+                        @else
+                            <p class="mt-2 text-xs text-red-500 max-w-2xl">
+                                Your access license has expired or is invalid. You cannot access the generator.
+                            </p>
+                        @endif
                     </div>
                 </div>
             </section>

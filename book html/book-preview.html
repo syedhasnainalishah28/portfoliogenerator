@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Gen Z Hustle — Premium Section</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            jakarta: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            gold: {
+              DEFAULT: '#D4A853',
+              light: '#F0C97A',
+              dark: '#A67C3A',
+              glow: 'rgba(212,168,83,0.3)',
+            },
+            ink: {
+              DEFAULT: '#090910',
+              900: '#050508',
+              800: '#0F0F1A',
+            }
+          },
+          animation: {
+            'float-book': 'floatBook 5s ease-in-out infinite',
+            'shimmer': 'shimmer 3s linear infinite',
+            'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+            'ray-move': 'rayMove 10s ease-in-out infinite',
+            'float-particle': 'floatParticle 15s linear infinite',
+          },
+          keyframes: {
+            floatBook: {
+              '0%, 100%': { transform: 'translateY(0px) rotateY(-5deg)' },
+              '50%': { transform: 'translateY(-20px) rotateY(2deg)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% center' },
+              '100%': { backgroundPosition: '200% center' },
+            },
+            glowPulse: {
+              '0%, 100%': { boxShadow: '0 0 20px rgba(212,168,83,0.3)' },
+              '50%': { boxShadow: '0 0 50px rgba(212,168,83,0.6)' },
+            },
+            rayMove: {
+              '0%, 100%': { transform: 'translateX(-30%) rotate(-45deg)', opacity: '0.1' },
+              '50%': { transform: 'translateX(30%) rotate(-45deg)', opacity: '0.3' },
+            },
+            floatParticle: {
+              '0%': { transform: 'translateY(100vh) translateX(0) rotate(0deg)', opacity: '0' },
+              '20%': { opacity: '0.4' },
+              '80%': { opacity: '0.4' },
+              '100%': { transform: 'translateY(-20vh) translateX(50px) rotate(360deg)', opacity: '0' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #090910;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .gold-shimmer {
+      background: linear-gradient(90deg, #A67C3A 0%, #F0C97A 25%, #D4A853 50%, #F0C97A 75%, #A67C3A 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 4s linear infinite;
+    }
+
+    .book-shadow {
+      filter: drop-shadow(0 25px 50px rgba(0,0,0,0.8));
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(212, 168, 83, 0.3);
+      background: rgba(212, 168, 83, 0.05);
+      transform: translateY(-5px);
+    }
+    
+    .light-ray {
+      width: 100vw;
+      height: 150vh;
+      background: linear-gradient(90deg, transparent, rgba(212,168,83,0.05), transparent);
+      position: absolute;
+      top: -25%;
+      left: -25%;
+      transform: rotate(-45deg);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="text-white">
+  <div class="noise"></div>
+
+  <!-- Premium Book Section -->
+  <section class="relative min-h-screen flex items-center justify-center py-20 px-6 overflow-hidden">
+    
+    <!-- Luxury Background System -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <!-- Animated Rays -->
+      <div class="light-ray animate-ray-move" style="animation-delay: 0s"></div>
+      <div class="light-ray animate-ray-move" style="animation-delay: -5s; opacity: 0.05"></div>
+      
+      <!-- Diamond Particles -->
+      <div class="absolute inset-0">
+        <div class="absolute bottom-[-50px] left-[15%] text-gold/20 text-sm animate-float-particle" style="animation-duration: 12s; animation-delay: 0s"><i class="fas fa-diamond"></i></div>
+        <div class="absolute bottom-[-50px] left-[45%] text-gold/10 text-xs animate-float-particle" style="animation-duration: 18s; animation-delay: 2s"><i class="fas fa-diamond"></i></div>
+        <div class="absolute bottom-[-50px] left-[75%] text-gold/15 text-sm animate-float-particle" style="animation-duration: 15s; animation-delay: 5s"><i class="fas fa-diamond"></i></div>
+        <div class="absolute bottom-[-50px] left-[85%] text-gold/5 text-xs animate-float-particle" style="animation-duration: 20s; animation-delay: 8s"><i class="fas fa-diamond"></i></div>
+      </div>
+
+      <!-- Glass Architectural Slabs -->
+      <div class="absolute -right-20 top-20 w-64 h-[70vh] bg-white/[0.02] backdrop-blur-3xl skew-x-[-20deg] border-l border-white/5"></div>
+      <div class="absolute -left-32 bottom-20 w-80 h-[50vh] bg-white/[0.02] backdrop-blur-2xl skew-x-[-20deg] border-r border-white/5"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center relative z-20">
+      
+      <!-- Left Side: Content -->
+      <div class="order-2 lg:order-1 space-y-8">
+        <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full text-[10px] font-black tracking-[0.2em] text-white/50 uppercase">
+          <span class="w-1 h-1 rounded-full bg-gold animate-pulse"></span> Exclusive Release
+        </div>
+        
+        <h1 class="font-syne font-extrabold leading-tight text-5xl md:text-7xl">
+          Build Your <br>
+          <span class="gold-shimmer">Digital Empire</span>
+        </h1>
+        
+        <p class="text-white/50 text-lg md:text-xl max-w-xl leading-relaxed">
+          Zero coding skills? Koi masla nahi. Main aapko sikhaonga kaise aap AI aur modern tools ka istemal karke apna digital empire khara kar sakte hain. 
+          <span class="text-white/80 font-medium">Yeh sirf aik book nahi, aik mukammal roadmap hai jo aapki zindagi badal sakta hai.</span>
+        </p>
+
+        <!-- Feature Grid (Premium Minimalist) -->
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="group relative">
+            <div class="flex items-center gap-4 mb-3">
+              <div class="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center text-gold text-sm group-hover:bg-gold group-hover:text-ink transition-all duration-500">
+                01
+              </div>
+              <h4 class="font-syne font-bold text-white tracking-wide">ZERO TO PRO</h4>
+            </div>
+            <p class="text-white/30 text-xs leading-relaxed pl-14">Hamari step-by-step approach se beginner se expert ban'ne ka safar asaan.</p>
+          </div>
+          <div class="group relative">
+            <div class="flex items-center gap-4 mb-3">
+              <div class="w-10 h-10 rounded-full border border-[#5CF0C8]/30 flex items-center justify-center text-[#5CF0C8] text-sm group-hover:bg-[#5CF0C8] group-hover:text-ink transition-all duration-500">
+                02
+              </div>
+              <h4 class="font-syne font-bold text-white tracking-wide uppercase">AI Mastery</h4>
+            </div>
+            <p class="text-white/30 text-xs leading-relaxed pl-14">Modern AI tools ko manipulate karna seekhein aur kaam ki speed 10x teiz karein.</p>
+          </div>
+        </div>
+
+        <div class="pt-10 flex flex-col sm:flex-row items-center gap-6">
+          <a href="#" class="group relative inline-flex items-center justify-center px-10 py-5 font-syne font-black text-ink bg-gold rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(212,168,83,0.2)] hover:shadow-[0_0_60px_rgba(212,168,83,0.4)]">
+            <span class="relative flex items-center gap-3 text-sm tracking-wider uppercase">
+              Abhi Download Karein <i class="fas fa-arrow-right text-xs"></i>
+            </span>
+          </a>
+          <div class="flex -space-x-3">
+            <div class="w-10 h-10 rounded-full border-2 border-ink bg-gray-800 flex items-center justify-center text-[10px] font-bold">AA</div>
+            <div class="w-10 h-10 rounded-full border-2 border-ink bg-gray-700 flex items-center justify-center text-[10px] font-bold">MK</div>
+            <div class="w-10 h-10 rounded-full border-2 border-ink bg-gray-600 flex items-center justify-center text-[10px] font-bold">SZ</div>
+            <div class="w-10 h-10 rounded-full border-2 border-ink bg-gold text-ink flex items-center justify-center text-[10px] font-bold">+2k</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Visual -->
+      <div class="order-1 lg:order-2 flex justify-center perspective-2000">
+        <div class="relative group">
+          
+          <!-- Minimalist Reflection / Platform -->
+          <div class="absolute -bottom-12 left-1/2 -translate-x-1/2 w-3/4 h-2 bg-gold/20 blur-2xl rounded-full scale-x-150"></div>
+          
+          <!-- Book Wrapper -->
+          <div class="relative animate-float-book transform-style-3d rotate-y-[-15deg] group-hover:rotate-y-0 transition-all duration-[1.2s] ease-out">
+            <img src="THE GEN Z HUSTLE.png" 
+                 alt="The Gen Z Hustle Book Cover" 
+                 class="w-[300px] md:w-[420px] h-auto rounded-r-lg book-shadow relative z-10">
+            
+            <!-- Luxury Lens Flare -->
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-gold/20 blur-[60px] rounded-full pointer-events-none mix-blend-screen"></div>
+          </div>
+
+          <!-- Dynamic floating badge -->
+          <div class="absolute -top-6 -left-6 z-20 bg-ink-900/80 backdrop-blur-xl border border-gold/30 px-5 py-4 rounded-2xl shadow-2xl animate-bounce" style="animation-duration: 4s">
+            <div class="flex items-center gap-3">
+              <div class="text-3xl">🔥</div>
+              <div>
+                <div class="text-white font-syne font-black text-sm leading-none">HIGH DEMAND</div>
+                <div class="text-gold text-[10px] font-bold tracking-tighter mt-1 uppercase">Limited Copies Left</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

@@ -4,6 +4,15 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PortfolioDownloadController;
 use App\Http\Controllers\PortfolioIndexController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\LicenseController;
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\LicenseController as AdminLicenseController;
+use App\Http\Controllers\Admin\PlanController as AdminPlanController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Middleware\CheckLicense;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,9 +25,22 @@ Route::get('/dashboard', function () {
         'portfolioCount' => $user->portfolios()->count(),
         'latestPortfolios' => $user->portfolios()->latest()->take(5)->get(),
     ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', CheckLicense::class])->name('dashboard');
+
+Route::get('/pricing', [PurchaseController::class, 'plans'])->name('purchase.plans');
 
 Route::middleware('auth')->group(function () {
+    // License Setup
+    Route::get('/license', [LicenseController::class, 'show'])->name('license.show');
+    Route::post('/license', [LicenseController::class, 'activate'])->name('license.activate');
+
+    // Purchase Flow
+    Route::get('/purchase/{plan:slug}', [PurchaseController::class, 'payment'])->name('purchase.payment');
+    Route::post('/purchase/{plan:slug}', [PurchaseController::class, 'submit'])->name('purchase.submit');
+    Route::get('/receipt/{order:order_number}', [PurchaseController::class, 'receipt'])->name('purchase.receipt');
+});
+
+Route::middleware(['auth', CheckLicense::class])->group(function () {
     Route::get('/generator', function () {
         return view('app');
     })->name('generator');
@@ -124,6 +146,43 @@ Route::get('/ha-secure-deploy/clear', function () {
     \Illuminate\Support\Facades\Artisan::call('view:clear');
     \Illuminate\Support\Facades\Artisan::call('route:clear');
     return "<h1>Cache Cleared Successfully</h1>";
+});
+
+// Admin Routes (Obfuscated URL)
+Route::prefix('hasnainalishah-access-3192112004')->name('admin.')->group(function () {
+    Route::get('/', [AdminAuthController::class, 'showLogin'])->name('login');
+    Route::post('/', [AdminAuthController::class, 'login'])->name('login.post');
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+    
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        
+        // Orders
+        Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
+        Route::post('/orders/{order}/approve', [AdminOrderController::class, 'approve'])->name('orders.approve');
+        Route::post('/orders/{order}/reject', [AdminOrderController::class, 'reject'])->name('orders.reject');
+        Route::get('/orders/{order}/screenshot', [AdminOrderController::class, 'screenshot'])->name('orders.screenshot');
+        
+        // Licenses
+        Route::get('/licenses', [AdminLicenseController::class, 'index'])->name('licenses.index');
+        Route::get('/licenses/generate', [AdminLicenseController::class, 'generate'])->name('licenses.generate');
+        Route::post('/licenses/generate', [AdminLicenseController::class, 'store'])->name('licenses.store');
+        Route::post('/licenses/{license}/extend', [AdminLicenseController::class, 'extend'])->name('licenses.extend');
+        Route::post('/licenses/{license}/expire', [AdminLicenseController::class, 'expire'])->name('licenses.expire');
+
+        // Settings (Plans & Payment Methods)
+        Route::get('/settings', [AdminPlanController::class, 'index'])->name('settings');
+        Route::patch('/plans/{plan}', [AdminPlanController::class, 'updatePlan'])->name('plans.update');
+        Route::post('/payment-methods', [AdminPlanController::class, 'storePaymentMethod'])->name('payment-methods.store');
+        Route::patch('/payment-methods/{method}', [AdminPlanController::class, 'updatePaymentMethod'])->name('payment-methods.update');
+        Route::delete('/payment-methods/{method}', [AdminPlanController::class, 'destroyPaymentMethod'])->name('payment-methods.destroy');
+        Route::post('/settings/test-email', [AdminPlanController::class, 'sendTestEmail'])->name('settings.test-email');
+        
+        // Users
+        Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
+        Route::post('/users/{user}/email', [AdminUserController::class, 'sendEmail'])->name('users.email');
+    });
 });
 
 require __DIR__.'/auth.php';

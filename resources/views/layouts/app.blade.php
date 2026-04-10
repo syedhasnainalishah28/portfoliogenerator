@@ -14,7 +14,7 @@
     <!-- Mobile Top Header -->
     <div class="lg:hidden bg-white border-b border-[#e5e7eb] sticky top-0 z-40 px-5 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#f28b11] to-[#f2b311] flex flex-col items-center justify-center text-white font-bold text-sm shadow-md">H</div>
+            <img src="{{ asset('HA-Tech.png') }}" class="w-8 h-8 object-contain shrink-0 drop-shadow-[0_0_10px_rgba(242,139,17,0.3)]" alt="HA Tech">
             <p class="font-extrabold tracking-tight text-lg text-[#1e1b20]">HA Tech</p>
         </div>
         <a href="{{ route('profile.edit') }}" class="w-8 h-8 bg-orange-50 border border-orange-200 rounded-full flex items-center justify-center text-[#f28b11] font-bold text-sm relative group animate-pulse-slow">
@@ -52,7 +52,7 @@
         <!-- Desktop Sidebar -->
         <aside class="hidden lg:flex w-72 bg-white border-r border-[#e5e7eb] flex-col items-stretch flex-shrink-0 sticky top-0 h-screen">
             <div class="p-6 flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#f28b11] to-[#f2b311] flex flex-col items-center justify-center text-white font-bold text-sm shadow-md">H</div>
+                <img src="{{ asset('HA-Tech.png') }}" class="w-8 h-8 object-contain shrink-0 drop-shadow-[0_0_10px_rgba(242,139,17,0.3)]" alt="HA Tech">
                 <div>
                     <p class="text-xl font-extrabold tracking-tight">HA Tech</p>
                     <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#f28b11]">VVIP Portal</p>
