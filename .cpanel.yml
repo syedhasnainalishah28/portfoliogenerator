@@ -3,4 +3,3 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/globalre/potfoliogenerator.hatechservices.com.pk
     - /bin/cp -R * $DEPLOYPATH
-    - /bin/cp .env.example $DEPLOYPATH/.env
