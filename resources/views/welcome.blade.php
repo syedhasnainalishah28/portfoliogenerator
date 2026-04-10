@@ -722,7 +722,6 @@
                         </li>
                     </ul>
                     <a href="{{ route('register') }}" class="group block w-full text-center py-3.5 rounded-xl text-black text-sm font-black transition-all duration-300 hover:opacity-90 hover:shadow-[0_0_30px_rgba(242,139,17,0.5)]" style="background: linear-gradient(135deg, #f28b11, #f2b311);">
-                        <img src="{{ asset('HA-Tech.png') }}" class="w-10 h-10 object-contain drop-shadow-[0_0_15px_rgba(242,139,17,0.4)] transition-all group-hover:scale-105" alt="HA Tech">
                         Upgrade to Pro
                     </a>
                 </div>
