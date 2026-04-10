@@ -1,22 +1,56 @@
 {
     "name": "Minimalist",
     "style": "Elegant Light",
-    "description": "Clean, pure, and distraction-free design.",
+    "description": "Clean, pure, and distraction-free design with a Focus on typography.",
     "previewBg": "bg-white",
     "fields": [
-        { "name": "full_name", "label": "Full Name", "type": "text", "default": "SARAH JENKINS" },
-        { "name": "title", "label": "Subtitle / Role", "type": "text", "default": "Digital Product Designer" },
-        { "name": "bio", "label": "Bio Introduction", "type": "textarea", "default": "Crafting digital experiences..." },
-        { "name": "email", "label": "Email Address", "type": "email", "default": "hello@sarah.design" },
-        { "name": "location", "label": "Location", "type": "text", "default": "Berlin, Germany" },
-        { "name": "primary_color", "label": "Accent Color", "type": "color", "default": "#c4a484" },
-        { "name": "background_color", "label": "Background Color", "type": "color", "default": "#fdfbf7" },
-        { "name": "whatsapp_link", "label": "Say Hello Link", "type": "url", "default": "https://wa.me/..." },
-        { "name": "linkedin_url", "label": "LinkedIn URL", "type": "url", "default": "https://linkedin.com/..." },
-        { "name": "dribbble_url", "label": "Dribbble URL", "type": "url", "default": "https://dribbble.com/..." },
-        { "name": "projects_count", "label": "Selected Projects", "type": "number", "default": 24 },
-        { "name": "skills", "label": "Services / Skills", "type": "list", "default": ["UX/UI Design", "Product Strategy"] },
-        { "name": "projects", "label": "Portfolio Projects", "type": "projects", "default": [] },
-        { "name": "hero_image", "label": "Hero Image", "type": "image", "default": null }
+        { "name": "primary_color", "label": "Accent Color", "type": "color", "default": "#c4a484", "section": "Global Aesthetics" },
+        { "name": "background_color", "label": "Background Color", "type": "color", "default": "#fdfbf7", "section": "Global Aesthetics" },
+        
+        { "name": "header_logo", "label": "Header Logo", "type": "text", "default": "SARAH", "section": "Header & Hero" },
+        { "name": "btn_hire_me", "label": "Nav Action Button Text", "type": "text", "default": "Let's Talk", "section": "Header & Hero" },
+        { "name": "btn_hire_me_link", "label": "Nav Action Button URL", "type": "url", "default": "#contact", "section": "Header & Hero" },
+        
+        { "name": "hero_badge", "label": "Hero Accent Badge", "type": "text", "default": "UI/UX Designer & Creative", "section": "Header & Hero" },
+        { "name": "hero_title", "label": "Hero Main Title (HTML)", "type": "text", "default": "Crafting<br /><em class=\"text-warm\">Beautiful</em><br />Experiences", "section": "Header & Hero" },
+        { "name": "hero_desc", "label": "Hero Description", "type": "textarea", "default": "I design intuitive, beautiful digital products that users love. Specializing in UI/UX, brand identity, and product design.", "section": "Header & Hero" },
+        { "name": "btn_view_work", "label": "Primary Button Text", "type": "text", "default": "View My Work", "section": "Header & Hero" },
+        { "name": "btn_view_work_link", "label": "Primary Button URL", "type": "url", "default": "#work", "section": "Header & Hero" },
+        { "name": "btn_about_me", "label": "Secondary Button Text", "type": "text", "default": "About Me", "section": "Header & Hero" },
+        { "name": "btn_about_me_link", "label": "Secondary Button URL", "type": "url", "default": "#about", "section": "Header & Hero" },
+        { "name": "hero_subtitle_small", "label": "Avatar Subtext", "type": "text", "default": "Available for Projects", "section": "Header & Hero" },
+
+        { "name": "marquee_texts", "label": "Scrolling Marquee Items", "type": "list", "default": ["UI Design", "UX Research", "Branding", "Prototyping", "Figma", "Mobile Design", "Design Systems"], "section": "Header & Hero" },
+
+        { "name": "work_section_badge", "label": "Projects Section Badge", "type": "text", "default": "Selected Work", "section": "Portfolio" },
+        { "name": "work_section_title", "label": "Projects Section Title (HTML)", "type": "text", "default": "Recent <em>Projects</em>", "section": "Portfolio" },
+        { "name": "projects", "label": "Project List", "type": "projects", "default": [], "section": "Portfolio" },
+
+        { "name": "about_title", "label": "About Title (HTML)", "type": "text", "default": "Hi, I'm <em>Sarah</em>", "section": "About Me" },
+        { "name": "about_status_badge", "label": "About Avatar Badge", "type": "text", "default": "Available for Projects", "section": "About Me" },
+        { "name": "location", "label": "Location", "type": "text", "default": "London, UK", "section": "About Me" },
+        { "name": "bio_p1", "label": "Bio Paragraph 1", "type": "textarea", "default": "With 4+ years of experience in UI/UX design, I specialize in creating digital products that balance beauty with functionality.", "section": "About Me" },
+        { "name": "bio_p2", "label": "Bio Paragraph 2", "type": "textarea", "default": "My process starts with deep user research, moves through wireframing and prototyping, and ends with polished, pixel-perfect interfaces.", "section": "About Me" },
+        { "name": "tech_skills", "label": "Technical Skill Bars (Name:Pct)", "type": "list", "default": ["UI/UX Design:95", "Visual Research:88", "Brand Identity:92"], "section": "About Me" },
+        { "name": "btn_download_cv", "label": "CV Button Text", "type": "text", "default": "Download Resume", "section": "About Me" },
+        { "name": "btn_download_cv_link", "label": "CV Button URL", "type": "url", "default": "#", "section": "About Me" },
+
+        { "name": "services_section_badge", "label": "Services Badge", "type": "text", "default": "What I Do", "section": "Services" },
+        { "name": "services_section_title", "label": "Services Title (HTML)", "type": "text", "default": "My <em class=\"text-warm\">Services</em>", "section": "Services" },
+        { "name": "service_cards", "label": "Service Item List (Icon|Title|Desc)", "type": "list", "default": ["fas fa-pencil-alt|UI/UX Design|Visual interfaces", "fas fa-search|UX Research|User testing", "fas fa-layer-group|Design Systems|Scalable components"], "section": "Services" },
+
+        { "name": "contact_title", "label": "Contact Title (HTML)", "type": "text", "default": "Let's <em>Work Together</em>", "section": "Contact" },
+        { "name": "contact_desc", "label": "Contact Description", "type": "textarea", "default": "Have a project in mind? I'd love to hear about it. Drop me a message and I'll get back to you within 24 hours.", "section": "Contact" },
+        { "name": "btn_send_message", "label": "Form Button Text", "type": "text", "default": "Send Message", "section": "Contact" },
+
+        { "name": "footer_logo", "label": "Footer Logo", "type": "text", "default": "SARAH", "section": "Footer" },
+        { "name": "copyright_text", "label": "Copyright Text", "type": "text", "default": "© 2025 Sarah Morgan. Made by HA Tech", "section": "Footer" },
+        
+        { "name": "linkedin_url", "label": "LinkedIn URL", "type": "url", "default": "https://linkedin.com/#", "section": "Socials" },
+        { "name": "github_url", "label": "GitHub URL", "type": "url", "default": "#", "section": "Socials" },
+        { "name": "twitter_url", "label": "Twitter URL", "type": "url", "default": "https://twitter.com/#", "section": "Socials" },
+        { "name": "instagram_url", "label": "Instagram URL", "type": "url", "default": "https://instagram.com/#", "section": "Socials" },
+        { "name": "dribbble_url", "label": "Dribbble URL", "type": "url", "default": "https://dribbble.com/#", "section": "Socials" },
+        { "name": "behance_url", "label": "Behance URL", "type": "url", "default": "https://behance.net/#", "section": "Socials" }
     ]
 }

@@ -43,8 +43,7 @@ class PortfolioController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $data = $validator->validated();
-        $fields = $data['dynamic_fields'];
+        $fields = $dynamicFields; // Use the full array, not just validated subset
 
         $imagePath = null;
         if ($request->hasFile('images')) {
@@ -62,7 +61,7 @@ class PortfolioController extends Controller
             'email' => $fields['email'] ?? 'temp@example.com',
             'phone' => isset($fields['phone']) ? strip_tags($fields['phone']) : null,
             'whatsapp_link' => $fields['whatsapp_link'] ?? null,
-            'template_key' => $data['template_key'],
+            'template_key' => $request->template_key,
             'primary_color' => $fields['primary_color'] ?? '#000000',
             'secondary_color' => $fields['secondary_color'] ?? '#000000',
             'background_color' => $fields['background_color'] ?? '#ffffff',

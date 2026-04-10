@@ -27,6 +27,12 @@
     }
   </script>
   <style>
+    /* Force visibility in Editor Iframe to prevent intersection observer issues */
+    .in-editor .section-fade {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #FAF7F2; font-family: 'DM Sans', sans-serif; color: #2C2C2C; overflow-x: hidden; }
     .hero-bg { background: linear-gradient(135deg, #FAF7F2 0%, #F0E8DC 100%); }
@@ -62,14 +68,14 @@
   <!-- Navigation -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-md border-b border-sand/60">
     <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
-      <a href="#" class="font-playfair text-2xl font-bold text-charcoal tracking-tight">Sarah<span class="text-warm">.</span></a>
+      <a href="#" class="font-playfair text-2xl font-bold text-charcoal tracking-tight">[[HEADER_LOGO]]<span class="text-warm">.</span></a>
       <div class="hidden md:flex items-center gap-10">
         <a href="#work" class="nav-link text-charcoal hover:text-accent transition-colors">Work</a>
         <a href="#about" class="nav-link text-charcoal hover:text-accent transition-colors">About</a>
         <a href="#services" class="nav-link text-charcoal hover:text-accent transition-colors">Services</a>
         <a href="#contact" class="nav-link text-charcoal hover:text-accent transition-colors">Contact</a>
       </div>
-      <a href="#contact" class="btn-primary hidden md:inline-block">Let's Talk</a>
+      <a href="[[BTN_HIRE_ME_LINK]]" class="btn-primary hidden md:inline-block">[[BTN_HIRE_ME]]</a>
       <button id="mobileBtn" class="md:hidden text-charcoal text-xl"><i class="fas fa-bars"></i></button>
     </div>
     <div id="mobileMenu" class="hidden bg-cream border-t border-sand px-8 py-6 flex flex-col gap-5 md:hidden">
@@ -90,41 +96,41 @@
         <div class="space-y-8">
           <div class="flex items-center gap-3">
             <div class="accent-line"></div>
-            <span class="text-accent text-sm tracking-widest uppercase font-medium">UI/UX Designer & Creative</span>
+            <span class="text-accent text-sm tracking-widest uppercase font-medium">[[HERO_BADGE]]</span>
           </div>
           <h1 class="font-playfair text-6xl md:text-8xl font-black text-charcoal leading-none">
-            Crafting<br /><em class="text-warm">Beautiful</em><br />Experiences
+            [[HERO_TITLE]]
           </h1>
           <p class="text-charcoal/60 text-lg leading-relaxed max-w-md font-light">
-            I design intuitive, beautiful digital products that users love. Specializing in UI/UX, brand identity, and product design.
+            [[HERO_DESC]]
           </p>
           <div class="flex gap-4 flex-wrap">
-            <a href="#work" class="btn-primary">View My Work</a>
-            <a href="#about" class="btn-outline">About Me</a>
+            <a href="[[BTN_VIEW_WORK_LINK]]" class="btn-primary">[[BTN_VIEW_WORK]]</a>
+            <a href="[[BTN_ABOUT_ME_LINK]]" class="btn-outline">[[BTN_ABOUT_ME]]</a>
           </div>
           <div class="flex gap-6 pt-2">
-            <a href="#" class="text-charcoal/40 hover:text-accent text-xl transition-colors"><i class="fab fa-dribbble"></i></a>
-            <a href="#" class="text-charcoal/40 hover:text-accent text-xl transition-colors"><i class="fab fa-behance"></i></a>
-            <a href="#" class="text-charcoal/40 hover:text-accent text-xl transition-colors"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="text-charcoal/40 hover:text-accent text-xl transition-colors"><i class="fab fa-instagram"></i></a>
+            [[DRIBBBLE_PH]]
+            [[BEHANCE_PH]]
+            [[LINKEDIN_PH]]
+            [[INSTAGRAM_PH]]
           </div>
         </div>
         <div class="relative flex justify-center">
           <!-- Avatar placeholder -->
           <div class="w-80 h-80 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-sand to-warm/40 flex items-center justify-center relative overflow-hidden shadow-2xl">
             <div class="text-center">
-              <div class="font-playfair text-8xl text-charcoal/20 font-black">SM</div>
-              <div class="text-accent text-sm mt-2 uppercase tracking-widest">UI/UX Designer</div>
+              <div class="font-playfair text-8xl text-charcoal/20 font-black">[[FULL_NAME_INITIALS]]</div>
+              <div class="text-accent text-sm mt-2 uppercase tracking-widest">[[HERO_SUBTITLE_SMALL]]</div>
             </div>
           </div>
           <!-- Floating elements -->
           <div class="absolute top-8 -left-4 bg-white shadow-lg p-4 rounded-lg">
-            <div class="text-2xl font-playfair font-bold text-charcoal">50+</div>
-            <div class="text-xs text-charcoal/50 uppercase tracking-wider">Projects</div>
+            <div class="text-2xl font-playfair font-bold text-charcoal">[[STATS_1_VAL]]</div>
+            <div class="text-xs text-charcoal/50 uppercase tracking-wider">[[STATS_1_LBL]]</div>
           </div>
           <div class="absolute bottom-8 -right-4 bg-charcoal text-cream shadow-lg p-4 rounded-lg">
-            <div class="text-2xl font-playfair font-bold">4+ yrs</div>
-            <div class="text-xs text-cream/60 uppercase tracking-wider">Experience</div>
+            <div class="text-2xl font-playfair font-bold">[[STATS_2_VAL]]</div>
+            <div class="text-xs text-cream/60 uppercase tracking-wider">[[STATS_2_LBL]]</div>
           </div>
         </div>
       </div>
@@ -135,20 +141,8 @@
   <div class="bg-charcoal py-4 overflow-hidden">
     <div class="marquee">
       <div class="marquee-inner text-cream/40 text-sm tracking-widest uppercase gap-16">
-        <span class="mx-8">UI Design</span><span class="text-warm mx-4">✦</span>
-        <span class="mx-8">UX Research</span><span class="text-warm mx-4">✦</span>
-        <span class="mx-8">Branding</span><span class="text-warm mx-4">✦</span>
-        <span class="mx-8">Prototyping</span><span class="text-warm mx-4">✦</span>
-        <span class="mx-8">Figma</span><span class="text-warm mx-4">✦</span>
-        <span class="mx-8">Mobile Design</span><span class="text-warm mx-4">✦</span>
-        <span class="mx-8">Design Systems</span><span class="text-warm mx-4">✦</span>
-        <span class="mx-8">UI Design</span><span class="text-warm mx-4">✦</span>
-        <span class="mx-8">UX Research</span><span class="text-warm mx-4">✦</span>
-        <span class="mx-8">Branding</span><span class="text-warm mx-4">✦</span>
-        <span class="mx-8">Prototyping</span><span class="text-warm mx-4">✦</span>
-        <span class="mx-8">Figma</span><span class="text-warm mx-4">✦</span>
-        <span class="mx-8">Mobile Design</span><span class="text-warm mx-4">✦</span>
-        <span class="mx-8">Design Systems</span><span class="text-warm mx-4">✦</span>
+        [[MARQUEE_TEXT_HTML]]
+        [[MARQUEE_TEXT_HTML]]
       </div>
     </div>
   </div>
@@ -157,58 +151,11 @@
   <section id="work" class="py-28 bg-light">
     <div class="max-w-7xl mx-auto px-8">
       <div class="section-fade mb-16">
-        <div class="flex items-center gap-3 mb-4"><div class="accent-line"></div><span class="text-accent text-sm tracking-widest uppercase">Selected Work</span></div>
-        <h2 class="font-playfair text-5xl font-bold text-charcoal">Recent <em>Projects</em></h2>
+        <div class="flex items-center gap-3 mb-4"><div class="accent-line"></div><span class="text-accent text-sm tracking-widest uppercase">[[WORK_SECTION_BADGE]]</span></div>
+        <h2 class="font-playfair text-5xl font-bold text-charcoal">[[WORK_SECTION_TITLE]]</h2>
       </div>
       <div class="grid md:grid-cols-2 gap-8">
-        <!-- Project Cards -->
-        <div class="work-card hover-lift bg-white shadow-sm section-fade">
-          <div class="img-placeholder h-64 bg-gradient-to-br from-sand to-warm/30 flex items-center justify-center">
-            <i class="fas fa-mobile-alt text-6xl text-warm/60"></i>
-          </div>
-          <div class="p-8">
-            <div class="flex gap-2 mb-4"><span class="tag">Mobile App</span><span class="tag">UI/UX</span></div>
-            <h3 class="font-playfair text-2xl font-bold text-charcoal mb-3">Wellness Tracker App</h3>
-            <p class="text-charcoal/60 text-sm leading-relaxed">Complete UI/UX redesign for a health & wellness mobile application, improving user retention by 40%.</p>
-            <a href="#" class="inline-flex items-center gap-2 text-accent text-sm mt-4 hover:gap-4 transition-all font-medium">View Case Study <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-        <div class="work-card hover-lift bg-white shadow-sm section-fade">
-          <div class="img-placeholder h-64 bg-gradient-to-br from-charcoal/10 to-accent/20 flex items-center justify-center">
-            <i class="fas fa-laptop text-6xl text-charcoal/30"></i>
-          </div>
-          <div class="p-8">
-            <div class="flex gap-2 mb-4"><span class="tag">Web Design</span><span class="tag">Branding</span></div>
-            <h3 class="font-playfair text-2xl font-bold text-charcoal mb-3">Luxury Brand Identity</h3>
-            <p class="text-charcoal/60 text-sm leading-relaxed">Complete brand identity and website design for a luxury fashion brand launching in European markets.</p>
-            <a href="#" class="inline-flex items-center gap-2 text-accent text-sm mt-4 hover:gap-4 transition-all font-medium">View Case Study <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-        <div class="work-card hover-lift bg-white shadow-sm section-fade">
-          <div class="img-placeholder h-64 bg-gradient-to-br from-warm/20 to-sand flex items-center justify-center">
-            <i class="fas fa-shopping-bag text-6xl text-warm/50"></i>
-          </div>
-          <div class="p-8">
-            <div class="flex gap-2 mb-4"><span class="tag">E-Commerce</span><span class="tag">UX</span></div>
-            <h3 class="font-playfair text-2xl font-bold text-charcoal mb-3">E-Commerce Redesign</h3>
-            <p class="text-charcoal/60 text-sm leading-relaxed">Full checkout flow redesign that increased conversions by 35% through better UX patterns.</p>
-            <a href="#" class="inline-flex items-center gap-2 text-accent text-sm mt-4 hover:gap-4 transition-all font-medium">View Case Study <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-        <div class="work-card hover-lift bg-charcoal shadow-sm section-fade">
-          <div class="img-placeholder h-64 bg-gradient-to-br from-warm/20 to-warm/5 flex items-center justify-center">
-            <i class="fas fa-chart-line text-6xl text-warm/40"></i>
-          </div>
-          <div class="p-8">
-            <div class="flex gap-2 mb-4">
-              <span class="bg-warm/20 text-warm px-4 py-1 text-xs uppercase tracking-widest">Dashboard</span>
-              <span class="bg-warm/20 text-warm px-4 py-1 text-xs uppercase tracking-widest">Data Viz</span>
-            </div>
-            <h3 class="font-playfair text-2xl font-bold text-cream mb-3">Analytics Dashboard</h3>
-            <p class="text-cream/50 text-sm leading-relaxed">Data visualization dashboard design for a fintech startup with complex data storytelling.</p>
-            <a href="#" class="inline-flex items-center gap-2 text-warm text-sm mt-4 hover:gap-4 transition-all font-medium">View Case Study <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
+        [[PROJECTS_HTML]]
       </div>
     </div>
   </section>
@@ -220,45 +167,43 @@
         <div class="section-fade">
           <div class="w-full h-96 bg-gradient-to-br from-sand to-warm/30 flex items-center justify-center relative">
             <div class="font-playfair text-center">
-              <div class="text-9xl font-black text-charcoal/10">SM</div>
-              <div class="text-accent text-sm uppercase tracking-widest mt-2">Available for Projects</div>
+              <div class="text-9xl font-black text-charcoal/10">[[FULL_NAME_INITIALS]]</div>
+              <div class="text-accent text-sm uppercase tracking-widest mt-2">[[ABOUT_STATUS_BADGE]]</div>
             </div>
             <div class="absolute bottom-6 right-6 bg-white p-4 shadow-lg">
               <div class="text-xs text-charcoal/50 uppercase tracking-wider mb-1">Based in</div>
-              <div class="font-playfair font-bold text-charcoal">London, UK</div>
+              <div class="font-playfair font-bold text-charcoal">[[LOCATION]]</div>
             </div>
           </div>
         </div>
         <div class="space-y-8 section-fade">
           <div>
             <div class="flex items-center gap-3 mb-4"><div class="accent-line"></div><span class="text-accent text-sm tracking-widest uppercase">About Me</span></div>
-            <h2 class="font-playfair text-5xl font-bold text-charcoal mb-6">Hi, I'm <em>Sarah</em></h2>
-            <p class="text-charcoal/60 leading-relaxed mb-4">With 4+ years of experience in UI/UX design, I specialize in creating digital products that balance beauty with functionality. I believe great design is invisible — it just works.</p>
-            <p class="text-charcoal/60 leading-relaxed">My process starts with deep user research, moves through wireframing and prototyping, and ends with polished, pixel-perfect interfaces that delight users.</p>
+            <h2 class="font-playfair text-5xl font-bold text-charcoal mb-6">[[ABOUT_TITLE]]</h2>
+            <p class="text-charcoal/60 leading-relaxed mb-4">[[BIO_P1]]</p>
+            <p class="text-charcoal/60 leading-relaxed">[[BIO_P2]]</p>
           </div>
           <div class="grid grid-cols-3 gap-6 py-6 border-t border-b border-sand">
             <div class="text-center">
-              <div class="font-playfair text-4xl font-black text-charcoal mb-1">50+</div>
-              <div class="text-xs text-charcoal/50 uppercase tracking-wider">Projects</div>
+              <div class="font-playfair text-4xl font-black text-charcoal mb-1">[[STATS_1_VAL]]</div>
+              <div class="text-xs text-charcoal/50 uppercase tracking-wider">[[STATS_1_LBL]]</div>
             </div>
             <div class="text-center">
-              <div class="font-playfair text-4xl font-black text-charcoal mb-1">4+</div>
-              <div class="text-xs text-charcoal/50 uppercase tracking-wider">Years Exp.</div>
+              <div class="font-playfair text-4xl font-black text-charcoal mb-1">[[STATS_2_VAL]]</div>
+              <div class="text-xs text-charcoal/50 uppercase tracking-wider">[[STATS_2_LBL]]</div>
             </div>
             <div class="text-center">
-              <div class="font-playfair text-4xl font-black text-charcoal mb-1">30+</div>
-              <div class="text-xs text-charcoal/50 uppercase tracking-wider">Clients</div>
+              <div class="font-playfair text-4xl font-black text-charcoal mb-1">[[STATS_3_VAL]]</div>
+              <div class="text-xs text-charcoal/50 uppercase tracking-wider">[[STATS_3_LBL]]</div>
             </div>
           </div>
           <div>
-            <h3 class="font-playfair text-lg font-bold text-charcoal mb-4">Tools & Skills</h3>
-            <div class="flex flex-wrap gap-2">
-              <span class="tag">Figma</span><span class="tag">Adobe XD</span><span class="tag">Sketch</span>
-              <span class="tag">Prototyping</span><span class="tag">User Research</span><span class="tag">Wireframing</span>
-              <span class="tag">Design Systems</span><span class="tag">Illustrations</span>
+            <h3 class="font-playfair text-lg font-bold text-charcoal mb-4">Tech Skills</h3>
+            <div class="space-y-4">
+              [[TECH_SKILLS_HTML]]
             </div>
           </div>
-          <a href="#" class="btn-primary">Download Resume</a>
+          <a href="[[BTN_DOWNLOAD_CV_LINK]]" class="btn-primary">[[BTN_DOWNLOAD_CV]]</a>
         </div>
       </div>
     </div>
@@ -270,33 +215,13 @@
       <div class="section-fade mb-16 text-center">
         <div class="flex items-center justify-center gap-3 mb-4">
           <div class="accent-line"></div>
-          <span class="text-warm text-sm tracking-widest uppercase">What I Do</span>
+          <span class="text-warm text-sm tracking-widest uppercase">[[SERVICES_SECTION_BADGE]]</span>
           <div class="accent-line"></div>
         </div>
-        <h2 class="font-playfair text-5xl font-bold text-cream">My <em class="text-warm">Services</em></h2>
+        <h2 class="font-playfair text-5xl font-bold text-cream">[[SERVICES_SECTION_TITLE]]</h2>
       </div>
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="border border-cream/10 p-8 hover:border-warm/50 transition-colors group section-fade hover-lift">
-          <div class="w-12 h-12 bg-warm/20 flex items-center justify-center mb-6 group-hover:bg-warm/30 transition-colors">
-            <i class="fas fa-pen-ruler text-warm text-xl"></i>
-          </div>
-          <h3 class="font-playfair text-xl font-bold text-cream mb-4">UI Design</h3>
-          <p class="text-cream/50 text-sm leading-relaxed">Creating visually stunning and brand-consistent user interfaces for web and mobile platforms.</p>
-        </div>
-        <div class="border border-cream/10 p-8 hover:border-warm/50 transition-colors group section-fade hover-lift">
-          <div class="w-12 h-12 bg-warm/20 flex items-center justify-center mb-6 group-hover:bg-warm/30 transition-colors">
-            <i class="fas fa-users text-warm text-xl"></i>
-          </div>
-          <h3 class="font-playfair text-xl font-bold text-cream mb-4">UX Research</h3>
-          <p class="text-cream/50 text-sm leading-relaxed">User interviews, usability testing, and data-driven insights to improve product experience.</p>
-        </div>
-        <div class="border border-cream/10 p-8 hover:border-warm/50 transition-colors group section-fade hover-lift">
-          <div class="w-12 h-12 bg-warm/20 flex items-center justify-center mb-6 group-hover:bg-warm/30 transition-colors">
-            <i class="fas fa-palette text-warm text-xl"></i>
-          </div>
-          <h3 class="font-playfair text-xl font-bold text-cream mb-4">Brand Identity</h3>
-          <p class="text-cream/50 text-sm leading-relaxed">Complete brand identity design including logos, typography systems, and brand guidelines.</p>
-        </div>
+        [[SERVICE_CARDS_HTML]]
       </div>
     </div>
   </section>
@@ -306,8 +231,8 @@
     <div class="max-w-3xl mx-auto px-8">
       <div class="section-fade text-center mb-16">
         <div class="flex items-center justify-center gap-3 mb-4"><div class="accent-line"></div><span class="text-accent text-sm tracking-widest uppercase">Get In Touch</span><div class="accent-line"></div></div>
-        <h2 class="font-playfair text-5xl font-bold text-charcoal">Let's <em>Work Together</em></h2>
-        <p class="text-charcoal/60 mt-4 max-w-md mx-auto">Have a project in mind? I'd love to hear about it. Drop me a message and I'll get back to you within 24 hours.</p>
+        <h2 class="font-playfair text-5xl font-bold text-charcoal">[[CONTACT_TITLE]]</h2>
+        <p class="text-charcoal/60 mt-4 max-w-md mx-auto">[[CONTACT_DESC]]</p>
       </div>
       <form class="space-y-5 section-fade" onsubmit="submitForm(event)">
         <div class="grid md:grid-cols-2 gap-5">
@@ -317,7 +242,7 @@
         <input type="text" placeholder="Project Type" />
         <textarea rows="5" placeholder="Tell me about your project..." required></textarea>
         <div class="text-center pt-4">
-          <button type="submit" class="btn-primary cursor-pointer">Send Message <i class="fas fa-arrow-right ml-2"></i></button>
+          <button type="submit" class="btn-primary cursor-pointer">[[BTN_SEND_MESSAGE]] <i class="fas fa-arrow-right ml-2"></i></button>
         </div>
         <div id="formSuccess" class="hidden text-center text-accent font-medium py-3">✓ Message sent! I'll be in touch soon.</div>
       </form>
@@ -327,14 +252,14 @@
   <!-- Footer -->
   <footer class="bg-charcoal py-10">
     <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between">
-      <a href="#" class="font-playfair text-2xl font-bold text-cream mb-4 md:mb-0">Sarah<span class="text-warm">.</span></a>
+      <a href="#" class="font-playfair text-2xl font-bold text-cream mb-4 md:mb-0">[[FOOTER_LOGO]]<span class="text-warm">.</span></a>
       <div class="flex gap-6">
-        <a href="#" class="text-cream/40 hover:text-warm transition-colors text-lg"><i class="fab fa-dribbble"></i></a>
-        <a href="#" class="text-cream/40 hover:text-warm transition-colors text-lg"><i class="fab fa-behance"></i></a>
-        <a href="#" class="text-cream/40 hover:text-warm transition-colors text-lg"><i class="fab fa-linkedin"></i></a>
-        <a href="#" class="text-cream/40 hover:text-warm transition-colors text-lg"><i class="fab fa-instagram"></i></a>
+        [[DRIBBBLE_PH]]
+        [[BEHANCE_PH]]
+        [[LINKEDIN_PH]]
+        [[INSTAGRAM_PH]]
       </div>
-      <p class="text-cream/30 text-sm mt-4 md:mt-0">© 2025 Sarah Morgan. Made by <span class="text-warm">HA Tech</span></p>
+      <p class="text-cream/30 text-sm mt-4 md:mt-0">[[COPYRIGHT_TEXT]]</p>
     </div>
   </footer>
 
@@ -344,11 +269,26 @@
     // Template 2: Minimalist Designer Portfolio
     // ==========================================
 
-    // Scroll Reveal
-    const observer = new IntersectionObserver((entries) => {
+    // Editor detection
+    if (window.self !== window.top) document.body.classList.add('in-editor');
+
+    // Scroll Reveal with dynamic support
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.section-fade').forEach(el => observer.observe(el));
+    
+    function observeNewElements() {
+      document.querySelectorAll('.section-fade:not(.visible)').forEach(el => revealObserver.observe(el));
+    }
+    
+    observeNewElements();
+    
+    // Watch for DOM changes (Live Editor) - Observe document for resilience
+    const mutationObserver = new MutationObserver(() => {
+      if (window.self !== window.top) document.body.classList.add('in-editor');
+      observeNewElements();
+    });
+    mutationObserver.observe(document, { childList: true, subtree: true });
 
     // Mobile Menu
     document.getElementById('mobileBtn').addEventListener('click', () => {

@@ -25,6 +25,12 @@
   <style>
     * { box-sizing: border-box; }
     body { background: #ffffff; font-family: 'Plus Jakarta Sans', sans-serif; color: #0f172a; overflow-x: hidden; }
+    /* Force visibility in Editor Iframe */
+    .in-editor .enter {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
     /* Sidebar layout */
     .layout { display: flex; min-height: 100vh; }
     .sidebar { width: 280px; background: #0f172a; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 40; display: flex; flex-direction: column; transition: transform 0.3s ease; }
@@ -87,12 +93,12 @@
       <div class="p-6 border-b border-white/10">
         <!-- Profile -->
         <div class="text-center">
-          <div class="profile-ring">JW</div>
-          <h2 class="text-white font-bold text-lg">James Wilson</h2>
-          <p class="text-blue-400 text-sm mt-1">Senior Software Engineer</p>
+          <div class="profile-ring">[[FULL_NAME_INITIALS]]</div>
+          <h2 class="text-white font-bold text-lg">[[FULL_NAME]]</h2>
+          <p class="text-blue-400 text-sm mt-1">[[SIDEBAR_SUBTITLE]]</p>
           <div class="flex items-center justify-center gap-2 mt-3">
             <div class="availability-dot"></div>
-            <span class="text-green-400 text-xs">Available for work</span>
+            <span class="text-green-400 text-xs">[[NAV_STATUS_BADGE]]</span>
           </div>
         </div>
       </div>
@@ -128,12 +134,11 @@
       <div class="p-6 border-t border-white/10">
         <p class="text-white/20 text-xs uppercase tracking-widest mb-3">Connect</p>
         <div class="flex gap-3">
-          <a href="#" class="w-9 h-9 bg-white/5 hover:bg-blue-500/20 hover:text-blue-400 rounded-lg flex items-center justify-center text-white/50 transition-all text-sm"><i class="fab fa-github"></i></a>
-          <a href="#" class="w-9 h-9 bg-white/5 hover:bg-blue-500/20 hover:text-blue-400 rounded-lg flex items-center justify-center text-white/50 transition-all text-sm"><i class="fab fa-linkedin"></i></a>
-          <a href="#" class="w-9 h-9 bg-white/5 hover:bg-blue-500/20 hover:text-blue-400 rounded-lg flex items-center justify-center text-white/50 transition-all text-sm"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="w-9 h-9 bg-white/5 hover:bg-blue-500/20 hover:text-blue-400 rounded-lg flex items-center justify-center text-white/50 transition-all text-sm"><i class="fas fa-rss"></i></a>
+          [[GITHUB_PH]]
+          [[LINKEDIN_PH]]
+          [[TWITTER_PH]]
         </div>
-        <p class="text-white/15 text-xs mt-6">Built by <span class="text-blue-400">HA Tech</span></p>
+        <p class="text-white/15 text-xs mt-6">[[SIDEBAR_FOOTER_TEXT]]</p>
       </div>
     </aside>
 
@@ -151,44 +156,38 @@
           <div class="flex items-center gap-3 mb-6">
             <div class="bg-blue-100 text-blue-600 px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-2">
               <div class="availability-dot"></div>
-              Available for New Projects
+              [[HERO_STATUS_BADGE]]
             </div>
           </div>
           <h1 class="text-5xl md:text-7xl font-extrabold text-surface-900 leading-tight mb-6">
-            Hi, I'm <span class="highlight">James</span><br/>
-            Software <span class="highlight">Engineer</span>
+            [[HERO_TITLE_HTML]]
           </h1>
           <p class="text-surface-400 text-xl leading-relaxed mb-8 max-w-xl">
-            I architect and build scalable cloud infrastructure and enterprise software systems that power businesses at scale. 8+ years of experience, 60+ projects delivered.
+            [[HERO_DESC]]
           </p>
           <div class="flex flex-wrap gap-4 mb-12">
-            <a href="#projects" class="btn-primary text-sm">View Projects <i class="fas fa-arrow-right"></i></a>
-            <a href="#contact" class="btn-secondary text-sm">Hire Me <i class="fas fa-envelope"></i></a>
-            <a href="#" class="btn-secondary text-sm">Download CV <i class="fas fa-download"></i></a>
+            <a href="#projects" class="btn-primary text-sm">[[BTN_VIEW_WORK]] <i class="fas fa-arrow-right"></i></a>
+            <a href="#contact" class="btn-secondary text-sm">[[BTN_HIRE_ME]] <i class="fas fa-envelope"></i></a>
+            <a href="[[BTN_DOWNLOAD_CV_LINK]]" class="btn-secondary text-sm">[[BTN_DOWNLOAD_CV]] <i class="fas fa-download"></i></a>
           </div>
           <!-- Tech stack row -->
           <div class="flex flex-wrap gap-2">
-            <span class="code font-code text-xs bg-surface-100 text-surface-400 px-3 py-1.5 rounded-lg border border-surface-200">AWS</span>
-            <span class="code font-code text-xs bg-surface-100 text-surface-400 px-3 py-1.5 rounded-lg border border-surface-200">TypeScript</span>
-            <span class="code font-code text-xs bg-surface-100 text-surface-400 px-3 py-1.5 rounded-lg border border-surface-200">Kubernetes</span>
-            <span class="code font-code text-xs bg-surface-100 text-surface-400 px-3 py-1.5 rounded-lg border border-surface-200">PostgreSQL</span>
-            <span class="code font-code text-xs bg-surface-100 text-surface-400 px-3 py-1.5 rounded-lg border border-surface-200">Docker</span>
-            <span class="code font-code text-xs bg-surface-100 text-surface-400 px-3 py-1.5 rounded-lg border border-surface-200">Go</span>
+            [[SERVICE_CARDS_HTML]]
           </div>
         </div>
         <!-- Stats floating cards -->
         <div class="hidden lg:flex flex-col gap-4 ml-auto">
-          <div class="card p-5 w-48 text-center">
-            <div class="text-4xl font-extrabold highlight mb-1">8+</div>
-            <div class="text-surface-400 text-sm">Years Experience</div>
+          <div class="card p-5 w-48 text-center enter">
+            <div class="text-4xl font-extrabold highlight mb-1">[[STATS_1_VAL]]</div>
+            <div class="text-surface-400 text-sm">[[STATS_1_LBL]]</div>
           </div>
-          <div class="card p-5 w-48 text-center">
-            <div class="text-4xl font-extrabold highlight mb-1">60+</div>
-            <div class="text-surface-400 text-sm">Projects Delivered</div>
+          <div class="card p-5 w-48 text-center enter">
+            <div class="text-4xl font-extrabold highlight mb-1">[[STATS_2_VAL]]</div>
+            <div class="text-surface-400 text-sm">[[STATS_2_LBL]]</div>
           </div>
-          <div class="card p-5 w-48 text-center">
-            <div class="text-4xl font-extrabold highlight mb-1">99%</div>
-            <div class="text-surface-400 text-sm">Client Satisfaction</div>
+          <div class="card p-5 w-48 text-center enter">
+            <div class="text-4xl font-extrabold highlight mb-1">[[STATS_3_VAL]]</div>
+            <div class="text-surface-400 text-sm">[[STATS_3_LBL]]</div>
           </div>
         </div>
       </section>
@@ -196,50 +195,38 @@
       <!-- About -->
       <section id="about" class="section border-b border-surface-200 bg-surface-50">
         <div class="section-header mb-8 enter">
-          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">About</span>
-          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">Who Am I</h2>
+          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">// About</span>
+          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">[[ABOUT_SECTION_TITLE]]</h2>
         </div>
         <div class="grid md:grid-cols-2 gap-8">
           <div class="enter">
-            <p class="text-surface-400 leading-relaxed mb-4">
-              I'm a Senior Software Engineer based in San Francisco, specializing in cloud architecture, microservices, and DevOps. I hold a Master's in Computer Science from Stanford and have led engineering teams at Amazon and Stripe.
-            </p>
-            <p class="text-surface-400 leading-relaxed mb-6">
-              I'm passionate about building systems that scale gracefully and teams that grow sustainably. I believe great engineering is about people as much as it is about technology.
-            </p>
+            <p class="text-surface-400 leading-relaxed mb-4">[[BIO_P1]]</p>
+            <p class="text-surface-400 leading-relaxed mb-6">[[BIO_P2]]</p>
             <div class="grid grid-cols-2 gap-3">
               <div class="bg-white border border-surface-200 rounded-xl p-4">
                 <div class="text-surface-300 text-xs mb-1">Name</div>
-                <div class="font-semibold text-sm">James Wilson</div>
+                <div class="font-semibold text-sm">[[FULL_NAME]]</div>
               </div>
               <div class="bg-white border border-surface-200 rounded-xl p-4">
                 <div class="text-surface-300 text-xs mb-1">Location</div>
-                <div class="font-semibold text-sm">San Francisco, CA</div>
+                <div class="font-semibold text-sm">[[LOCATION]]</div>
               </div>
               <div class="bg-white border border-surface-200 rounded-xl p-4">
                 <div class="text-surface-300 text-xs mb-1">Education</div>
-                <div class="font-semibold text-sm">M.S. Stanford</div>
+                <div class="font-semibold text-sm">[[EDUCATION_TEXT]]</div>
               </div>
               <div class="bg-white border border-surface-200 rounded-xl p-4">
-                <div class="text-surface-300 text-xs mb-1">Availability</div>
-                <div class="font-semibold text-sm text-green-600 flex items-center gap-1"><div class="availability-dot w-2 h-2"></div> Open</div>
+                <div class="text-surface-300 text-xs mb-1">Status</div>
+                <div class="font-semibold text-sm text-green-600 flex items-center gap-1"><div class="availability-dot w-2 h-2"></div> [[ABOUT_STATUS_TEXT]]</div>
               </div>
             </div>
           </div>
           <div class="card p-6 enter bg-white">
             <div class="font-code text-sm">
-              <div class="text-surface-300 mb-3">// james_wilson.json</div>
+              <div class="text-surface-300 mb-3">// [[CODE_CARD_FILENAME]]</div>
               <div class="text-surface-700">{</div>
               <div class="pl-4 space-y-1 text-surface-400">
-                <div><span class="text-blue-500">"role"</span>: <span class="text-green-600">"Sr. Software Engineer"</span>,</div>
-                <div><span class="text-blue-500">"specialization"</span>: <span class="text-green-600">"Cloud & Microservices"</span>,</div>
-                <div><span class="text-blue-500">"experience"</span>: <span class="text-orange-500">8</span>,</div>
-                <div><span class="text-blue-500">"certifications"</span>: [</div>
-                <div class="pl-4"><span class="text-green-600">"AWS Solutions Architect"</span>,</div>
-                <div class="pl-4"><span class="text-green-600">"CKA - Kubernetes"</span>,</div>
-                <div class="pl-4"><span class="text-green-600">"Google Cloud Professional"</span></div>
-                <div>],</div>
-                <div><span class="text-blue-500">"coffee_cups_today"</span>: <span class="text-orange-500">3</span></div>
+[[CODE_CARD_CONTENT_JSON_HTML]]
               </div>
               <div class="text-surface-700">}</div>
             </div>
@@ -250,181 +237,57 @@
       <!-- Skills -->
       <section id="skills" class="section border-b border-surface-200 bg-white">
         <div class="section-header mb-8 enter">
-          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">Skills</span>
-          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">Technical Arsenal</h2>
+          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">// Skills</span>
+          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">[[SKILLS_SECTION_TITLE]]</h2>
         </div>
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="card p-6 bg-white enter">
-            <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-              <i class="fab fa-aws text-blue-600"></i>
-            </div>
-            <h3 class="font-bold text-surface-900 mb-3">Cloud & Infrastructure</h3>
-            <div class="flex flex-wrap gap-2">
-              <span class="skill-badge">AWS</span><span class="skill-badge">GCP</span><span class="skill-badge">Azure</span>
-              <span class="skill-badge">Kubernetes</span><span class="skill-badge">Docker</span><span class="skill-badge">Terraform</span>
-            </div>
-          </div>
-          <div class="card p-6 bg-white enter">
-            <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center mb-4">
-              <i class="fas fa-code text-green-600"></i>
-            </div>
-            <h3 class="font-bold text-surface-900 mb-3">Languages & Frameworks</h3>
-            <div class="flex flex-wrap gap-2">
-              <span class="skill-badge">TypeScript</span><span class="skill-badge">Go</span><span class="skill-badge">Python</span>
-              <span class="skill-badge">Node.js</span><span class="skill-badge">React</span><span class="skill-badge">gRPC</span>
-            </div>
-          </div>
-          <div class="card p-6 bg-white enter">
-            <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
-              <i class="fas fa-database text-purple-600"></i>
-            </div>
-            <h3 class="font-bold text-surface-900 mb-3">Databases & Tools</h3>
-            <div class="flex flex-wrap gap-2">
-              <span class="skill-badge">PostgreSQL</span><span class="skill-badge">Redis</span><span class="skill-badge">Kafka</span>
-              <span class="skill-badge">MongoDB</span><span class="skill-badge">Elasticsearch</span><span class="skill-badge">CI/CD</span>
-            </div>
-          </div>
+          [[TECH_SKILLS_HTML]]
         </div>
       </section>
 
       <!-- Projects -->
       <section id="projects" class="section border-b border-surface-200 bg-surface-50">
         <div class="section-header mb-8 enter">
-          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">Portfolio</span>
-          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">Featured Projects</h2>
+          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">// Portfolio</span>
+          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">[[WORK_SECTION_TITLE]]</h2>
         </div>
         <div class="grid md:grid-cols-2 gap-6">
-          <div class="card bg-white p-6 enter">
-            <div class="flex items-start justify-between mb-4">
-              <div>
-                <div class="flex gap-2 mb-2">
-                  <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded font-medium">Cloud</span>
-                  <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded font-medium">Open Source</span>
-                </div>
-                <h3 class="text-xl font-bold text-surface-900">CloudScale Platform</h3>
-              </div>
-              <div class="flex gap-2">
-                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fab fa-github"></i></a>
-                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <p class="text-surface-400 text-sm leading-relaxed mb-4">Auto-scaling microservices platform handling 1M+ requests/day. Built with Kubernetes, Go, and AWS. Reduced infrastructure costs by 45%.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="skill-badge">Go</span><span class="skill-badge">Kubernetes</span><span class="skill-badge">AWS</span><span class="skill-badge">Prometheus</span>
-            </div>
-          </div>
-          <div class="card bg-white p-6 enter">
-            <div class="flex items-start justify-between mb-4">
-              <div>
-                <div class="flex gap-2 mb-2">
-                  <span class="bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded font-medium">Fintech</span>
-                  <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded font-medium">API</span>
-                </div>
-                <h3 class="text-xl font-bold text-surface-900">Payment Orchestration System</h3>
-              </div>
-              <div class="flex gap-2">
-                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fab fa-github"></i></a>
-                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <p class="text-surface-400 text-sm leading-relaxed mb-4">Enterprise payment gateway supporting 15+ payment providers with 99.99% uptime SLA. Processes $50M+ in daily transactions.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="skill-badge">TypeScript</span><span class="skill-badge">PostgreSQL</span><span class="skill-badge">Kafka</span>
-            </div>
-          </div>
-          <div class="card bg-white p-6 enter">
-            <div class="flex items-start justify-between mb-4">
-              <div>
-                <div class="flex gap-2 mb-2">
-                  <span class="bg-red-100 text-red-700 text-xs px-2 py-1 rounded font-medium">DevOps</span>
-                  <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded font-medium">Internal Tool</span>
-                </div>
-                <h3 class="text-xl font-bold text-surface-900">DevPipeline CI/CD</h3>
-              </div>
-              <div class="flex gap-2">
-                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fab fa-github"></i></a>
-                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <p class="text-surface-400 text-sm leading-relaxed mb-4">Custom CI/CD pipeline tool with visual dashboard, automated testing, and one-click deployments. Adopted by 50+ teams.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="skill-badge">Python</span><span class="skill-badge">React</span><span class="skill-badge">Docker</span>
-            </div>
-          </div>
-          <div class="card bg-white p-6 enter">
-            <div class="flex items-start justify-between mb-4">
-              <div>
-                <div class="flex gap-2 mb-2">
-                  <span class="bg-teal-100 text-teal-700 text-xs px-2 py-1 rounded font-medium">Analytics</span>
-                  <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded font-medium">Real-time</span>
-                </div>
-                <h3 class="text-xl font-bold text-surface-900">ObservabilityHub</h3>
-              </div>
-              <div class="flex gap-2">
-                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fab fa-github"></i></a>
-                <a href="#" class="w-8 h-8 bg-surface-100 hover:bg-blue-100 hover:text-blue-600 rounded-lg flex items-center justify-center text-surface-400 transition-all text-sm"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <p class="text-surface-400 text-sm leading-relaxed mb-4">Distributed tracing and metrics aggregation platform. Replaces 3 separate monitoring tools with unified observability stack.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="skill-badge">Go</span><span class="skill-badge">Elasticsearch</span><span class="skill-badge">Grafana</span>
-            </div>
-          </div>
+          [[PROJECTS_HTML]]
         </div>
       </section>
 
       <!-- Experience -->
       <section id="experience" class="section border-b border-surface-200 bg-white">
         <div class="section-header mb-8 enter">
-          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">Career</span>
-          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">Work Experience</h2>
+          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">// Career</span>
+          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">[[EXPERIENCE_SECTION_TITLE]]</h2>
         </div>
         <div class="max-w-2xl space-y-8 enter">
-          <div class="exp-item pb-8">
-            <div class="flex items-center gap-3 mb-1">
-              <h3 class="text-lg font-bold text-surface-900">Staff Software Engineer</h3>
-              <span class="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded font-medium">Current</span>
-            </div>
-            <div class="text-blue-600 text-sm font-semibold mb-1">Stripe · San Francisco, CA</div>
-            <div class="text-surface-300 text-xs mb-3">Jan 2022 – Present</div>
-            <p class="text-surface-400 text-sm leading-relaxed">Lead architect for Stripe's next-gen payment infrastructure. Manage a team of 8 engineers. Designed the distributed transaction system that reduced latency by 40%.</p>
-          </div>
-          <div class="exp-item pb-8">
-            <h3 class="text-lg font-bold text-surface-900 mb-1">Senior Software Engineer</h3>
-            <div class="text-orange-600 text-sm font-semibold mb-1">Amazon Web Services · Seattle, WA</div>
-            <div class="text-surface-300 text-xs mb-3">Mar 2019 – Dec 2021</div>
-            <p class="text-surface-400 text-sm leading-relaxed">Built core features for AWS Lambda and EC2 Auto Scaling. Filed 3 patents related to serverless compute optimization.</p>
-          </div>
-          <div class="exp-item">
-            <h3 class="text-lg font-bold text-surface-900 mb-1">Software Engineer</h3>
-            <div class="text-purple-600 text-sm font-semibold mb-1">Palantir Technologies · New York, NY</div>
-            <div class="text-surface-300 text-xs mb-3">Jun 2016 – Feb 2019</div>
-            <p class="text-surface-400 text-sm leading-relaxed">Developed data pipeline infrastructure for government and enterprise clients processing petabytes of sensitive data.</p>
-          </div>
+          [[EXPERIENCE_HTML]]
         </div>
       </section>
 
       <!-- Contact -->
       <section id="contact" class="section bg-surface-50">
         <div class="section-header mb-8 enter">
-          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">Contact</span>
-          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">Get In Touch</h2>
+          <span class="text-blue-500 text-sm font-semibold uppercase tracking-widest">// Contact</span>
+          <h2 class="text-3xl font-extrabold text-surface-900 mt-1">[[CONTACT_TITLE]]</h2>
         </div>
         <div class="grid md:grid-cols-2 gap-8 max-w-3xl">
           <div class="enter">
-            <p class="text-surface-400 mb-6 text-sm leading-relaxed">Looking to hire or collaborate on an exciting project? I'm available for consulting engagements and full-time opportunities.</p>
+            <p class="text-surface-400 mb-6 text-sm leading-relaxed">[[CONTACT_DESC]]</p>
             <div class="space-y-4">
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 flex-shrink-0"><i class="fas fa-envelope text-sm"></i></div>
-                <span class="text-surface-500 text-sm">james@example.com</span>
+                <span class="text-surface-500 text-sm">[[CONTACT_EMAIL]]</span>
               </div>
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 flex-shrink-0"><i class="fas fa-phone text-sm"></i></div>
-                <span class="text-surface-500 text-sm">+1 (415) 555-9876</span>
+                <span class="text-surface-500 text-sm">[[CONTACT_PHONE]]</span>
               </div>
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 flex-shrink-0"><i class="fas fa-map text-sm"></i></div>
-                <span class="text-surface-500 text-sm">San Francisco, CA</span>
+                <span class="text-surface-500 text-sm">[[LOCATION]]</span>
               </div>
             </div>
           </div>
@@ -433,7 +296,7 @@
             <input class="input-field" type="email" placeholder="Work Email" required />
             <input class="input-field" type="text" placeholder="Company (Optional)" />
             <textarea class="input-field" rows="4" placeholder="What would you like to discuss?" required></textarea>
-            <button type="submit" class="btn-primary w-full justify-center">Send Message <i class="fas fa-paper-plane"></i></button>
+            <button type="submit" class="btn-primary w-full justify-center">[[BTN_SEND_MESSAGE]] <i class="fas fa-paper-plane"></i></button>
             <div id="contactDone" class="hidden text-center text-blue-600 font-medium text-sm py-2">✓ Message sent! I'll respond within 24 hours.</div>
           </form>
         </div>
@@ -478,11 +341,26 @@
       });
     });
 
-    // Scroll Reveal
-    const observer = new IntersectionObserver((entries) => {
+    // Editor detection
+    if (window.self !== window.top) document.body.classList.add('in-editor');
+
+    // Scroll Reveal with dynamic support
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.enter').forEach(el => observer.observe(el));
+    
+    function observeNewElements() {
+      document.querySelectorAll('.enter:not(.visible)').forEach(el => revealObserver.observe(el));
+    }
+    
+    observeNewElements();
+    
+    // Watch for DOM changes (Live Editor) - Observe document for resilience
+    const mutationObserver = new MutationObserver(() => {
+      if (window.self !== window.top) document.body.classList.add('in-editor');
+      observeNewElements();
+    });
+    mutationObserver.observe(document, { childList: true, subtree: true });
 
     // Active nav on scroll
     const sections = document.querySelectorAll('section[id]');

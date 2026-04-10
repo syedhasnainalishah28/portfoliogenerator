@@ -38,6 +38,12 @@
     }
   </script>
   <style>
+    /* Force visibility in Editor Iframe to prevent intersection observer issues */
+    .in-editor .section-reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
     body { background: #030712; font-family: 'Inter', sans-serif; overflow-x: hidden; }
     .neon-text { text-shadow: 0 0 10px #00f5ff, 0 0 20px #00f5ff, 0 0 40px #00f5ff; }
     .neon-border { border: 1px solid #00f5ff; box-shadow: 0 0 15px #00f5ff44, inset 0 0 15px #00f5ff11; }
@@ -127,10 +133,9 @@
             </a>
           </div>
           <div class="flex gap-6 pt-4">
-            <a href="#" class="text-gray-500 hover:text-neon-cyan text-2xl transition-all hover:scale-110"><i class="fab fa-github"></i></a>
-            <a href="#" class="text-gray-500 hover:text-neon-cyan text-2xl transition-all hover:scale-110"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="text-gray-500 hover:text-neon-pink text-2xl transition-all hover:scale-110"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-gray-500 hover:text-neon-green text-2xl transition-all hover:scale-110"><i class="fab fa-codepen"></i></a>
+            [[GITHUB_PH]]
+            [[LINKEDIN_PH]]
+            [[TWITTER_PH]]
           </div>
         </div>
         <div class="flex justify-center animate-float">
@@ -153,20 +158,20 @@
       <!-- Stats -->
       <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
         <div class="text-center section-reveal">
-          <div class="font-orbitron text-4xl font-black neon-text text-neon-cyan">[[STATS_1_VALUE]]</div>
-          <div class="text-gray-400 text-sm mt-1">[[STATS_1_LABEL]]</div>
+          <div class="font-orbitron text-4xl font-black neon-text text-neon-cyan">[[STATS_1_VAL]]</div>
+          <div class="text-gray-400 text-sm mt-1">[[STATS_1_LBL]]</div>
         </div>
         <div class="text-center section-reveal">
-          <div class="font-orbitron text-4xl font-black text-neon-green" style="text-shadow:0 0 10px #39ff14">[[STATS_2_VALUE]]</div>
-          <div class="text-gray-400 text-sm mt-1">[[STATS_2_LABEL]]</div>
+          <div class="font-orbitron text-4xl font-black text-neon-green" style="text-shadow:0 0 10px #39ff14">[[STATS_2_VAL]]</div>
+          <div class="text-gray-400 text-sm mt-1">[[STATS_2_LBL]]</div>
         </div>
         <div class="text-center section-reveal">
-          <div class="font-orbitron text-4xl font-black text-neon-pink" style="text-shadow:0 0 10px #ff006e">[[STATS_3_VALUE]]</div>
-          <div class="text-gray-400 text-sm mt-1">[[STATS_3_LABEL]]</div>
+          <div class="font-orbitron text-4xl font-black text-neon-pink" style="text-shadow:0 0 10px #ff006e">[[STATS_3_VAL]]</div>
+          <div class="text-gray-400 text-sm mt-1">[[STATS_3_LBL]]</div>
         </div>
         <div class="text-center section-reveal">
-          <div class="font-orbitron text-4xl font-black text-neon-purple" style="text-shadow:0 0 10px #bf00ff">100%</div>
-          <div class="text-gray-400 text-sm mt-1">Satisfaction</div>
+          <div class="font-orbitron text-4xl font-black text-neon-purple" style="text-shadow:0 0 10px #bf00ff">[[STATS_4_VAL]]</div>
+          <div class="text-gray-400 text-sm mt-1">[[STATS_4_LBL]]</div>
         </div>
       </div>
     </div>
@@ -308,13 +313,14 @@
         <span class="neon-text text-neon-cyan">/&gt;</span>
       </div>
       <div class="flex justify-center gap-6 mb-4">
-        <a href="#" class="text-gray-500 hover:text-neon-cyan text-xl transition-all"><i class="fab fa-github"></i></a>
-        <a href="#" class="text-gray-500 hover:text-neon-cyan text-xl transition-all"><i class="fab fa-linkedin"></i></a>
-        <a href="#" class="text-gray-500 hover:text-neon-pink text-xl transition-all"><i class="fab fa-twitter"></i></a>
+        [[GITHUB_PH]]
+        [[LINKEDIN_PH]]
+        [[TWITTER_PH]]
       </div>
       <p class="text-gray-600 text-sm">[[COPYRIGHT_TEXT]]</p>
     </div>
   </footer>
+>
 
   <script>
     // ==========================================
@@ -339,6 +345,9 @@
       }
     }
     createParticles();
+
+    // Mobile detection for editor
+    if (window.self !== window.top) document.body.classList.add('in-editor');
 
     // Typing Effect
     let textIndex = 0, charIndex = 0, isDeleting = false;
@@ -370,9 +379,12 @@
     
     observeNewElements();
     
-    // Watch for DOM changes (Live Editor)
-    const mutationObserver = new MutationObserver(() => observeNewElements());
-    mutationObserver.observe(document.body, { childList: true, subtree: true });
+    // Watch for DOM changes (Live Editor) - Observe document for resilience
+    const mutationObserver = new MutationObserver(() => {
+      if (window.self !== window.top) document.body.classList.add('in-editor');
+      observeNewElements();
+    });
+    mutationObserver.observe(document, { childList: true, subtree: true });
 
     // Mobile Menu
     document.getElementById('mobileMenuBtn').addEventListener('click', () => {

@@ -1,23 +1,56 @@
 {
     "name": "Glassmorphism",
-    "style": "Deep Purple & Orbs",
-    "description": "Tech-focused data science or development with glass effects.",
+    "style": "Modern Frosted",
+    "description": "Futuristic glass effects with animated backgrounds, perfect for data scientists and engineers.",
     "previewBg": "bg-[#0D0B1E]",
     "fields": [
-        { "name": "full_name", "label": "Full Name", "type": "text", "default": "ZARA AHMED" },
-        { "name": "title", "label": "Role Details", "type": "text", "default": "Data Scientist & ML Engineer" },
-        { "name": "bio", "label": "Bio Description", "type": "textarea", "default": "With expertise in machine learning..." },
-        { "name": "email", "label": "Email Address", "type": "email", "default": "zara@example.com" },
-        { "name": "years_experience", "label": "Years Experience", "type": "number", "default": 3 },
-        { "name": "projects_count", "label": "Models Built", "type": "number", "default": 20 },
-        { "name": "primary_color", "label": "Primary Purple", "type": "color", "default": "#a855f7" },
-        { "name": "secondary_color", "label": "Secondary Pink", "type": "color", "default": "#ec4899" },
-        { "name": "whatsapp_link", "label": "Download CV Link", "type": "url", "default": "https://wa.me/..." },
-        { "name": "github_url", "label": "GitHub URL", "type": "url", "default": "https://github.com/..." },
-        { "name": "linkedin_url", "label": "LinkedIn URL", "type": "url", "default": "https://linkedin.com/..." },
-        { "name": "twitter_url", "label": "Twitter URL", "type": "url", "default": "https://twitter.com/..." },
-        { "name": "skills", "label": "Technical Expertise", "type": "list", "default": ["TensorFlow:90", "Python:98"] },
-        { "name": "projects", "label": "Featured Projects", "type": "projects", "default": [] },
-        { "name": "hero_image", "label": "Profile Image / Code Card", "type": "image", "default": null }
+        { "name": "header_logo", "label": "Header Initials", "type": "text", "default": "Zara", "section": "Header & Hero" },
+        { "name": "nav_status_badge", "label": "Status Badge Text", "type": "text", "default": "Open to Opportunities", "section": "Header & Hero" },
+        { "name": "btn_hire_me", "label": "Nav Button Text", "type": "text", "default": "Get In Touch", "section": "Header & Hero" },
+        { "name": "btn_hire_me_link", "label": "Nav Button URL", "type": "url", "default": "#contact", "section": "Header & Hero" },
+
+        { "name": "hero_script_text", "label": "Hero Intro Script", "type": "text", "default": "print(\"Hello, World!\")", "section": "Header & Hero" },
+        { "name": "hero_intro_text", "label": "Hero Greeting", "type": "text", "default": "Hi, I'm", "section": "Header & Hero" },
+        { "name": "full_name", "label": "Full Name", "type": "text", "default": "ZARA AHMED", "section": "Header & Hero" },
+        { "name": "hero_subtitle_html", "label": "Hero Subtitle (HTML)", "type": "text", "default": "<span class=\"mono-code text-purple-300\">Data Scientist</span> & <span class=\"mono-code text-pink-300\">ML Engineer</span><br/>transforming raw data into intelligent solutions.", "section": "Header & Hero" },
+        { "name": "hero_desc", "label": "Hero Description", "type": "textarea", "default": "With expertise in machine learning, deep learning, and data visualization, I help organizations make data-driven decisions.", "section": "Header & Hero" },
+        
+        { "name": "btn_view_work", "label": "Primary Button Text", "type": "text", "default": "View Projects", "section": "Header & Hero" },
+        { "name": "btn_view_work_link", "label": "Primary Button URL", "type": "url", "default": "#projects", "section": "Header & Hero" },
+        { "name": "btn_download_cv", "label": "Secondary Button Text", "type": "text", "default": "Download CV", "section": "Header & Hero" },
+        { "name": "btn_download_cv_link", "label": "Secondary Button URL", "type": "url", "default": "#", "section": "Header & Hero" },
+
+        { "name": "code_card_filename", "label": "Code Card Filename", "type": "text", "default": "profile.py", "section": "Header & Hero" },
+        { "name": "code_card_content_html", "label": "Code Card Python (HTML)", "type": "textarea", "default": "<span class=\"text-purple-400\">class</span> <span class=\"text-yellow-300\">DataScientist</span>:\n  <span class=\"text-purple-400\">def</span> <span class=\"text-blue-300\">__init__</span>(<span class=\"text-orange-300\">self</span>):\n    <span class=\"text-orange-300\">self</span>.skills = [\n      <span class=\"text-green-300\">\"Machine Learning\"</span>,\n      <span class=\"text-green-300\">\"Deep Learning\"</span>\n    ]\n\n  <span class=\"text-purple-400\">def</span> <span class=\"text-blue-300\">solve</span>(<span class=\"text-orange-300\">self</span>):\n    <span class=\"text-purple-400\">return</span> <span class=\"text-green-300\">\"Insights 🚀\"</span>", "section": "Header & Hero" },
+
+        { "name": "stats_1_val", "label": "Stats 1 (Value)", "type": "text", "default": "45+", "section": "Header & Hero" },
+        { "name": "stats_1_lbl", "label": "Stats 1 (Label)", "type": "text", "default": "Models Built", "section": "Header & Hero" },
+        { "name": "stats_2_val", "label": "Stats 2 (Value)", "type": "text", "default": "5yr", "section": "Header & Hero" },
+        { "name": "stats_2_lbl", "label": "Stats 2 (Label)", "type": "text", "default": "Experience", "section": "Header & Hero" },
+        { "name": "stats_3_val", "label": "Stats 3 (Value)", "type": "text", "default": "12k+", "section": "Header & Hero" },
+        { "name": "stats_3_lbl", "label": "Stats 3 (Label)", "type": "text", "default": "Kaggle Points", "section": "Header & Hero" },
+        { "name": "stats_4_val", "label": "Stats 4 (Value)", "type": "text", "default": "99%", "section": "Header & Hero" },
+        { "name": "stats_4_lbl", "label": "Stats 4 (Label)", "type": "text", "default": "Accuracy", "section": "Header & Hero" },
+
+        { "name": "skills_section_label", "label": "Skills Subtitle", "type": "text", "default": "skills.json", "section": "Experience & Skills" },
+        { "name": "skills_section_title", "label": "Skills Main Title (HTML)", "type": "text", "default": "Technical <span class=\"gradient-text\">Expertise</span>", "section": "Experience & Skills" },
+        { "name": "tech_skills", "label": "Skills (Name|Pct|Color)", "type": "list", "default": ["Machine Learning|95|purple", "Deep Learning|90|pink", "Data Engineering|85|blue"], "section": "Experience & Skills" },
+
+        { "name": "work_section_title", "label": "Projects Title (HTML)", "type": "text", "default": "Featured <span class=\"gradient-text\">Projects</span>", "section": "Portfolio" },
+        { "name": "projects", "label": "Project List", "type": "projects", "default": [], "section": "Portfolio" },
+
+        { "name": "experience", "label": "Work Experience List (Duration|Title|Company|Desc)", "type": "list", "default": ["2023 – Present|Senior Data Scientist|Google DeepMind|Leading ML research projects.", "2021 – 2023|ML Engineer|Spotify|Built recommendation algorithms."], "section": "Experience & Skills" },
+
+        { "name": "contact_title", "label": "Contact Title (HTML)", "type": "text", "default": "Let's <span class=\"gradient-text\">Collaborate</span>", "section": "Contact" },
+        { "name": "contact_desc", "label": "Contact Description", "type": "textarea", "default": "Interested in data science consulting or research collaboration?", "section": "Contact" },
+        { "name": "btn_send_message", "label": "Form Button", "type": "text", "default": "Send Message", "section": "Contact" },
+
+        { "name": "footer_logo", "label": "Footer Logo", "type": "text", "default": "Zara", "section": "Footer" },
+        { "name": "copyright_text", "label": "Copyright Text", "type": "text", "default": "© 2025 Zara Ahmed. Built by HA Tech", "section": "Footer" },
+        
+        { "name": "github_url", "label": "GitHub URL", "type": "url", "default": "#", "section": "Socials" },
+        { "name": "linkedin_url", "label": "LinkedIn URL", "type": "url", "default": "#", "section": "Socials" },
+        { "name": "twitter_url", "label": "Twitter URL", "type": "url", "default": "#", "section": "Socials" },
+        { "name": "kaggle_url", "label": "Kaggle URL", "type": "url", "default": "#", "section": "Socials" }
     ]
 }

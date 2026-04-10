@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-[#fbfbfb] text-[#1e1b20] w-full">
@@ -90,15 +91,100 @@
                         <h3 class="mt-4 text-lg sm:text-xl font-bold text-center break-words w-full">System Initialized</h3>
                         <p class="text-xs sm:text-sm text-[#5e5963] text-center mt-2 break-words w-full">Ready to generate your personal brand assets in seconds.</p>
                         
-                        <!-- Temporary Book Placeholder Text -->
-                        <div class="mt-5 sm:mt-6 w-full text-center py-2.5 sm:py-3 px-2 border border-dashed border-gray-300 rounded-xl bg-gray-50 text-[10px] sm:text-xs text-gray-400 font-medium tracking-wide relative group cursor-pointer overflow-hidden">
-                            <span class="relative z-10 break-words line-clamp-1">Space reserved for Book Mockup</span>
-                            <div class="absolute inset-0 bg-[#f28b11]/10 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                        <!-- System Status Badge -->
+                        <div class="mt-6 w-full text-center py-2.5 px-4 rounded-xl bg-[#f28b11]/5 border border-[#f28b11]/10 text-[10px] sm:text-xs text-[#f28b11] font-bold tracking-widest uppercase flex items-center justify-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#f28b11] animate-pulse"></span>
+                            Premium Toolkit Initialized
                         </div>
+                    </div>
+                </div>
+        </section>
+        
+        <!-- The Gen Z Hustle Book Section (Redesigned Premium Light) -->
+        <section id="about" style="background-color: #ffffff; color: #111111; padding: 120px 0; position: relative; overflow: hidden; border-top: 1px solid #f0f0f0;">
+            <!-- Subtle Background Accents -->
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 10% 10%, rgba(242, 139, 17, 0.03), transparent 30%); pointer-events: none;"></div>
+            
+            <div class="mx-auto max-w-7xl px-6 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-20 lg:gap-32 items-center">
+                    
+                    <!-- LEFT: Free-Floating 3D Mockup -->
+                    <div class="flex justify-center" style="perspective: 2000px;">
+                        <div class="relative group animate-float">
+                            <!-- Premium 3D Mockup (Subtle Tilt, No Box) -->
+                            <div style="position: relative; transition: all 1s cubic-bezier(0.2, 1, 0.3, 1); transform: rotateY(15deg) rotateX(4deg); transform-style: preserve-3d;" class="hover:rotate-y-[0deg] hover:rotate-x-[0deg]">
+                                <img src="{{ asset('images/THE GEN Z HUSTLE.png') }}" alt="The Gen Z Hustle Book" class="w-full max-w-[440px] h-auto block" style="filter: drop-shadow(20px 40px 60px rgba(0,0,0,0.15));">
+                                
+                                <!-- Subtle Shine Overlay -->
+                                <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%); pointer-events: none; border-radius: 4px;"></div>
+                            </div>
+                            
+                            <!-- Premium Floating Badge (Minimalist) -->
+                            <div style="position: absolute; top: -10px; left: -10px; background: #000; color: #fff; padding: 5px 12px; border-radius: 4px; font-weight: 800; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transform: rotate(-5deg);">
+                                VVIP MODULE
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: Content Container -->
+                    <div class="max-w-xl">
+                        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 50px; background: #fff9f0; border: 1px solid #fee2b3; color: #f28b11; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 25px;">
+                            <span style="width: 5px; height: 5px; border-radius: 50%; background: #f28b11; box-shadow: 0 0 8px #f28b11;"></span>
+                            Premium Toolkit
+                        </div>
+                        
+                        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1.5px; color: #000;">
+                            Your <span style="color: #f28b11; font-style: italic;">All-in-One</span><br/>Digital Empire Toolkit.
+                        </h2>
+                        
+                        <p style="font-size: 18px; color: #52525b; line-height: 1.6; margin-bottom: 35px; font-weight: 400;">
+                            Not just a book, but a comprehensive ecosystem to transform beginners into high-earning digital agency owners.
+                        </p>
+                        
+                        <!-- Premium Features Grid (Soft Cards) -->
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 45px;">
+                            <!-- Card 1 -->
+                            <div style="padding: 20px; border-radius: 12px; background: #fafafa; border: 1px solid #f0f0f0; transition: all 0.3s;" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#f28b11'; this.style.boxShadow='0 10px 30px rgba(242, 139, 17, 0.05)';" onmouseout="this.style.background='#fafafa'; this.style.borderColor='#f0f0f0'; this.style.boxShadow='none';">
+                                <div style="width: 40px; height: 40px; border-radius: 10px; background: white; color: #f28b11; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                                    <i class="fas fa-book-open" style="font-size: 16px;"></i>
+                                </div>
+                                <h4 style="font-size: 15px; font-weight: 800; margin-bottom: 6px; color: #000;">Digital Hustle Book</h4>
+                                <p style="font-size: 12px; color: #71717a; line-height: 1.4;">A step-by-step roadmap built for the modern developer.</p>
+                            </div>
+                            <!-- Card 2 -->
+                            <div style="padding: 20px; border-radius: 12px; background: #fafafa; border: 1px solid #f0f0f0; transition: all 0.3s;" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#f28b11'; this.style.boxShadow='0 10px 30px rgba(242, 139, 17, 0.05)';" onmouseout="this.style.background='#fafafa'; this.style.borderColor='#f0f0f0'; this.style.boxShadow='none';">
+                                <div style="width: 40px; height: 40px; border-radius: 10px; background: white; color: #f2b311; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                                    <i class="fas fa-magic" style="font-size: 16px;"></i>
+                                </div>
+                                <h4 style="font-size: 15px; font-weight: 800; margin-bottom: 6px; color: #000;">Instant Generator</h4>
+                                <p style="font-size: 12px; color: #71717a; line-height: 1.4;">Build professional portfolio pages in under 60 seconds.</p>
+                            </div>
+                            <!-- Card 3 -->
+                            <div style="padding: 20px; border-radius: 12px; background: #fafafa; border: 1px solid #f0f0f0; transition: all 0.3s;" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#f28b11'; this.style.boxShadow='0 10px 30px rgba(242, 139, 17, 0.05)';" onmouseout="this.style.background='#fafafa'; this.style.borderColor='#f0f0f0'; this.style.boxShadow='none';">
+                                <div style="width: 40px; height: 40px; border-radius: 10px; background: white; color: #f28b11; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                                    <i class="fas fa-layer-group" style="font-size: 16px;"></i>
+                                </div>
+                                <h4 style="font-size: 15px; font-weight: 800; margin-bottom: 6px; color: #000;">50+ Templates</h4>
+                                <p style="font-size: 12px; color: #71717a; line-height: 1.4;">High-end asset bundle for ultimate client conversion.</p>
+                            </div>
+                            <!-- Card 4 -->
+                            <div style="padding: 20px; border-radius: 12px; background: #fafafa; border: 1px solid #f0f0f0; transition: all 0.3s;" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#f28b11'; this.style.boxShadow='0 10px 30px rgba(242, 139, 17, 0.05)';" onmouseout="this.style.background='#fafafa'; this.style.borderColor='#f0f0f0'; this.style.boxShadow='none';">
+                                <div style="width: 40px; height: 40px; border-radius: 10px; background: white; color: #f2b311; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                                    <i class="fas fa-search-dollar" style="font-size: 16px;"></i>
+                                </div>
+                                <h4 style="font-size: 15px; font-weight: 800; margin-bottom: 6px; color: #000;">Lead AI System</h4>
+                                <p style="font-size: 12px; color: #71717a; line-height: 1.4;">Smart outreach tool to hunt high-ticket clients.</p>
+                            </div>
+                        </div>
+                        
+                        <a href="{{ route('register') }}" class="inline-block text-center px-12 py-5 text-lg font-bold shadow-2xl shadow-orange-500/10 transform hover:-translate-y-1 transition-all" style="background: linear-gradient(to right, #f28b11, #f2b311); color: white; border-radius: 50px; text-decoration: none;">
+                            Get Exclusive Access
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
+        
 
         <!-- Premium Feature Cards -->
         <section id="features" class="bg-white border-y border-[#e5e7eb] py-24 relative z-20">

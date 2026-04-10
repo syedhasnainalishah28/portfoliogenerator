@@ -25,6 +25,12 @@
     :root { --orange: #FF5C35; --yellow: #FFE037; --purple: #7C3AED; }
     * { box-sizing: border-box; }
     body { background: #0A0A0A; font-family: 'Space Grotesk', sans-serif; color: white; overflow-x: hidden; }
+    /* Force visibility in Editor Iframe */
+    .in-editor .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
     .noise { position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"); pointer-events: none; z-index: 99; opacity: 0.4; }
     .gradient-text { background: linear-gradient(135deg, #FF5C35, #FFE037, #7C3AED); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .gradient-bg { background: linear-gradient(135deg, #FF5C35, #FFE037); }
@@ -60,7 +66,7 @@
 
   <!-- Navigation -->
   <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 nav-pill px-8 py-4 rounded-full flex items-center gap-8">
-    <a href="#" class="font-syne font-bold text-lg">MR<span class="text-brand-orange">.</span></a>
+    <a href="#" class="font-syne font-bold text-lg">[[HEADER_LOGO]]<span class="text-brand-orange">.</span></a>
     <div class="hidden md:flex gap-6">
       <a href="#work" class="text-white/60 hover:text-white text-sm transition-colors">Work</a>
       <a href="#about" class="text-white/60 hover:text-white text-sm transition-colors">About</a>
@@ -68,7 +74,7 @@
     </div>
     <div class="flex items-center gap-2">
       <div class="glowing-dot"></div>
-      <span class="text-xs text-white/40">Available</span>
+      <span class="text-xs text-white/40">[[NAV_STATUS_BADGE]]</span>
     </div>
   </nav>
 
@@ -81,38 +87,37 @@
       <div class="mb-8">
         <div class="inline-flex items-center gap-3 mb-8">
           <div class="glowing-dot"></div>
-          <span class="text-white/50 text-sm uppercase tracking-widest">Creative Developer & Digital Artist</span>
+          <span class="text-white/50 text-sm uppercase tracking-widest">[[HERO_BADGE]]</span>
         </div>
         <h1 class="font-syne font-bold leading-none mb-6" style="font-size: clamp(60px, 10vw, 130px);">
-          <span class="gradient-text">MARCUS</span><br/>
-          <span class="outline-text">RIVERA</span>
+          <span class="gradient-text">[[FULL_NAME]]</span>
         </h1>
         <p class="text-white/50 text-xl max-w-xl leading-relaxed mb-10">
-          I build <span class="text-white">extraordinary</span> digital experiences that push the boundaries of the web. Bold design meets cutting-edge code.
+          [[HERO_DESC]]
         </p>
         <div class="flex flex-wrap gap-4 mb-16">
-          <a href="#work" class="gradient-bg text-black font-bold px-8 py-4 rounded-full hover:opacity-90 transition-opacity hover:scale-105 transform">
-            See My Work <i class="fas fa-arrow-right ml-2"></i>
+          <a href="[[BTN_VIEW_WORK_LINK]]" class="gradient-bg text-black font-bold px-8 py-4 rounded-full hover:opacity-90 transition-opacity hover:scale-105 transform">
+            [[BTN_VIEW_WORK]] <i class="fas fa-arrow-right ml-2"></i>
           </a>
-          <a href="#contact" class="border border-white/20 text-white px-8 py-4 rounded-full hover:border-brand-orange transition-colors hover:bg-brand-orange/5">
-            Hire Me
+          <a href="[[BTN_HIRE_ME_LINK]]" class="border border-white/20 text-white px-8 py-4 rounded-full hover:border-brand-orange transition-colors hover:bg-brand-orange/5">
+            [[BTN_HIRE_ME]]
           </a>
         </div>
         <!-- Stats -->
         <div class="flex gap-12">
           <div>
-            <div class="font-syne text-5xl font-extrabold gradient-text">40+</div>
-            <div class="text-white/40 text-sm mt-1">Projects</div>
+            <div class="font-syne text-5xl font-extrabold gradient-text">[[STATS_1_VAL]]</div>
+            <div class="text-white/40 text-sm mt-1">[[STATS_1_LBL]]</div>
           </div>
           <div class="w-px bg-white/10"></div>
           <div>
-            <div class="font-syne text-5xl font-extrabold gradient-text">6yr</div>
-            <div class="text-white/40 text-sm mt-1">Experience</div>
+            <div class="font-syne text-5xl font-extrabold gradient-text">[[STATS_2_VAL]]</div>
+            <div class="text-white/40 text-sm mt-1">[[STATS_2_LBL]]</div>
           </div>
           <div class="w-px bg-white/10"></div>
           <div>
-            <div class="font-syne text-5xl font-extrabold gradient-text">25+</div>
-            <div class="text-white/40 text-sm mt-1">Clients</div>
+            <div class="font-syne text-5xl font-extrabold gradient-text">[[STATS_3_VAL]]</div>
+            <div class="text-white/40 text-sm mt-1">[[STATS_3_LBL]]</div>
           </div>
         </div>
       </div>
@@ -129,71 +134,15 @@
     <div class="max-w-7xl mx-auto">
       <div class="flex items-end justify-between mb-16 reveal">
         <div>
-          <p class="text-white/30 text-sm uppercase tracking-widest mb-4">// Selected Projects</p>
-          <h2 class="font-syne text-6xl font-extrabold">Featured<br/><span class="gradient-text">Work</span></h2>
+          <p class="text-white/30 text-sm uppercase tracking-widest mb-4">// [[WORK_SECTION_LABEL]]</p>
+          <h2 class="font-syne text-6xl font-extrabold">[[WORK_SECTION_TITLE]]</h2>
         </div>
-        <a href="#" class="hidden md:flex items-center gap-2 text-white/50 hover:text-white transition-colors text-sm border border-white/10 px-5 py-2 rounded-full hover:border-white/30">
+        <a href="#work" class="hidden md:flex items-center gap-2 text-white/50 hover:text-white transition-colors text-sm border border-white/10 px-5 py-2 rounded-full hover:border-white/30">
           View All <i class="fas fa-arrow-right"></i>
         </a>
       </div>
       <div class="space-y-6">
-        <!-- Project 1 -->
-        <div class="project-card card-3d rounded-3xl p-8 md:p-12 relative overflow-hidden reveal group cursor-pointer">
-          <span class="project-number">01</span>
-          <div class="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="tag-pill">WebGL</span>
-                <span class="tag-pill">Three.js</span>
-                <span class="tag-pill">GLSL</span>
-              </div>
-              <h3 class="font-syne text-4xl font-bold mb-4 group-hover:gradient-text transition-all">3D Product Showcase</h3>
-              <p class="text-white/50 leading-relaxed mb-6">An immersive 3D product visualization platform using WebGL and Three.js, with custom shader effects and interactive controls.</p>
-              <a href="#" class="inline-flex items-center gap-2 text-brand-orange hover:gap-4 transition-all font-medium">Explore Project <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="h-48 rounded-2xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(255,92,53,0.2),rgba(124,58,237,0.2))">
-              <i class="fas fa-cube text-7xl text-brand-orange/60"></i>
-            </div>
-          </div>
-        </div>
-        <!-- Project 2 -->
-        <div class="project-card card-3d rounded-3xl p-8 md:p-12 relative overflow-hidden reveal group cursor-pointer">
-          <span class="project-number">02</span>
-          <div class="grid md:grid-cols-2 gap-8 items-center">
-            <div class="h-48 rounded-2xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(255,224,55,0.2),rgba(59,130,246,0.2))">
-              <i class="fas fa-vr-cardboard text-7xl text-brand-yellow/60"></i>
-            </div>
-            <div>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="tag-pill">React</span>
-                <span class="tag-pill">GSAP</span>
-                <span class="tag-pill">Canvas</span>
-              </div>
-              <h3 class="font-syne text-4xl font-bold mb-4">Metaverse Landing</h3>
-              <p class="text-white/50 leading-relaxed mb-6">Award-winning landing page for a metaverse startup with parallax storytelling, canvas animations, and micro-interactions.</p>
-              <a href="#" class="inline-flex items-center gap-2 text-brand-yellow hover:gap-4 transition-all font-medium">Explore Project <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-        <!-- Project 3 -->
-        <div class="project-card card-3d rounded-3xl p-8 md:p-12 relative overflow-hidden reveal group cursor-pointer">
-          <span class="project-number">03</span>
-          <div class="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="tag-pill">Next.js</span>
-                <span class="tag-pill">Framer</span>
-                <span class="tag-pill">Lottie</span>
-              </div>
-              <h3 class="font-syne text-4xl font-bold mb-4">Motion Design Portfolio</h3>
-              <p class="text-white/50 leading-relaxed mb-6">A motion-first portfolio for a design studio with custom page transitions, Lottie animations, and scroll-driven effects.</p>
-              <a href="#" class="inline-flex items-center gap-2 text-brand-purple hover:gap-4 transition-all font-medium">Explore Project <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="h-48 rounded-2xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(124,58,237,0.2),rgba(236,72,153,0.2))">
-              <i class="fas fa-film text-7xl text-brand-purple/60"></i>
-            </div>
-          </div>
-        </div>
+        [[PROJECTS_HTML]]
       </div>
     </div>
   </section>
@@ -209,43 +158,20 @@
         <div class="reveal">
           <p class="text-white/30 text-sm uppercase tracking-widest mb-8">// About Me</p>
           <h2 class="font-syne text-5xl font-extrabold mb-8 leading-tight">
-            I'm a <span class="gradient-text">Creative</span><br/>Developer who<br/>loves <span class="gradient-text">bold</span> ideas.
+            [[ABOUT_TITLE]]
           </h2>
-          <p class="text-white/50 leading-relaxed mb-6">
-            Based in NYC, I'm a creative developer with 6+ years of experience building immersive digital experiences. I specialize in WebGL, creative animations, and pushing what's possible in the browser.
-          </p>
-          <p class="text-white/50 leading-relaxed mb-8">
-            When I'm not coding, I'm exploring generative art, contributing to open-source, or mentoring junior developers.
-          </p>
+          <p class="text-white/50 leading-relaxed mb-6">[[BIO_P1]]</p>
+          <p class="text-white/50 leading-relaxed mb-8">[[BIO_P2]]</p>
           <div class="flex gap-4 flex-wrap">
-            <a href="#" class="gradient-bg text-black font-bold px-6 py-3 rounded-full text-sm">Download CV</a>
+            <a href="[[BTN_DOWNLOAD_CV_LINK]]" class="gradient-bg text-black font-bold px-6 py-3 rounded-full text-sm">[[BTN_DOWNLOAD_CV]]</a>
             <a href="#contact" class="border border-white/20 text-white px-6 py-3 rounded-full text-sm hover:border-brand-orange transition-colors">Contact Me</a>
           </div>
         </div>
         <!-- Right: Skills grid -->
         <div class="reveal space-y-6">
-          <h3 class="font-syne text-2xl font-bold text-white/80 mb-6">Tech Stack</h3>
+          <h3 class="font-syne text-2xl font-bold text-white/80 mb-6">[[SKILLS_TITLE]]</h3>
           <div class="grid grid-cols-2 gap-4">
-            <div class="project-card rounded-2xl p-5 hover:border-brand-orange/50 transition-colors">
-              <i class="fab fa-react text-3xl text-blue-400 mb-3 block"></i>
-              <div class="font-semibold">React / Next.js</div>
-              <div class="text-white/40 text-xs mt-1">Frontend Framework</div>
-            </div>
-            <div class="project-card rounded-2xl p-5 hover:border-brand-yellow/50 transition-colors">
-              <i class="fas fa-cube text-3xl text-brand-orange mb-3 block"></i>
-              <div class="font-semibold">Three.js / WebGL</div>
-              <div class="text-white/40 text-xs mt-1">3D & Graphics</div>
-            </div>
-            <div class="project-card rounded-2xl p-5 hover:border-brand-purple/50 transition-colors">
-              <i class="fab fa-js-square text-3xl text-yellow-400 mb-3 block"></i>
-              <div class="font-semibold">JavaScript / TS</div>
-              <div class="text-white/40 text-xs mt-1">Core Language</div>
-            </div>
-            <div class="project-card rounded-2xl p-5 hover:border-brand-pink/50 transition-colors">
-              <i class="fab fa-node-js text-3xl text-green-400 mb-3 block"></i>
-              <div class="font-semibold">Node.js</div>
-              <div class="text-white/40 text-xs mt-1">Backend</div>
-            </div>
+            [[SERVICE_CARDS_HTML]]
           </div>
         </div>
       </div>
@@ -256,9 +182,9 @@
   <section id="contact" class="py-32 px-6 md:px-16">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-16 reveal">
-        <p class="text-white/30 text-sm uppercase tracking-widest mb-4">// Let's Connect</p>
-        <h2 class="font-syne text-6xl font-extrabold mb-4"><span class="gradient-text">Let's Build</span><br/>Something Epic</h2>
-        <p class="text-white/50 max-w-lg mx-auto">Have a wild idea? Let's make it real. I'm always excited about new creative challenges.</p>
+        <p class="text-white/30 text-sm uppercase tracking-widest mb-4">// [[CONTACT_SECTION_LABEL]]</p>
+        <h2 class="font-syne text-6xl font-extrabold mb-4">[[CONTACT_TITLE]]</h2>
+        <p class="text-white/50 max-w-lg mx-auto">[[CONTACT_DESC]]</p>
       </div>
       <div class="project-card rounded-3xl p-8 md:p-12 reveal">
         <form class="space-y-5" onsubmit="submitContact(event)">
@@ -270,15 +196,15 @@
           <textarea class="contact-input" rows="5" placeholder="Tell me about your vision..." required></textarea>
           <div class="flex items-center justify-between">
             <div class="flex gap-4">
-              <a href="#" class="text-white/30 hover:text-brand-orange transition-colors text-xl"><i class="fab fa-github"></i></a>
-              <a href="#" class="text-white/30 hover:text-brand-orange transition-colors text-xl"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="text-white/30 hover:text-brand-orange transition-colors text-xl"><i class="fab fa-linkedin"></i></a>
+              [[GITHUB_PH]]
+              [[TWITTER_PH]]
+              [[LINKEDIN_PH]]
             </div>
             <button type="submit" class="gradient-bg text-black font-bold px-8 py-4 rounded-full hover:opacity-90 transition-opacity hover:scale-105 transform">
-              Send It <i class="fas fa-arrow-right ml-2"></i>
+              [[BTN_SEND_MESSAGE]] <i class="fas fa-arrow-right ml-2"></i>
             </button>
           </div>
-          <div id="contactSuccess" class="hidden text-center text-brand-orange font-semibold py-2">🔥 Message received! Let's create something amazing.</div>
+          <div id="contactSuccess" class="hidden text-center text-brand-orange font-semibold py-2">✓ Message received! Let's create something amazing.</div>
         </form>
       </div>
     </div>
@@ -287,8 +213,8 @@
   <!-- Footer -->
   <footer class="border-t border-white/5 py-8 px-6 md:px-16">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
-      <div class="font-syne font-extrabold text-2xl mb-4 md:mb-0">MR<span class="gradient-text">.</span></div>
-      <p class="text-white/20 text-sm">© 2025 Marcus Rivera. Built by <span class="text-brand-orange">HA Tech</span></p>
+      <div class="font-syne font-extrabold text-2xl mb-4 md:mb-0">[[FOOTER_LOGO]]<span class="gradient-text">.</span></div>
+      <p class="text-white/20 text-sm">[[COPYRIGHT_TEXT]]</p>
       <a href="#hero" class="text-white/30 hover:text-white text-sm flex items-center gap-2 transition-colors mt-4 md:mt-0">
         Back to Top <i class="fas fa-arrow-up"></i>
       </a>
@@ -327,11 +253,26 @@
       });
     });
 
-    // Scroll Reveal
-    const observer = new IntersectionObserver((entries) => {
+    // Editor detection
+    if (window.self !== window.top) document.body.classList.add('in-editor');
+
+    // Scroll Reveal with dynamic support
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    
+    function observeNewElements() {
+      document.querySelectorAll('.reveal:not(.show)').forEach(el => revealObserver.observe(el));
+    }
+    
+    observeNewElements();
+    
+    // Watch for DOM changes (Live Editor) - Observe document for resilience
+    const mutationObserver = new MutationObserver(() => {
+      if (window.self !== window.top) document.body.classList.add('in-editor');
+      observeNewElements();
+    });
+    mutationObserver.observe(document, { childList: true, subtree: true });
 
     // Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

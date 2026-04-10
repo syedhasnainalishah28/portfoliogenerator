@@ -101,7 +101,15 @@
                                         <template v-else-if="field.type === 'list'">
                                             <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 shadow-sm">
                                                 <div class="flex items-center justify-between mb-3">
-                                                    <h4 class="text-xs font-bold text-gray-700">{{ field.label }}</h4>
+                                                    <div>
+                                                        <h4 class="text-xs font-bold text-gray-700">{{ field.label }}</h4>
+                                                        <p v-if="field.label.toLowerCase().includes('icon')" class="text-[10px] text-gray-400">
+                                                            Format: <span class="font-mono">class|title|desc</span>
+                                                            <a href="https://fontawesome.com/v5/search?m=free" target="_blank" class="text-[#f28b11] hover:underline ml-1">
+                                                                <i class="fas fa-search"></i> Find Icons
+                                                            </a>
+                                                        </p>
+                                                    </div>
                                                     <button class="text-[10px] font-bold text-white bg-gray-800 hover:bg-black px-2 py-1 rounded shadow-sm transition-colors" type="button" @click="addListItem(field.name)">+ ADD ITEM</button>
                                                 </div>
                                                 <div class="space-y-2">
@@ -119,7 +127,15 @@
                                         <template v-else-if="field.type === 'projects'">
                                             <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 shadow-sm">
                                                 <div class="flex items-center justify-between mb-4">
-                                                    <h4 class="text-xs font-bold text-gray-700">{{ field.label }}</h4>
+                                                    <div>
+                                                        <h4 class="text-xs font-bold text-gray-700">{{ field.label }}</h4>
+                                                        <p class="text-[10px] text-gray-400">
+                                                            <a href="https://fontawesome.com/v5/search?m=free" target="_blank" class="text-[#f28b11] hover:underline">
+                                                                <i class="fas fa-search"></i> Find Icons
+                                                            </a>
+                                                            (Prefix name with <span class="font-mono">icon|</span> for custom icon)
+                                                        </p>
+                                                    </div>
                                                     <button class="text-[10px] font-bold text-[#f28b11] bg-orange-100 hover:bg-orange-200 px-2 py-1 rounded shadow-sm transition-colors" type="button" @click="addProject(field.name)">+ ADD PROJECT</button>
                                                 </div>
                                                 <div class="space-y-4">

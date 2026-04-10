@@ -1,24 +1,54 @@
 {
     "name": "Creative Gradient",
     "style": "Bold & Colorful",
-    "description": "High-impact colorful gradients and 3D effects.",
+    "description": "High-impact colorful gradients and 3D effects for creative developers.",
     "previewBg": "bg-black",
     "fields": [
-        { "name": "full_name", "label": "Full Name", "type": "text", "default": "MARCUS RIVERA" },
-        { "name": "title", "label": "Role (e.g. Creative Developer)", "type": "text", "default": "Creative Developer & Digital Artist" },
-        { "name": "bio", "label": "Bio Description", "type": "textarea", "default": "I build extraordinary digital experiences..." },
-        { "name": "email", "label": "Email Address", "type": "email", "default": "marcus@example.com" },
-        { "name": "years_experience", "label": "Years Experience", "type": "number", "default": 6 },
-        { "name": "projects_count", "label": "Projects Done", "type": "number", "default": 40 },
-        { "name": "clients_count", "label": "Happy Clients", "type": "number", "default": 25 },
-        { "name": "primary_color", "label": "Gradient Color 1", "type": "color", "default": "#FF5C35" },
-        { "name": "secondary_color", "label": "Gradient Color 2", "type": "color", "default": "#FFE037" },
-        { "name": "whatsapp_link", "label": "Hire Me / CV Link", "type": "url", "default": "https://wa.me/..." },
-        { "name": "github_url", "label": "GitHub URL", "type": "url", "default": "https://github.com/..." },
-        { "name": "linkedin_url", "label": "LinkedIn URL", "type": "url", "default": "https://linkedin.com/..." },
-        { "name": "twitter_url", "label": "Twitter URL", "type": "url", "default": "https://twitter.com/..." },
-        { "name": "skills", "label": "Tech Stack (IconName:Title)", "type": "list", "default": ["react:React", "cube:Three.js"] },
-        { "name": "projects", "label": "Featured Work", "type": "projects", "default": [] },
-        { "name": "hero_image", "label": "Hero Image", "type": "image", "default": null }
+        { "name": "primary_color", "label": "Gradient Color 1", "type": "color", "default": "#FF5C35", "section": "Global Aesthetics" },
+        { "name": "secondary_color", "label": "Gradient Color 2", "type": "color", "default": "#FFE037", "section": "Global Aesthetics" },
+        
+        { "name": "header_logo", "label": "Header Logo Initials", "type": "text", "default": "MARCUS", "section": "Header & Hero" },
+        { "name": "nav_status_badge", "label": "Nav Status Text", "type": "text", "default": "Available", "section": "Header & Hero" },
+        
+        { "name": "hero_badge", "label": "Hero Top Badge", "type": "text", "default": "Creative Developer & Digital Artist", "section": "Header & Hero" },
+        { "name": "full_name", "label": "Full Name", "type": "text", "default": "MARCUS RIVERA", "section": "Header & Hero" },
+        { "name": "hero_desc", "label": "Hero Highlight Description (HTML)", "type": "text", "default": "I build <span class=\"text-white\">extraordinary</span> digital experiences that push the boundaries of the web.", "section": "Header & Hero" },
+        
+        { "name": "btn_view_work", "label": "Primary Button Text", "type": "text", "default": "See My Work", "section": "Header & Hero" },
+        { "name": "btn_view_work_link", "label": "Primary Button URL", "type": "url", "default": "#work", "section": "Header & Hero" },
+        { "name": "btn_hire_me", "label": "Secondary Button Text", "type": "text", "default": "Hire Me", "section": "Header & Hero" },
+        { "name": "btn_hire_me_link", "label": "Secondary Button URL", "type": "url", "default": "#contact", "section": "Header & Hero" },
+
+        { "name": "stats_1_value", "label": "Stats 1 (Value)", "type": "text", "default": "40+", "section": "Header & Hero" },
+        { "name": "stats_1_label", "label": "Stats 1 (Label)", "type": "text", "default": "Projects", "section": "Header & Hero" },
+        { "name": "stats_2_value", "label": "Stats 2 (Value)", "type": "text", "default": "6yr", "section": "Header & Hero" },
+        { "name": "stats_2_label", "label": "Stats 2 (Label)", "type": "text", "default": "Experience", "section": "Header & Hero" },
+        { "name": "stats_3_value", "label": "Stats 3 (Value)", "type": "text", "default": "25+", "section": "Header & Hero" },
+        { "name": "stats_3_label", "label": "Stats 3 (Label)", "type": "text", "default": "Clients", "section": "Header & Hero" },
+
+        { "name": "work_section_label", "label": "Work Subtitle", "type": "text", "default": "Selected Projects", "section": "Portfolio" },
+        { "name": "work_section_title", "label": "Work Main Title (HTML)", "type": "text", "default": "Featured<br/><span class=\"gradient-text\">Work</span>", "section": "Portfolio" },
+        { "name": "projects", "label": "Project List", "type": "projects", "default": [], "section": "Portfolio" },
+
+        { "name": "about_title", "label": "About Main Title (HTML)", "type": "text", "default": "I'm a <span class=\"gradient-text\">Creative</span><br/>Developer who<br/>loves <span class=\"gradient-text\">bold</span> ideas.", "section": "About Me" },
+        { "name": "bio_p1", "label": "Bio Paragraph 1", "type": "textarea", "default": "Based in NYC, I'm a creative developer with 6+ years of experience building immersive digital experiences.", "section": "About Me" },
+        { "name": "bio_p2", "label": "Bio Paragraph 2", "type": "textarea", "default": "I specialize in WebGL, creative animations, and pushing what's possible in the browser.", "section": "About Me" },
+        { "name": "btn_download_cv", "label": "CV Button Text", "type": "text", "default": "Download CV", "section": "About Me" },
+        { "name": "btn_download_cv_link", "label": "CV Button URL", "type": "url", "default": "#", "section": "About Me" },
+
+        { "name": "skills_title", "label": "Skills Section Title", "type": "text", "default": "Tech Stack", "section": "About Me" },
+        { "name": "service_cards", "label": "Tech Stack Items (Icon|Title|Sub)", "type": "list", "default": ["fab fa-react|React|Frontend", "fas fa-cube|Three.js|3D Web", "fab fa-node-js|Node.js|Backend"], "section": "About Me" },
+
+        { "name": "contact_section_label", "label": "Contact Subtitle", "type": "text", "default": "Let's Connect", "section": "Contact" },
+        { "name": "contact_title", "label": "Contact Main Title (HTML)", "type": "text", "default": "<span class=\"gradient-text\">Let's Build</span><br/>Something Epic", "section": "Contact" },
+        { "name": "contact_desc", "label": "Contact Description", "type": "textarea", "default": "Have a wild idea? Let's make it real. I'm always excited about new creative challenges.", "section": "Contact" },
+        { "name": "btn_send_message", "label": "Form Button Text", "type": "text", "default": "Send It", "section": "Contact" },
+
+        { "name": "footer_logo", "label": "Footer Logo", "type": "text", "default": "MR", "section": "Footer" },
+        { "name": "copyright_text", "label": "Copyright Text", "type": "text", "default": "© 2025 Marcus Rivera. Built by HA Tech", "section": "Footer" },
+        
+        { "name": "github_url", "label": "GitHub URL", "type": "url", "default": "https://github.com/#", "section": "Socials" },
+        { "name": "linkedin_url", "label": "LinkedIn URL", "type": "url", "default": "https://linkedin.com/#", "section": "Socials" },
+        { "name": "twitter_url", "label": "Twitter URL", "type": "url", "default": "https://twitter.com/#", "section": "Socials" }
     ]
 }

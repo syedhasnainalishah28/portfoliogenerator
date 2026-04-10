@@ -1,24 +1,59 @@
 {
-    "name": "Professional Light",
-    "style": "Sidebar Corporate",
-    "description": "Enterprise-ready clean sidebar layout for seniors.",
-    "previewBg": "bg-slate-50",
+    "name": "Professional Sidebar",
+    "style": "Clean & Corporate",
+    "description": "Structured layout with a persistent sidebar, ideal for senior engineers and cloud architects.",
+    "previewBg": "bg-white",
     "fields": [
-        { "name": "full_name", "label": "Full Name", "type": "text", "default": "JAMES WILSON" },
-        { "name": "title", "label": "Role Detail", "type": "text", "default": "Senior Software Engineer" },
-        { "name": "bio", "label": "Bio Introduction", "type": "textarea", "default": "I architect and build scalable cloud infrastructure..." },
-        { "name": "email", "label": "Email Address", "type": "email", "default": "james@example.com" },
-        { "name": "phone", "label": "Phone Number", "type": "text", "default": "+1 (415) 555-9876" },
-        { "name": "location", "label": "Location", "type": "text", "default": "San Francisco, CA" },
-        { "name": "years_experience", "label": "Years Experience", "type": "number", "default": 8 },
-        { "name": "projects_count", "label": "Projects Delivered", "type": "number", "default": 60 },
-        { "name": "primary_color", "label": "Primary Blue", "type": "color", "default": "#3b82f6" },
-        { "name": "whatsapp_link", "label": "Download CV", "type": "url", "default": "https://docs.google.com/..." },
-        { "name": "github_url", "label": "GitHub URL", "type": "url", "default": "https://github.com/..." },
-        { "name": "linkedin_url", "label": "LinkedIn URL", "type": "url", "default": "https://linkedin.com/..." },
-        { "name": "twitter_url", "label": "Twitter URL", "type": "url", "default": "https://twitter.com/..." },
-        { "name": "skills", "label": "Skills (Categories/Tags)", "type": "list", "default": ["AWS", "TypeScript"] },
-        { "name": "projects", "label": "Portfolio Work", "type": "projects", "default": [] },
-        { "name": "hero_image", "label": "Sidebar Profile Photo", "type": "image", "default": null }
+        { "name": "primary_color", "label": "Brand Blue", "type": "color", "default": "#3b82f6", "section": "Global Aesthetics" },
+        
+        { "name": "full_name", "label": "Full Name", "type": "text", "default": "JAMES WILSON", "section": "Sidebar Profile" },
+        { "name": "sidebar_subtitle", "label": "Sidebar Role Title", "type": "text", "default": "Senior Software Engineer", "section": "Sidebar Profile" },
+        { "name": "nav_status_badge", "label": "Sidebar Status", "type": "text", "default": "Available for work", "section": "Sidebar Profile" },
+        { "name": "sidebar_footer_text", "label": "Sidebar Footer (HTML)", "type": "text", "default": "Built by <span class=\"text-blue-400\">HA Tech</span>", "section": "Sidebar Profile" },
+        
+        { "name": "hero_status_badge", "label": "Hero Top Badge", "type": "text", "default": "Available for New Projects", "section": "Hero Section" },
+        { "name": "hero_title_html", "label": "Hero Title (HTML)", "type": "text", "default": "Hi, I'm <span class=\"highlight\">James</span><br/>Senior Software Engineer", "section": "Hero Section" },
+        { "name": "hero_desc", "label": "Hero Subtitle", "type": "textarea", "default": "I architect and build scalable cloud infrastructure and enterprise software systems that power businesses at scale.", "section": "Hero Section" },
+        
+        { "name": "btn_view_work", "label": "Primary Button", "type": "text", "default": "View Projects", "section": "Hero Section" },
+        { "name": "btn_hire_me", "label": "Secondary Button", "type": "text", "default": "Hire Me", "section": "Hero Section" },
+        { "name": "btn_download_cv", "label": "CV Button", "type": "text", "default": "Download CV", "section": "Hero Section" },
+        { "name": "btn_download_cv_link", "label": "CV Button URL", "type": "url", "default": "#", "section": "Hero Section" },
+
+        { "name": "stats_1_val", "label": "Stats 1 (Value)", "type": "text", "default": "8+", "section": "Hero Section" },
+        { "name": "stats_1_lbl", "label": "Stats 1 (Label)", "type": "text", "default": "Years Exp.", "section": "Hero Section" },
+        { "name": "stats_2_val", "label": "Stats 2 (Value)", "type": "text", "default": "60+", "section": "Hero Section" },
+        { "name": "stats_2_lbl", "label": "Stats 2 (Label)", "type": "text", "default": "Projects", "section": "Hero Section" },
+        { "name": "stats_3_val", "label": "Stats 3 (Value)", "type": "text", "default": "15+", "section": "Hero Section" },
+        { "name": "stats_3_lbl", "label": "Stats 3 (Label)", "type": "text", "default": "Clients", "section": "Hero Section" },
+
+        { "name": "about_section_title", "label": "About Title", "type": "text", "default": "Who Am I", "section": "About Me" },
+        { "name": "bio_p1", "label": "Bio Paragraph 1", "type": "textarea", "default": "I'm a Senior Software Engineer based in San Francisco, specializing in cloud architecture, microservices, and DevOps.", "section": "About Me" },
+        { "name": "bio_p2", "label": "Bio Paragraph 2", "type": "textarea", "default": "I'm passionate about building systems that scale gracefully and teams that grow sustainably.", "section": "About Me" },
+        { "name": "location", "label": "Location", "type": "text", "default": "San Francisco, CA", "section": "About Me" },
+        { "name": "education_text", "label": "Education Info", "type": "text", "default": "M.S. Stanford", "section": "About Me" },
+        { "name": "about_status_text", "label": "Current Status", "type": "text", "default": "Open", "section": "About Me" },
+
+        { "name": "code_card_filename", "label": "JSON Card Label", "type": "text", "default": "james_wilson.json", "section": "About Me" },
+        { "name": "code_card_content_json_html", "label": "JSON Card Items (Key|Val)", "type": "list", "default": ["role|Sr. Software Engineer", "specialization|Cloud Architecture", "experience|8 Years"], "section": "About Me" },
+
+        { "name": "skills_section_title", "label": "Skills Title", "type": "text", "default": "Technical Arsenal", "section": "Experience & Skills" },
+        { "name": "service_cards", "label": "Skills List (Icon|Title|Sub)", "type": "list", "default": ["fab fa-aws|AWS|Cloud", "fab fa-docker|Docker|DevOps", "fab fa-python|Python|Backend"], "section": "Experience & Skills" },
+
+        { "name": "work_section_title", "label": "Portfolio Title", "type": "text", "default": "Featured Projects", "section": "Portfolio" },
+        { "name": "projects", "label": "Project List", "type": "projects", "default": [], "section": "Portfolio" },
+
+        { "name": "experience_section_title", "label": "Experience Title", "type": "text", "default": "Work Experience", "section": "Experience & Skills" },
+        { "name": "experience", "label": "Experience List (Duration|Title|Company|Desc)", "type": "list", "default": ["2022 – Present|Staff Engineer|Stripe|Lead architect.", "2019 – 2021|Senior Engineer|AWS|Built core features."], "section": "Experience & Skills" },
+
+        { "name": "contact_title", "label": "Contact Title", "type": "text", "default": "Get In Touch", "section": "Contact" },
+        { "name": "contact_desc", "label": "Contact Info Text", "type": "textarea", "default": "Looking to hire or collaborate on an exciting project? I'm available for consulting.", "section": "Contact" },
+        { "name": "contact_email", "label": "Email Address", "type": "text", "default": "james@example.com", "section": "Contact" },
+        { "name": "contact_phone", "label": "Phone Number", "type": "text", "default": "+1 (415) 555-9876", "section": "Contact" },
+        { "name": "btn_send_message", "label": "Form Button", "type": "text", "default": "Send Message", "section": "Contact" },
+        
+        { "name": "github_url", "label": "GitHub URL", "type": "url", "default": "#", "section": "Socials" },
+        { "name": "linkedin_url", "label": "LinkedIn URL", "type": "url", "default": "#", "section": "Socials" },
+        { "name": "twitter_url", "label": "Twitter URL", "type": "url", "default": "#", "section": "Socials" }
     ]
 }
