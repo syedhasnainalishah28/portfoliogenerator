@@ -42,7 +42,7 @@ class OrderController extends Controller
             'license_key'          => License::generateKey(),
             'is_used'              => true,
             'activated_at'         => now(),
-            'expires_at'           => now()->addMonths($order->plan->duration_months),
+            'expires_at'           => now()->addMonths((int) $order->plan->duration_months),
             'is_manually_generated'=> false,
             'generated_by_admin'   => Auth::guard('admin')->id(),
         ]);

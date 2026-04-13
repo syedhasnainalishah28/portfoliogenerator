@@ -37,7 +37,7 @@ class LicenseController extends Controller
         }
 
         $plan      = $license->plan;
-        $expiresAt = now()->addMonths($plan->duration_months);
+        $expiresAt = now()->addMonths((int)$plan->duration_months);
 
         // Bind license to user
         $license->update([
