@@ -32,7 +32,7 @@ class Setting extends Model
             });
 
             return $settings[$key] ?? $default;
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return $default;
         }
     }

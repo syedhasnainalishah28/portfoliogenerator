@@ -27,6 +27,15 @@ Route::get('/migrate-db', function () {
     }
 });
 
+Route::get('/ha-debug-log', function () {
+    $logPath = storage_path('logs/laravel.log');
+    if (!file_exists($logPath)) return "Log empty.";
+    
+    // Read the last 200 lines to capture the exact top of the exception block
+    $lines = array_slice(file($logPath), -200);
+    return response("<pre style='background:#111;color:#0f0;padding:20px;'>" . htmlspecialchars(implode("", $lines)) . "</pre>");
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
