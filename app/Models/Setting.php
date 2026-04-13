@@ -26,10 +26,14 @@ class Setting extends Model
      */
     public static function get($key, $default = null)
     {
-        $settings = Cache::rememberForever('global_settings', function () {
-            return self::pluck('value', 'key')->toArray();
-        });
+        try {
+            $settings = Cache::rememberForever('global_settings', function () {
+                return self::pluck('value', 'key')->toArray();
+            });
 
-        return $settings[$key] ?? $default;
+            return $settings[$key] ?? $default;
+        } catch (\Exception $e) {
+            return $default;
+        }
     }
 }

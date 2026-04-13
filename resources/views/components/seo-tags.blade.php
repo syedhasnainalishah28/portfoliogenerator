@@ -4,7 +4,7 @@
     $faviconPath = \App\Models\Setting::get('favicon_path');
     
     // Provide a fallback title if a specific page title isn't yielded
-    $pageTitle = View::hasSection('title') ? View::getSection('title') . ' — ' . $appName : $appName;
+    $pageTitle = app('view')->hasSection('title') ? app('view')->getSection('title') . ' — ' . $appName : $appName;
 @endphp
 
 <title>{{ $pageTitle }}</title>
